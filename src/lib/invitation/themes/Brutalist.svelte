@@ -7,6 +7,8 @@
 	import GiftSection from '$lib/invitation/components/GiftSection.svelte';
 	import MonogramFrame from '$lib/invitation/ornaments/MonogramFrame.svelte';
 	import PaperTexture from '$lib/invitation/ornaments/PaperTexture.svelte';
+	import { parallax } from '$lib/actions/parallax';
+	import { scrollReveal } from '$lib/actions/scrollReveal';
 	import { Calendar, Clock, MapPin, ExternalLink, Zap } from '@lucide/svelte';
 
 	let {
@@ -68,6 +70,7 @@
 	<!-- Quote Card -->
 	{#if content.opening?.quote}
 		<div
+			use:scrollReveal={{ variant: 'fade-up', duration: 800 }}
 			class="relative z-10 border-brutal-thick shadow-brutal mx-auto mb-12 max-w-4xl bg-[#facc15] p-6 text-center sm:p-10 -rotate-0.5"
 		>
 			<p class="font-syne text-lg sm:text-2xl leading-snug font-bold text-black">
@@ -84,16 +87,17 @@
 	<!-- Couple Cards -->
 	<div class="relative z-10 mx-auto mb-12 grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
 		<!-- Groom -->
-		<div class="border-brutal-thick shadow-brutal space-y-4 bg-white p-6 sm:p-8">
+		<div use:scrollReveal={{ delay: 100 }} class="border-brutal-thick shadow-brutal space-y-4 bg-white p-6 sm:p-8">
 			<div class="border-brutal inline-block bg-black px-3 py-1 font-mono text-xs font-bold text-white uppercase shadow-brutal-sm">
 				THE GROOM
 			</div>
 			{#if content.couple.partner1.photoUrl}
 				<div class="border-brutal aspect-4/5 overflow-hidden bg-neutral-100">
 					<img
+						use:parallax={{ speed: 0.02, scale: 1.08 }}
 						src={content.couple.partner1.photoUrl}
 						alt={content.couple.partner1.name}
-						class="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+						class="h-full w-full object-cover"
 						loading="lazy"
 					/>
 				</div>
@@ -111,7 +115,7 @@
 		</div>
 
 		<!-- Bride -->
-		<div class="border-brutal-thick shadow-brutal space-y-4 bg-white p-6 sm:p-8">
+		<div use:scrollReveal={{ delay: 200 }} class="border-brutal-thick shadow-brutal space-y-4 bg-white p-6 sm:p-8">
 			<div
 				class="border-brutal inline-block bg-[#facc15] px-3 py-1 font-mono text-xs font-bold text-black uppercase shadow-brutal-sm"
 			>
@@ -120,9 +124,10 @@
 			{#if content.couple.partner2.photoUrl}
 				<div class="border-brutal aspect-4/5 overflow-hidden bg-neutral-100">
 					<img
+						use:parallax={{ speed: 0.02, scale: 1.08 }}
 						src={content.couple.partner2.photoUrl}
 						alt={content.couple.partner2.name}
-						class="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+						class="h-full w-full object-cover"
 						loading="lazy"
 					/>
 				</div>
@@ -142,7 +147,7 @@
 
 	<!-- Story -->
 	{#if content.story?.body}
-		<div class="relative z-10 border-brutal-thick shadow-brutal mx-auto mb-12 max-w-4xl bg-white p-6 sm:p-10">
+		<div use:scrollReveal class="relative z-10 border-brutal-thick shadow-brutal mx-auto mb-12 max-w-4xl bg-white p-6 sm:p-10">
 			<span
 				class="border-brutal mb-4 inline-block bg-black px-3 py-1 font-mono text-xs font-bold text-white uppercase shadow-brutal-sm"
 			>
@@ -160,13 +165,14 @@
 	<!-- Events -->
 	{#if content.events && content.events.length > 0}
 		<div class="relative z-10 mx-auto mb-12 max-w-5xl">
-			<div class="border-brutal-thick shadow-brutal mb-8 bg-[#facc15] p-4 text-center">
+			<div use:scrollReveal class="border-brutal-thick shadow-brutal mb-8 bg-[#facc15] p-4 text-center">
 				<h2 class="font-syne text-3xl font-black uppercase sm:text-5xl">Rangkaian Acara</h2>
 			</div>
 
 			<div class="grid grid-cols-1 gap-8 md:grid-cols-2">
 				{#each content.events as event}
 					<div
+						use:scrollReveal={{ delay: 100 }}
 						class="border-brutal-thick shadow-brutal space-y-4 bg-white p-6 sm:p-8 transition-transform hover:-translate-y-1"
 					>
 						<span
@@ -214,6 +220,7 @@
 	<!-- Countdown -->
 	{#if content.countdown?.targetDate}
 		<div
+			use:scrollReveal
 			class="relative z-10 border-brutal-thick shadow-brutal mx-auto mb-12 max-w-2xl bg-black p-8 text-center text-white sm:p-12"
 		>
 			<span class="mb-4 block font-mono text-xs font-bold tracking-widest text-[#facc15] uppercase">
@@ -226,7 +233,7 @@
 	<!-- Gallery -->
 	{#if content.gallery && content.gallery.length > 0}
 		<div class="relative z-10 mx-auto mb-12 max-w-6xl">
-			<div class="border-brutal-thick shadow-brutal mb-8 bg-white p-4 text-center">
+			<div use:scrollReveal class="border-brutal-thick shadow-brutal mb-8 bg-white p-4 text-center">
 				<h2 class="font-syne text-3xl font-black uppercase sm:text-5xl">Galeri Foto</h2>
 			</div>
 			<div class="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-4">
@@ -247,7 +254,7 @@
 	<!-- Interactive Section -->
 	<div class="relative z-10 mx-auto max-w-4xl space-y-8">
 		{#if content.rsvp?.enabled}
-			<div class="border-brutal-thick shadow-brutal-lg bg-white p-6 sm:p-10">
+			<div use:scrollReveal class="border-brutal-thick shadow-brutal-lg bg-white p-6 sm:p-10">
 				<div class="mb-8 border-b-2 border-black pb-4 text-center">
 					<span
 						class="border-brutal mb-2 inline-block bg-[#facc15] px-3 py-1 font-mono text-xs font-bold uppercase shadow-brutal-sm"
@@ -263,7 +270,7 @@
 		{/if}
 
 		{#if content.gift?.enabled}
-			<div class="border-brutal-thick shadow-brutal-lg bg-white p-6 sm:p-10">
+			<div use:scrollReveal class="border-brutal-thick shadow-brutal-lg bg-white p-6 sm:p-10">
 				<div class="mb-8 border-b-2 border-black pb-4 text-center">
 					<span
 						class="border-brutal mb-2 inline-block bg-black px-3 py-1 font-mono text-xs font-bold text-white uppercase shadow-brutal-sm"
@@ -279,7 +286,7 @@
 		{/if}
 
 		{#if content.guestbook?.enabled}
-			<div class="border-brutal-thick shadow-brutal-lg bg-white p-6 sm:p-10">
+			<div use:scrollReveal class="border-brutal-thick shadow-brutal-lg bg-white p-6 sm:p-10">
 				<div class="mb-8 border-b-2 border-black pb-4 text-center">
 					<span
 						class="border-brutal mb-2 inline-block bg-[#facc15] px-3 py-1 font-mono text-xs font-bold uppercase shadow-brutal-sm"

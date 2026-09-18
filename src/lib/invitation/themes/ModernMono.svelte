@@ -7,6 +7,8 @@
 	import GiftSection from '$lib/invitation/components/GiftSection.svelte';
 	import MonogramFrame from '$lib/invitation/ornaments/MonogramFrame.svelte';
 	import PaperTexture from '$lib/invitation/ornaments/PaperTexture.svelte';
+	import { parallax } from '$lib/actions/parallax';
+	import { scrollReveal } from '$lib/actions/scrollReveal';
 	import { ExternalLink } from '@lucide/svelte';
 
 	let {
@@ -82,12 +84,12 @@
 	{#if content.opening?.quote}
 		<section class="relative z-10 border-b-2 border-black bg-white px-6 py-12 sm:py-16 text-center">
 			<div class="mx-auto max-w-3xl space-y-4">
-				<span class="text-[10px] text-neutral-400 uppercase block tracking-widest">// PRELUDE</span>
-				<blockquote class="text-base sm:text-xl font-bold uppercase tracking-tight text-neutral-900 leading-snug">
+				<span use:scrollReveal class="text-[10px] text-neutral-400 uppercase block tracking-widest">// PRELUDE</span>
+				<blockquote use:scrollReveal={{ variant: 'blur-in', duration: 900 }} class="text-base sm:text-xl font-bold uppercase tracking-tight text-neutral-900 leading-snug">
 					"{content.opening.quote}"
 				</blockquote>
 				{#if content.opening.quoteSource}
-					<cite class="block text-xs font-bold text-neutral-500 uppercase not-italic tracking-wider">
+					<cite use:scrollReveal={{ delay: 150 }} class="block text-xs font-bold text-neutral-500 uppercase not-italic tracking-wider">
 						— {content.opening.quoteSource}
 					</cite>
 				{/if}
@@ -102,13 +104,14 @@
 		>
 			<!-- Groom -->
 			<div class="space-y-6 bg-white p-8 sm:p-12">
-				<div class="flex justify-between items-center text-[10px] text-neutral-400 uppercase">
+				<div use:scrollReveal class="flex justify-between items-center text-[10px] text-neutral-400 uppercase">
 					<span>[PARTNER_01]</span>
 					<span>ROLE: GROOM</span>
 				</div>
 				{#if content.couple.partner1.photoUrl}
 					<div class="aspect-4/5 overflow-hidden border-2 border-black p-1 bg-neutral-100">
 						<img
+							use:parallax={{ speed: 0.02, scale: 1.06 }}
 							src={content.couple.partner1.photoUrl}
 							alt={content.couple.partner1.name}
 							class="h-full w-full object-cover contrast-125 grayscale"
@@ -116,7 +119,7 @@
 						/>
 					</div>
 				{/if}
-				<div>
+				<div use:scrollReveal={{ delay: 100 }}>
 					<h3 class="text-2xl font-bold uppercase tracking-tight">
 						{content.couple.partner1.fullName || content.couple.partner1.name}
 					</h3>
@@ -128,13 +131,14 @@
 
 			<!-- Bride -->
 			<div class="space-y-6 bg-white p-8 sm:p-12">
-				<div class="flex justify-between items-center text-[10px] text-neutral-400 uppercase">
+				<div use:scrollReveal class="flex justify-between items-center text-[10px] text-neutral-400 uppercase">
 					<span>[PARTNER_02]</span>
 					<span>ROLE: BRIDE</span>
 				</div>
 				{#if content.couple.partner2.photoUrl}
 					<div class="aspect-4/5 overflow-hidden border-2 border-black p-1 bg-neutral-100">
 						<img
+							use:parallax={{ speed: 0.02, scale: 1.06 }}
 							src={content.couple.partner2.photoUrl}
 							alt={content.couple.partner2.name}
 							class="h-full w-full object-cover contrast-125 grayscale"
@@ -142,7 +146,7 @@
 						/>
 					</div>
 				{/if}
-				<div>
+				<div use:scrollReveal={{ delay: 100 }}>
 					<h3 class="text-2xl font-bold uppercase tracking-tight">
 						{content.couple.partner2.fullName || content.couple.partner2.name}
 					</h3>
@@ -157,7 +161,7 @@
 	<!-- Story -->
 	{#if content.story?.body}
 		<section class="relative z-10 border-b-2 border-black bg-white p-8 sm:p-12">
-			<div class="mx-auto max-w-4xl space-y-4">
+			<div use:scrollReveal class="mx-auto max-w-4xl space-y-4">
 				<span class="text-[10px] text-neutral-400 uppercase tracking-widest">// RECORDED_CHRONICLE</span>
 				<h3 class="text-2xl font-bold uppercase tracking-tight">
 					{content.story.title || 'Our Chronicle'}
@@ -173,7 +177,7 @@
 	{#if content.events && content.events.length > 0}
 		<section class="relative z-10 border-b-2 border-black">
 			<div class="mx-auto max-w-6xl border-x-0 border-black md:border-x-2">
-				<div class="bg-black p-6 text-white sm:p-8 flex justify-between items-center">
+				<div use:scrollReveal class="bg-black p-6 text-white sm:p-8 flex justify-between items-center">
 					<span class="text-xs tracking-widest uppercase">// SCHEDULE_OF_EVENTS</span>
 					<span class="text-[10px] text-neutral-400">TIMETABLE</span>
 				</div>
@@ -181,7 +185,7 @@
 					class="grid grid-cols-1 divide-y-2 divide-black md:grid-cols-2 md:divide-x-2 md:divide-y-0"
 				>
 					{#each content.events as event}
-						<div class="space-y-4 bg-white p-8 sm:p-10">
+						<div use:scrollReveal={{ delay: 100 }} class="space-y-4 bg-white p-8 sm:p-10">
 							<div class="inline-block bg-black px-2 py-0.5 text-[10px] font-bold text-white uppercase">
 								{event.type}
 							</div>
@@ -214,10 +218,12 @@
 	<!-- Countdown -->
 	{#if content.countdown?.targetDate}
 		<section class="relative z-10 border-b-2 border-black bg-white p-8 sm:p-12 text-center">
-			<span class="text-[10px] text-neutral-400 uppercase tracking-widest block mb-4">
-				// T_MINUS_COUNTDOWN
-			</span>
-			<Countdown targetDate={content.countdown.targetDate} variant="mono" />
+			<div use:scrollReveal>
+				<span class="text-[10px] text-neutral-400 uppercase tracking-widest block mb-4">
+					// T_MINUS_COUNTDOWN
+				</span>
+				<Countdown targetDate={content.countdown.targetDate} variant="mono" />
+			</div>
 		</section>
 	{/if}
 
@@ -225,7 +231,7 @@
 	{#if content.gallery && content.gallery.length > 0}
 		<section class="relative z-10 border-b-2 border-black">
 			<div class="mx-auto max-w-6xl border-x-0 border-black md:border-x-2">
-				<div class="bg-black p-6 text-white sm:p-8">
+				<div use:scrollReveal class="bg-black p-6 text-white sm:p-8">
 					<span class="text-xs tracking-widest uppercase">// ARCHIVE_CONTACT_SHEET</span>
 				</div>
 				<div class="grid grid-cols-2 divide-x divide-y divide-black md:grid-cols-4 bg-white">
@@ -248,7 +254,7 @@
 	<section class="relative z-10 mx-auto max-w-4xl p-6 sm:p-12">
 		<div class="space-y-16">
 			{#if content.rsvp?.enabled}
-				<div class="border-2 border-black bg-white p-6 sm:p-10">
+				<div use:scrollReveal class="border-2 border-black bg-white p-6 sm:p-10">
 					<span class="text-[10px] text-neutral-400 uppercase tracking-widest block mb-2">
 						// RSVP_SUBMISSION
 					</span>
@@ -260,7 +266,7 @@
 			{/if}
 
 			{#if content.gift?.enabled}
-				<div class="border-2 border-black bg-white p-6 sm:p-10">
+				<div use:scrollReveal class="border-2 border-black bg-white p-6 sm:p-10">
 					<span class="text-[10px] text-neutral-400 uppercase tracking-widest block mb-2">
 						// REGISTRY_PAYMENT
 					</span>
@@ -270,7 +276,7 @@
 			{/if}
 
 			{#if content.guestbook?.enabled}
-				<div class="border-2 border-black bg-white p-6 sm:p-10">
+				<div use:scrollReveal class="border-2 border-black bg-white p-6 sm:p-10">
 					<span class="text-[10px] text-neutral-400 uppercase tracking-widest block mb-2">
 						// GUEST_COMMUNICATIONS
 					</span>

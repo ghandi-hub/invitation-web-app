@@ -10,6 +10,7 @@
 	import MonogramFrame from '$lib/invitation/ornaments/MonogramFrame.svelte';
 	import PaperTexture from '$lib/invitation/ornaments/PaperTexture.svelte';
 	import { parallax } from '$lib/actions/parallax';
+	import { scrollReveal } from '$lib/actions/scrollReveal';
 	import { Calendar, Clock, MapPin, ExternalLink, Heart } from '@lucide/svelte';
 
 	let {
@@ -102,11 +103,12 @@
 	{#if content.opening?.quote}
 		<section class="relative z-10 mx-auto max-w-2xl px-6 py-10 text-center">
 			<Heart class="mx-auto mb-3 h-5 w-5 fill-current text-[#a87474]/70" />
-			<blockquote class="font-cormorant text-xl sm:text-2xl leading-relaxed text-[#4a3638] italic">
+			<blockquote use:scrollReveal={{ variant: 'blur-in', duration: 900 }} class="font-cormorant text-xl sm:text-2xl leading-relaxed text-[#4a3638] italic">
 				"{content.opening.quote}"
 			</blockquote>
 			{#if content.opening.quoteSource}
 				<cite
+					use:scrollReveal={{ delay: 150 }}
 					class="mt-4 block font-sans text-xs font-semibold tracking-widest text-[#a87474] uppercase not-italic"
 				>
 					— {content.opening.quoteSource}
@@ -118,7 +120,7 @@
 
 	<!-- The Couple Section -->
 	<section class="relative z-10 mx-auto max-w-5xl px-6 py-12 sm:py-20">
-		<div class="mb-14 text-center">
+		<div use:scrollReveal class="mb-14 text-center">
 			<span class="font-script mb-1 block text-2xl sm:text-3xl text-[#a87474]">
 				With Joyful Hearts
 			</span>
@@ -135,6 +137,7 @@
 						class="mx-auto h-64 w-52 sm:h-76 sm:w-60 overflow-hidden rounded-t-[100px] border-2 border-[#a87474]/30 bg-white p-2 shadow-md"
 					>
 						<img
+							use:parallax={{ speed: 0.02, scale: 1.06 }}
 							src={content.couple.partner1.photoUrl}
 							alt={content.couple.partner1.name}
 							class="h-full w-full rounded-t-[90px] object-cover"
@@ -142,7 +145,7 @@
 						/>
 					</div>
 				{/if}
-				<div>
+				<div use:scrollReveal={{ delay: 100 }}>
 					<span class="font-script text-xl text-[#a87474] block mb-0.5">Mempelai Pria</span>
 					<h3 class="font-cormorant text-2xl sm:text-3xl font-medium text-[#2a1e20]">
 						{content.couple.partner1.fullName || content.couple.partner1.name}
@@ -162,6 +165,7 @@
 						class="mx-auto h-64 w-52 sm:h-76 sm:w-60 overflow-hidden rounded-t-[100px] border-2 border-[#a87474]/30 bg-white p-2 shadow-md"
 					>
 						<img
+							use:parallax={{ speed: 0.02, scale: 1.06 }}
 							src={content.couple.partner2.photoUrl}
 							alt={content.couple.partner2.name}
 							class="h-full w-full rounded-t-[90px] object-cover"
@@ -169,7 +173,7 @@
 						/>
 					</div>
 				{/if}
-				<div>
+				<div use:scrollReveal={{ delay: 100 }}>
 					<span class="font-script text-xl text-[#a87474] block mb-0.5">Mempelai Wanita</span>
 					<h3 class="font-cormorant text-2xl sm:text-3xl font-medium text-[#2a1e20]">
 						{content.couple.partner2.fullName || content.couple.partner2.name}
@@ -187,7 +191,7 @@
 	<!-- Story -->
 	{#if content.story?.body}
 		<section class="relative z-10 border-y border-[#a87474]/20 bg-[#f3eae8]/70 px-6 py-14 sm:py-20 backdrop-blur-xs">
-			<div class="mx-auto max-w-2xl space-y-4 text-center">
+			<div use:scrollReveal class="mx-auto max-w-2xl space-y-4 text-center">
 				<span class="font-script block text-2xl sm:text-3xl text-[#a87474]">
 					Our Love Story
 				</span>
@@ -204,7 +208,7 @@
 	<!-- Events -->
 	{#if content.events && content.events.length > 0}
 		<section class="relative z-10 mx-auto max-w-5xl px-6 py-14 sm:py-24">
-			<div class="mb-14 text-center">
+			<div use:scrollReveal class="mb-14 text-center">
 				<span class="font-script mb-1 block text-2xl sm:text-3xl text-[#a87474]">Save The Date</span>
 				<h2 class="font-cormorant text-3xl sm:text-5xl text-[#2a1e20]">Rangkaian Acara</h2>
 			</div>

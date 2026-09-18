@@ -10,6 +10,7 @@
 	import MonogramFrame from '$lib/invitation/ornaments/MonogramFrame.svelte';
 	import PaperTexture from '$lib/invitation/ornaments/PaperTexture.svelte';
 	import { parallax } from '$lib/actions/parallax';
+	import { scrollReveal } from '$lib/actions/scrollReveal';
 	import { Calendar, Clock, MapPin, ExternalLink } from '@lucide/svelte';
 
 	let {
@@ -110,11 +111,12 @@
 			<span class="mb-4 block text-[10px] font-mono tracking-[0.35em] text-[#8c7051] uppercase">
 				PRELUDE
 			</span>
-			<blockquote class="font-playfair text-lg sm:text-2xl leading-relaxed text-[#3d3733] italic">
+			<blockquote use:scrollReveal={{ variant: 'blur-in', duration: 900 }} class="font-playfair text-lg sm:text-2xl leading-relaxed text-[#3d3733] italic">
 				"{content.opening.quote}"
 			</blockquote>
 			{#if content.opening.quoteSource}
 				<cite
+					use:scrollReveal={{ delay: 150 }}
 					class="mt-4 block font-sans text-xs font-semibold tracking-widest text-[#8c7051] uppercase not-italic"
 				>
 					— {content.opening.quoteSource}
@@ -126,7 +128,7 @@
 
 	<!-- The Couple Section -->
 	<section class="relative z-10 mx-auto max-w-5xl px-6 py-12 sm:py-20">
-		<div class="mb-14 text-center">
+		<div use:scrollReveal class="mb-14 text-center">
 			<span class="mb-2 block text-[11px] font-semibold tracking-[0.3em] text-[#8c7051] uppercase">
 				PROFILES
 			</span>
@@ -149,7 +151,7 @@
 						</div>
 					</div>
 				{/if}
-				<div>
+				<div use:scrollReveal={{ delay: 100 }}>
 					<span class="text-[10px] font-mono tracking-[0.25em] text-[#8c7051] uppercase block mb-1">
 						01 / THE GROOM
 					</span>
@@ -179,7 +181,7 @@
 						</div>
 					</div>
 				{/if}
-				<div>
+				<div use:scrollReveal={{ delay: 100 }}>
 					<span class="text-[10px] font-mono tracking-[0.25em] text-[#8c7051] uppercase block mb-1">
 						02 / THE BRIDE
 					</span>
@@ -199,7 +201,7 @@
 	<!-- Love Story -->
 	{#if content.story?.body}
 		<section class="relative z-10 border-y border-[#2c2825]/10 bg-[#f4f0e8] px-6 py-14 sm:py-20">
-			<div class="mx-auto max-w-3xl space-y-6">
+			<div use:scrollReveal class="mx-auto max-w-3xl space-y-6">
 				<div class="text-center">
 					<span class="block text-[11px] font-semibold tracking-[0.3em] text-[#8c7051] uppercase">
 						FEATURE STORY
@@ -222,7 +224,7 @@
 	<!-- Wedding Events -->
 	{#if content.events && content.events.length > 0}
 		<section class="relative z-10 mx-auto max-w-5xl px-6 py-14 sm:py-24">
-			<div class="mb-14 text-center">
+			<div use:scrollReveal class="mb-14 text-center">
 				<span class="mb-2 block text-[11px] font-semibold tracking-[0.3em] text-[#8c7051] uppercase">
 					ITINERARY
 				</span>

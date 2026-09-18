@@ -9,6 +9,7 @@
 	import MonogramFrame from '$lib/invitation/ornaments/MonogramFrame.svelte';
 	import PaperTexture from '$lib/invitation/ornaments/PaperTexture.svelte';
 	import { parallax } from '$lib/actions/parallax';
+	import { scrollReveal } from '$lib/actions/scrollReveal';
 	import { ExternalLink } from '@lucide/svelte';
 
 	let {
@@ -68,14 +69,14 @@
 	<!-- Opening Quote -->
 	{#if content.opening?.quote}
 		<section class="relative z-10 mx-auto max-w-3xl px-6 py-12 sm:py-20 text-center">
-			<span class="mb-4 block font-mono text-[10px] tracking-[0.3em] text-neutral-400 uppercase">
+			<span use:scrollReveal class="mb-4 block font-mono text-[10px] tracking-[0.3em] text-neutral-400 uppercase">
 				PREMISE
 			</span>
-			<blockquote class="text-xl sm:text-3xl font-light leading-snug tracking-tight text-neutral-900 max-w-2xl mx-auto">
+			<blockquote use:scrollReveal={{ variant: 'blur-in', duration: 900 }} class="text-xl sm:text-3xl font-light leading-snug tracking-tight text-neutral-900 max-w-2xl mx-auto">
 				"{content.opening.quote}"
 			</blockquote>
 			{#if content.opening.quoteSource}
-				<cite class="mt-4 block font-mono text-xs tracking-widest text-neutral-400 uppercase not-italic">
+				<cite use:scrollReveal={{ delay: 150 }} class="mt-4 block font-mono text-xs tracking-widest text-neutral-400 uppercase not-italic">
 					— {content.opening.quoteSource}
 				</cite>
 			{/if}
@@ -85,7 +86,7 @@
 
 	<!-- Couple Section: Asymmetric Swiss Column Grid -->
 	<section class="relative z-10 mx-auto max-w-5xl border-b border-neutral-200 px-6 py-16 sm:py-24">
-		<div class="mb-14">
+		<div use:scrollReveal class="mb-14">
 			<span class="font-mono text-xs tracking-widest text-neutral-400 uppercase block mb-2">
 				01 / THE UNION
 			</span>
@@ -106,7 +107,7 @@
 						/>
 					</div>
 				{/if}
-				<div>
+				<div use:scrollReveal={{ delay: 100 }}>
 					<span class="font-mono text-[10px] tracking-widest text-neutral-400 uppercase block mb-1">
 						GROOM
 					</span>
@@ -134,7 +135,7 @@
 						/>
 					</div>
 				{/if}
-				<div>
+				<div use:scrollReveal={{ delay: 100 }}>
 					<span class="font-mono text-[10px] tracking-widest text-neutral-400 uppercase block mb-1">
 						BRIDE
 					</span>
@@ -154,31 +155,35 @@
 	<!-- Story -->
 	{#if content.story?.body}
 		<section class="relative z-10 mx-auto max-w-4xl border-b border-neutral-200 px-6 py-16 sm:py-24">
-			<span class="font-mono text-xs tracking-widest text-neutral-400 uppercase block mb-2">
-				02 / PERSPECTIVE
-			</span>
-			<h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900 mb-6">
-				{content.story.title || 'Our Story'}
-			</h2>
-			<p class="text-sm sm:text-base leading-relaxed font-light whitespace-pre-wrap text-neutral-600 max-w-2xl">
-				{content.story.body}
-			</p>
+			<div use:scrollReveal>
+				<span class="font-mono text-xs tracking-widest text-neutral-400 uppercase block mb-2">
+					02 / PERSPECTIVE
+				</span>
+				<h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900 mb-6">
+					{content.story.title || 'Our Story'}
+				</h2>
+				<p class="text-sm sm:text-base leading-relaxed font-light whitespace-pre-wrap text-neutral-600 max-w-2xl">
+					{content.story.body}
+				</p>
+			</div>
 		</section>
 	{/if}
 
 	<!-- Events: Architectural Timetable -->
 	{#if content.events && content.events.length > 0}
 		<section class="relative z-10 mx-auto max-w-4xl border-b border-neutral-200 px-6 py-16 sm:py-24">
-			<span class="font-mono text-xs tracking-widest text-neutral-400 uppercase block mb-2">
-				03 / SCHEDULE
-			</span>
-			<h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-neutral-900 mb-12">
-				Rangkaian Acara
-			</h2>
+			<div use:scrollReveal>
+				<span class="font-mono text-xs tracking-widest text-neutral-400 uppercase block mb-2">
+					03 / SCHEDULE
+				</span>
+				<h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-neutral-900 mb-12">
+					Rangkaian Acara
+				</h2>
+			</div>
 
 			<div class="divide-y divide-neutral-200">
 				{#each content.events as event}
-					<div class="flex flex-col justify-between gap-6 py-8 md:flex-row md:items-start">
+					<div use:scrollReveal={{ delay: 100 }} class="flex flex-col justify-between gap-6 py-8 md:flex-row md:items-start">
 						<div>
 							<span class="font-mono text-[10px] tracking-widest text-neutral-400 uppercase block mb-1">
 								{event.type.toUpperCase()}
@@ -215,20 +220,24 @@
 	<!-- Countdown -->
 	{#if content.countdown?.targetDate}
 		<section class="relative z-10 mx-auto max-w-2xl border-b border-neutral-200 px-6 py-16 text-center">
-			<span class="mb-6 block font-mono text-xs tracking-widest text-neutral-400 uppercase">
-				COUNTDOWN
-			</span>
-			<Countdown targetDate={content.countdown.targetDate} variant="minimal" />
+			<div use:scrollReveal>
+				<span class="mb-6 block font-mono text-xs tracking-widest text-neutral-400 uppercase">
+					COUNTDOWN
+				</span>
+				<Countdown targetDate={content.countdown.targetDate} variant="minimal" />
+			</div>
 		</section>
 	{/if}
 
 	<!-- Gallery -->
 	{#if content.gallery && content.gallery.length > 0}
 		<section class="relative z-10 mx-auto max-w-6xl border-b border-neutral-200 px-6 py-16 sm:py-24">
-			<span class="font-mono text-xs tracking-widest text-neutral-400 uppercase block mb-2">
-				04 / VISUAL ARCHIVE
-			</span>
-			<h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-neutral-900 mb-10">Galeri Foto</h2>
+			<div use:scrollReveal>
+				<span class="font-mono text-xs tracking-widest text-neutral-400 uppercase block mb-2">
+					04 / VISUAL ARCHIVE
+				</span>
+				<h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-neutral-900 mb-10">Galeri Foto</h2>
+			</div>
 			<div class="grid grid-cols-2 gap-4 md:grid-cols-4">
 				{#each content.gallery as item}
 					<div class="aspect-square overflow-hidden border border-neutral-200 bg-neutral-100 p-1">
@@ -244,12 +253,14 @@
 		<div class="space-y-16">
 			{#if content.rsvp?.enabled}
 				<div>
-					<span class="font-mono text-xs tracking-widest text-neutral-400 uppercase block mb-2 text-center">
-						05 / ATTENDANCE
-					</span>
-					<h2 class="text-3xl font-bold tracking-tight text-neutral-900 text-center mb-10">
-						Konfirmasi Kehadiran
-					</h2>
+					<div use:scrollReveal>
+						<span class="font-mono text-xs tracking-widest text-neutral-400 uppercase block mb-2 text-center">
+							05 / ATTENDANCE
+						</span>
+						<h2 class="text-3xl font-bold tracking-tight text-neutral-900 text-center mb-10">
+							Konfirmasi Kehadiran
+						</h2>
+					</div>
 					<div class="[&_button[type=submit]]:rounded-none [&_button[type=submit]]:bg-black [&_button[type=submit]]:hover:bg-neutral-800">
 						<RSVPSection invitationId={invitation.id} settings={content.rsvp} theme="minimal" />
 					</div>
@@ -258,24 +269,28 @@
 
 			{#if content.gift?.enabled}
 				<div class="border-t border-neutral-200 pt-10">
-					<span class="font-mono text-xs tracking-widest text-neutral-400 uppercase block mb-2 text-center">
-						06 / GIFT
-					</span>
-					<h2 class="text-3xl font-bold tracking-tight text-neutral-900 text-center mb-10">
-						Tanda Kasih
-					</h2>
+					<div use:scrollReveal>
+						<span class="font-mono text-xs tracking-widest text-neutral-400 uppercase block mb-2 text-center">
+							06 / GIFT
+						</span>
+						<h2 class="text-3xl font-bold tracking-tight text-neutral-900 text-center mb-10">
+							Tanda Kasih
+						</h2>
+					</div>
 					<GiftSection gift={content.gift} theme="minimal" />
 				</div>
 			{/if}
 
 			{#if content.guestbook?.enabled}
 				<div class="border-t border-neutral-200 pt-10">
-					<span class="font-mono text-xs tracking-widest text-neutral-400 uppercase block mb-2 text-center">
-						07 / MESSAGES
-					</span>
-					<h2 class="text-3xl font-bold tracking-tight text-neutral-900 text-center mb-10">
-						Doa & Ucapan
-					</h2>
+					<div use:scrollReveal>
+						<span class="font-mono text-xs tracking-widest text-neutral-400 uppercase block mb-2 text-center">
+							07 / MESSAGES
+						</span>
+						<h2 class="text-3xl font-bold tracking-tight text-neutral-900 text-center mb-10">
+							Doa & Ucapan
+						</h2>
+					</div>
 					<GuestbookSection
 						invitationId={invitation.id}
 						settings={content.guestbook}

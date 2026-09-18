@@ -9,6 +9,7 @@
 	import MonogramFrame from '$lib/invitation/ornaments/MonogramFrame.svelte';
 	import PaperTexture from '$lib/invitation/ornaments/PaperTexture.svelte';
 	import { parallax } from '$lib/actions/parallax';
+	import { scrollReveal } from '$lib/actions/scrollReveal';
 	import { Calendar, Clock, MapPin, ExternalLink, Sparkles } from '@lucide/svelte';
 
 	let {
@@ -78,16 +79,18 @@
 	<!-- Quote Section -->
 	{#if content.opening?.quote}
 		<section class="relative z-10 mx-auto max-w-3xl px-6 py-10 sm:py-16 text-center">
-			<div class="mb-4 inline-flex items-center justify-center gap-1 text-[#c85a32]">
+			<div use:scrollReveal class="mb-4 inline-flex items-center justify-center gap-1 text-[#c85a32]">
 				<Sparkles class="h-4 w-4" />
 			</div>
 			<blockquote
+				use:scrollReveal={{ variant: 'blur-in', duration: 900 }}
 				class="font-syne text-lg sm:text-2xl leading-relaxed font-medium text-[#0d1b2a] italic max-w-2xl mx-auto"
 			>
 				"{content.opening.quote}"
 			</blockquote>
 			{#if content.opening.quoteSource}
 				<cite
+					use:scrollReveal={{ delay: 150 }}
 					class="mt-4 block font-mono text-xs font-bold tracking-widest text-[#c85a32] uppercase not-italic"
 				>
 					— {content.opening.quoteSource}
@@ -99,7 +102,7 @@
 
 	<!-- Couple Section: Modern Terracotta Arch Profiles -->
 	<section class="relative z-10 mx-auto max-w-5xl px-6 py-12 sm:py-20">
-		<div class="mb-14 text-center">
+		<div use:scrollReveal class="mb-14 text-center">
 			<span class="mb-2 block text-xs font-bold tracking-widest text-[#c85a32] uppercase">
 				THE CELEBRATION
 			</span>
@@ -114,14 +117,15 @@
 				{#if content.couple.partner1.photoUrl}
 					<div class="mx-auto h-64 w-52 overflow-hidden rounded-t-[100px] rounded-b-2xl bg-neutral-100 shadow-md">
 						<img
+							use:parallax={{ speed: 0.02, scale: 1.08 }}
 							src={content.couple.partner1.photoUrl}
 							alt={content.couple.partner1.name}
-							class="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+							class="h-full w-full object-cover"
 							loading="lazy"
 						/>
 					</div>
 				{/if}
-				<div>
+				<div use:scrollReveal={{ delay: 100 }}>
 					<span class="text-[10px] font-bold tracking-widest text-[#c85a32] uppercase block mb-1">
 						THE GROOM
 					</span>
@@ -143,14 +147,15 @@
 				{#if content.couple.partner2.photoUrl}
 					<div class="mx-auto h-64 w-52 overflow-hidden rounded-t-[100px] rounded-b-2xl bg-neutral-100 shadow-md">
 						<img
+							use:parallax={{ speed: 0.02, scale: 1.08 }}
 							src={content.couple.partner2.photoUrl}
 							alt={content.couple.partner2.name}
-							class="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+							class="h-full w-full object-cover"
 							loading="lazy"
 						/>
 					</div>
 				{/if}
-				<div>
+				<div use:scrollReveal={{ delay: 100 }}>
 					<span class="text-[10px] font-bold tracking-widest text-[#c85a32] uppercase block mb-1">
 						THE BRIDE
 					</span>
@@ -170,7 +175,7 @@
 	<!-- Story -->
 	{#if content.story?.body}
 		<section class="relative z-10 border-y border-[#c85a32]/15 bg-[#f0e6dd]/80 px-6 py-14 sm:py-20 backdrop-blur-xs">
-			<div class="mx-auto max-w-3xl space-y-4 text-center">
+			<div use:scrollReveal class="mx-auto max-w-3xl space-y-4 text-center">
 				<span class="block text-xs font-bold tracking-widest text-[#c85a32] uppercase">
 					JOURNEY
 				</span>
@@ -187,7 +192,7 @@
 	<!-- Events -->
 	{#if content.events && content.events.length > 0}
 		<section class="relative z-10 mx-auto max-w-5xl px-6 py-14 sm:py-24">
-			<div class="mb-14 text-center">
+			<div use:scrollReveal class="mb-14 text-center">
 				<span class="mb-2 block text-xs font-bold tracking-widest text-[#c85a32] uppercase">
 					SCHEDULE
 				</span>
@@ -197,6 +202,7 @@
 			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 max-w-4xl mx-auto">
 				{#each content.events as event}
 					<div
+						use:scrollReveal={{ delay: 100 }}
 						class="space-y-4 rounded-3xl border border-[#c85a32]/20 bg-white p-8 text-center shadow-sm transition-all hover:shadow-md"
 					>
 						<span class="inline-block rounded-full bg-[#c85a32]/10 px-3 py-1 font-mono text-[10px] font-bold text-[#c85a32] uppercase">
@@ -245,7 +251,7 @@
 	<!-- Countdown -->
 	{#if content.countdown?.targetDate}
 		<section class="relative z-10 bg-[#c85a32] px-6 py-14 text-center text-white sm:py-20 shadow-inner">
-			<div class="mx-auto max-w-2xl space-y-6">
+			<div use:scrollReveal class="mx-auto max-w-2xl space-y-6">
 				<span class="block font-mono text-xs font-bold tracking-widest uppercase text-white/80">
 					COUNTING DOWN
 				</span>
@@ -257,7 +263,7 @@
 	<!-- Gallery -->
 	{#if content.gallery && content.gallery.length > 0}
 		<section class="relative z-10 mx-auto max-w-6xl px-6 py-14 sm:py-24">
-			<div class="mb-14 text-center">
+			<div use:scrollReveal class="mb-14 text-center">
 				<span class="mb-2 block text-xs font-bold tracking-widest text-[#c85a32] uppercase">
 					GALLERY
 				</span>
@@ -288,7 +294,7 @@
 		<div class="mx-auto max-w-3xl space-y-16">
 			{#if content.rsvp?.enabled}
 				<div>
-					<div class="mb-10 text-center">
+					<div use:scrollReveal class="mb-10 text-center">
 						<span class="mb-2 block text-xs font-bold tracking-widest text-[#c85a32] uppercase">
 							RSVP
 						</span>
@@ -304,7 +310,7 @@
 
 			{#if content.gift?.enabled}
 				<div class="border-t border-[#c85a32]/15 pt-8">
-					<div class="mb-10 text-center">
+					<div use:scrollReveal class="mb-10 text-center">
 						<span class="mb-2 block text-xs font-bold tracking-widest text-[#c85a32] uppercase">
 							WEDDING GIFT
 						</span>
@@ -318,7 +324,7 @@
 
 			{#if content.guestbook?.enabled}
 				<div class="border-t border-[#c85a32]/15 pt-8">
-					<div class="mb-10 text-center">
+					<div use:scrollReveal class="mb-10 text-center">
 						<span class="mb-2 block text-xs font-bold tracking-widest text-[#c85a32] uppercase">
 							MESSAGES
 						</span>

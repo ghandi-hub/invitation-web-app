@@ -10,6 +10,7 @@
 	import MonogramFrame from '$lib/invitation/ornaments/MonogramFrame.svelte';
 	import PaperTexture from '$lib/invitation/ornaments/PaperTexture.svelte';
 	import { parallax } from '$lib/actions/parallax';
+	import { scrollReveal } from '$lib/actions/scrollReveal';
 	import { Calendar, Clock, MapPin, ExternalLink } from '@lucide/svelte';
 
 	let {
@@ -105,11 +106,12 @@
 	<!-- Opening Quote -->
 	{#if content.opening?.quote}
 		<section class="relative z-10 mx-auto max-w-2xl px-6 py-10 text-center">
-			<blockquote class="font-cormorant text-lg sm:text-2xl leading-relaxed text-[#283618] italic">
+			<blockquote use:scrollReveal={{ variant: 'blur-in', duration: 900 }} class="font-cormorant text-lg sm:text-2xl leading-relaxed text-[#283618] italic">
 				"{content.opening.quote}"
 			</blockquote>
 			{#if content.opening.quoteSource}
 				<cite
+					use:scrollReveal={{ delay: 150 }}
 					class="mt-4 block font-sans text-xs font-semibold tracking-[0.25em] text-[#606c38] uppercase not-italic"
 				>
 					— {content.opening.quoteSource}
@@ -121,7 +123,7 @@
 
 	<!-- Couple Section -->
 	<section class="relative z-10 mx-auto max-w-5xl px-6 py-12 sm:py-20">
-		<div class="mb-14 text-center">
+		<div use:scrollReveal class="mb-14 text-center">
 			<span class="mb-2 block text-[11px] font-semibold tracking-[0.35em] text-[#606c38] uppercase">
 				Mempelai Pernikahan
 			</span>
@@ -133,9 +135,10 @@
 			<div class="relative space-y-4 text-center group">
 				{#if content.couple.partner1.photoUrl}
 					<div
-						class="relative mx-auto h-64 w-52 sm:h-76 sm:w-60 overflow-hidden rounded-t-[100px] border-2 border-[#4a6741]/25 bg-white p-2 shadow-md transition-transform duration-500 hover:-translate-y-1"
+						class="relative mx-auto h-64 w-52 sm:h-76 sm:w-60 overflow-hidden rounded-t-[100px] border-2 border-[#4a6741]/25 bg-white p-2 shadow-md"
 					>
 						<img
+							use:parallax={{ speed: 0.02, scale: 1.06 }}
 							src={content.couple.partner1.photoUrl}
 							alt={content.couple.partner1.name}
 							class="h-full w-full rounded-t-[90px] object-cover"
@@ -143,7 +146,7 @@
 						/>
 					</div>
 				{/if}
-				<div>
+				<div use:scrollReveal={{ delay: 100 }}>
 					<span class="text-[10px] tracking-[0.3em] font-semibold uppercase text-[#606c38] block mb-1">
 						Mempelai Pria
 					</span>
@@ -162,9 +165,10 @@
 			<div class="relative space-y-4 text-center group">
 				{#if content.couple.partner2.photoUrl}
 					<div
-						class="relative mx-auto h-64 w-52 sm:h-76 sm:w-60 overflow-hidden rounded-t-[100px] border-2 border-[#4a6741]/25 bg-white p-2 shadow-md transition-transform duration-500 hover:-translate-y-1"
+						class="relative mx-auto h-64 w-52 sm:h-76 sm:w-60 overflow-hidden rounded-t-[100px] border-2 border-[#4a6741]/25 bg-white p-2 shadow-md"
 					>
 						<img
+							use:parallax={{ speed: 0.02, scale: 1.06 }}
 							src={content.couple.partner2.photoUrl}
 							alt={content.couple.partner2.name}
 							class="h-full w-full rounded-t-[90px] object-cover"
@@ -172,7 +176,7 @@
 						/>
 					</div>
 				{/if}
-				<div>
+				<div use:scrollReveal={{ delay: 100 }}>
 					<span class="text-[10px] tracking-[0.3em] font-semibold uppercase text-[#606c38] block mb-1">
 						Mempelai Wanita
 					</span>
@@ -192,7 +196,7 @@
 	<!-- Love Story -->
 	{#if content.story?.body}
 		<section class="relative z-10 border-y border-[#4a6741]/15 bg-[#ebefe5]/80 px-6 py-14 sm:py-20 backdrop-blur-xs">
-			<div class="mx-auto max-w-2xl space-y-5 text-center">
+			<div use:scrollReveal class="mx-auto max-w-2xl space-y-5 text-center">
 				<span class="block text-[11px] font-semibold tracking-[0.35em] text-[#606c38] uppercase">
 					Kisah Kasih
 				</span>
@@ -209,7 +213,7 @@
 	<!-- Wedding Events -->
 	{#if content.events && content.events.length > 0}
 		<section class="relative z-10 mx-auto max-w-5xl px-6 py-14 sm:py-24">
-			<div class="mb-14 text-center">
+			<div use:scrollReveal class="mb-14 text-center">
 				<span class="mb-2 block text-[11px] font-semibold tracking-[0.35em] text-[#606c38] uppercase">
 					Waktu & Tempat
 				</span>
