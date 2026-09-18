@@ -1,4 +1,4 @@
-﻿<script lang="ts">
+<script lang="ts">
 	import logoColour from '$lib/assets/logo-colour.png';
 	import logoBlack from '$lib/assets/logo-black.png';
 	import ThemeHeaderPreview from '$lib/invitation/ThemeHeaderPreview.svelte';
@@ -497,10 +497,7 @@
 			padding-top: 10px;
 		}
 		.type-poster {
-			min-height: 380px;
-		}
-		.poster-title {
-			font-size: 90px;
+			display: none;
 		}
 		.process-grid {
 			grid-template-columns: 1fr;
