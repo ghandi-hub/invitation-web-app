@@ -6,8 +6,22 @@
 	import appleTouchIcon from '$lib/assets/apple-touch-icon.png';
 	import android192 from '$lib/assets/android-chrome-192x192.png';
 	import android512 from '$lib/assets/android-chrome-512x512.png';
+	import PageLoader from '$lib/components/PageLoader.svelte';
+	import { onNavigate } from '$app/navigation';
 
 	let { children } = $props();
+
+	onNavigate((navigation) => {
+		if (!document.startViewTransition) return;
+		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
+	});
 </script>
 
 <svelte:head>
@@ -18,4 +32,7 @@
 	<link rel="icon" type="image/png" sizes="512x512" href={android512} />
 	<link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon} />
 </svelte:head>
+
+<PageLoader />
+
 {@render children()}
