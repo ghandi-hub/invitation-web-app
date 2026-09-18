@@ -15,7 +15,6 @@
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
-		"@sveltejs/adapter-node": "^5.5.7",
 		"@sveltejs/adapter-vercel": "^6.3.3",
 		"@sveltejs/kit": "^2.63.0",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
@@ -36,9 +35,9 @@
 		"vite": "^8.0.16"
 	},
 	"dependencies": {
-		"clsx": "^2.1.1",
-		"lucide-svelte": "^1.0.1",
-		"mongodb": "^7.6.0",
-		"tailwind-merge": "^3.7.0"
+		"@lucide/svelte": "^1.47.0",
+		"@sveltejs/adapter-node": "^5.5.7",
+		"cloudinary": "^2.11.0",
+		"mongodb": "^7.6.0"
 	}
 }
