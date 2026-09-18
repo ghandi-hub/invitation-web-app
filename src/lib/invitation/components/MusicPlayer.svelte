@@ -4,7 +4,7 @@
 
 	let {
 		audioUrl,
-		title = 'Wedding Music',
+		title = 'Musik Latar',
 		autoPlayTrigger = false
 	}: {
 		audioUrl?: string;
@@ -73,7 +73,7 @@
 			type="button"
 			onclick={toggle}
 			class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-full bg-black/80 hover:bg-black text-white text-xs backdrop-blur-md shadow-lg border border-white/20 transition-all duration-300 transform hover:scale-105"
-			aria-label={isPlaying ? 'Pause music' : 'Play music'}
+			aria-label={isPlaying ? 'Hentikan musik' : 'Putar musik'}
 		>
 			<div class="relative flex items-center justify-center">
 				{#if isPlaying}

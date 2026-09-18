@@ -104,7 +104,7 @@
 	<section class="relative z-10 mx-auto max-w-5xl px-6 py-12 sm:py-20">
 		<div use:scrollReveal class="mb-14 text-center">
 			<span class="mb-2 block text-xs font-bold tracking-widest text-[#c85a32] uppercase">
-				THE CELEBRATION
+				PERAYAAN KASIH
 			</span>
 			<h2 class="font-syne text-4xl sm:text-5xl font-bold text-[#0d1b2a]">Mempelai</h2>
 		</div>
@@ -127,7 +127,7 @@
 				{/if}
 				<div use:scrollReveal={{ delay: 100 }}>
 					<span class="text-[10px] font-bold tracking-widest text-[#c85a32] uppercase block mb-1">
-						THE GROOM
+						MEMPELAI PRIA
 					</span>
 					<h3 class="font-syne text-3xl font-bold text-[#0d1b2a]">
 						{content.couple.partner1.fullName || content.couple.partner1.name}
@@ -157,7 +157,7 @@
 				{/if}
 				<div use:scrollReveal={{ delay: 100 }}>
 					<span class="text-[10px] font-bold tracking-widest text-[#c85a32] uppercase block mb-1">
-						THE BRIDE
+						MEMPELAI WANITA
 					</span>
 					<h3 class="font-syne text-3xl font-bold text-[#0d1b2a]">
 						{content.couple.partner2.fullName || content.couple.partner2.name}
@@ -177,10 +177,10 @@
 		<section class="relative z-10 border-y border-[#c85a32]/15 bg-[#f0e6dd]/80 px-6 py-14 sm:py-20 backdrop-blur-xs">
 			<div use:scrollReveal class="mx-auto max-w-3xl space-y-4 text-center">
 				<span class="block text-xs font-bold tracking-widest text-[#c85a32] uppercase">
-					JOURNEY
+					PERJALANAN CINTA
 				</span>
 				<h2 class="font-syne text-3xl sm:text-4xl font-bold text-[#0d1b2a]">
-					{content.story.title || 'How We Met'}
+					{content.story.title || 'Kisah Cinta Kami'}
 				</h2>
 				<p class="text-sm sm:text-base leading-relaxed whitespace-pre-wrap text-[#1d2d44]/80 max-w-2xl mx-auto">
 					{content.story.body}
@@ -194,7 +194,7 @@
 		<section class="relative z-10 mx-auto max-w-5xl px-6 py-14 sm:py-24">
 			<div use:scrollReveal class="mb-14 text-center">
 				<span class="mb-2 block text-xs font-bold tracking-widest text-[#c85a32] uppercase">
-					SCHEDULE
+					JADWAL ACARA
 				</span>
 				<h2 class="font-syne text-3xl sm:text-5xl font-bold text-[#0d1b2a]">Rangkaian Acara</h2>
 			</div>
@@ -253,7 +253,7 @@
 		<section class="relative z-10 bg-[#c85a32] px-6 py-14 text-center text-white sm:py-20 shadow-inner">
 			<div use:scrollReveal class="mx-auto max-w-2xl space-y-6">
 				<span class="block font-mono text-xs font-bold tracking-widest uppercase text-white/80">
-					COUNTING DOWN
+					MENGHITUNG HARI
 				</span>
 				<Countdown targetDate={content.countdown.targetDate} variant="contemporary" />
 			</div>
@@ -265,7 +265,7 @@
 		<section class="relative z-10 mx-auto max-w-6xl px-6 py-14 sm:py-24">
 			<div use:scrollReveal class="mb-14 text-center">
 				<span class="mb-2 block text-xs font-bold tracking-widest text-[#c85a32] uppercase">
-					GALLERY
+					GALERI FOTO
 				</span>
 				<h2 class="font-syne text-3xl sm:text-5xl font-bold text-[#0d1b2a]">Galeri Momen</h2>
 			</div>
@@ -296,7 +296,7 @@
 				<div>
 					<div use:scrollReveal class="mb-10 text-center">
 						<span class="mb-2 block text-xs font-bold tracking-widest text-[#c85a32] uppercase">
-							RSVP
+							KONFIRMASI KEHADIRAN
 						</span>
 						<h2 class="font-syne text-3xl sm:text-4xl font-bold text-[#0d1b2a]">
 							Konfirmasi Kehadiran
@@ -312,7 +312,7 @@
 				<div class="border-t border-[#c85a32]/15 pt-8">
 					<div use:scrollReveal class="mb-10 text-center">
 						<span class="mb-2 block text-xs font-bold tracking-widest text-[#c85a32] uppercase">
-							WEDDING GIFT
+							TANDA KASIH
 						</span>
 						<h2 class="font-syne text-3xl sm:text-4xl font-bold text-[#0d1b2a]">Tanda Kasih</h2>
 					</div>
@@ -326,7 +326,7 @@
 				<div class="border-t border-[#c85a32]/15 pt-8">
 					<div use:scrollReveal class="mb-10 text-center">
 						<span class="mb-2 block text-xs font-bold tracking-widest text-[#c85a32] uppercase">
-							MESSAGES
+							DOA & UCAPAN
 						</span>
 						<h2 class="font-syne text-3xl sm:text-4xl font-bold text-[#0d1b2a]">Doa & Ucapan</h2>
 					</div>
@@ -346,6 +346,6 @@
 		<p class="font-syne mb-2 text-xl font-bold text-[#0d1b2a]">
 			{content.couple.partner1.name} & {content.couple.partner2.name}
 		</p>
-		<p>Thank you for celebrating this wonderful chapter with us.</p>
+		<p>Terima kasih telah merayakan hari bahagia ini bersama kami.</p>
 	</footer>
 </article>

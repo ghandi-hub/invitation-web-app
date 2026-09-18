@@ -19,7 +19,7 @@
 			class="mx-auto max-w-5xl border-b border-[#2c2825]/15 px-6 py-12 text-center sm:py-20"
 		>
 			<span class="mb-3 block text-[10px] sm:text-[11px] font-mono font-semibold tracking-[0.35em] text-[#8c7051] uppercase">
-				{content.opening?.greeting || 'The Wedding Celebration Of'}
+				{content.opening?.greeting || 'Undangan Pernikahan'}
 			</span>
 			<svelte:element
 				this={preview ? 'h3' : 'h1'}
@@ -47,13 +47,13 @@
 					class="inline-flex items-center gap-2 rounded-full border border-[#d4af37]/40 bg-black/40 px-5 py-2 text-[10px] tracking-[0.35em] text-[#d4af37] uppercase backdrop-blur-md shadow-lg"
 				>
 					<Film class="h-3 w-3" />
-					<span>A True Love Story</span>
+					<span>Kisah Cinta Sejati</span>
 				</span>
 			</div>
 
 			<div class="mx-auto my-auto max-w-4xl space-y-6 py-12">
 				<span class="block text-xs font-mono tracking-[0.4em] text-[#d4af37] uppercase">
-					{content.opening?.greeting || 'The Wedding Celebration Of'}
+					{content.opening?.greeting || 'Undangan Pernikahan'}
 				</span>
 				<svelte:element
 					this={preview ? 'h3' : 'h1'}
@@ -79,7 +79,7 @@
 			</div>
 
 			<div class="pb-6 opacity-40">
-				<span class="text-[10px] tracking-[0.3em] uppercase text-white font-mono">Scroll to explore</span>
+				<span class="text-[10px] tracking-[0.3em] uppercase text-white font-mono">Gulir ke bawah</span>
 			</div>
 		</svelte:element>
 	{:else if theme === 'minimal'}
@@ -88,7 +88,7 @@
 			class="mx-auto max-w-4xl border-b border-neutral-200 px-6 py-20 text-left sm:py-32"
 		>
 			<span class="mb-4 block font-mono text-xs tracking-[0.25em] text-neutral-400 uppercase">
-				{content.opening?.greeting || 'The Wedding Of'}
+				{content.opening?.greeting || 'Undangan Pernikahan'}
 			</span>
 			<svelte:element
 				this={preview ? 'h3' : 'h1'}
@@ -105,7 +105,7 @@
 			{/if}
 			{#if content.hero?.dateBadge}
 				<p class="font-mono text-xs tracking-widest text-neutral-900 uppercase font-medium">
-					Date: {content.hero.dateBadge}
+					Tanggal: {content.hero.dateBadge}
 				</p>
 			{/if}
 		</svelte:element>
@@ -119,7 +119,7 @@
 					<path d="M12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C12 16 16 12 22 12C22 6.5 17.5 2 12 2Z" />
 				</svg>
 				<span class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#606c38]">
-					{content.opening?.greeting || 'The Wedding Celebration Of'}
+					{content.opening?.greeting || 'Undangan Pernikahan'}
 				</span>
 				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="-scale-x-100">
 					<path d="M12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C12 16 16 12 22 12C22 6.5 17.5 2 12 2Z" />
@@ -145,7 +145,7 @@
 			class="mx-auto max-w-4xl border-b border-[#a87474]/20 px-6 py-16 text-center sm:py-24"
 		>
 			<span class="font-script mb-2 block text-3xl text-[#a87474] sm:text-4xl">
-				{content.opening?.greeting || 'The Wedding Celebration Of'}
+				{content.opening?.greeting || 'Undangan Pernikahan'}
 			</span>
 			<svelte:element
 				this={preview ? 'h3' : 'h1'}
@@ -195,7 +195,7 @@
 				class="border-brutal shadow-brutal-sm inline-flex items-center gap-2 bg-[#facc15] px-4 py-1.5 font-mono text-xs font-black tracking-wider uppercase"
 			>
 				<Zap class="h-3.5 w-3.5 fill-black" />
-				<span>{content.opening?.greeting || 'Official Wedding Invitation'}</span>
+				<span>{content.opening?.greeting || 'Undangan Pernikahan Resmi'}</span>
 			</div>
 
 			<svelte:element
@@ -228,7 +228,7 @@
 				class="mb-6 inline-flex items-center gap-2 rounded-full bg-[#c85a32]/10 px-4 py-1.5 text-xs font-bold tracking-widest text-[#c85a32] uppercase"
 			>
 				<Sparkles class="h-3.5 w-3.5" />
-				<span>{content.opening?.greeting || 'The Wedding Celebration'}</span>
+				<span>{content.opening?.greeting || 'Perayaan Pernikahan'}</span>
 			</div>
 			<svelte:element
 				this={preview ? 'h3' : 'h1'}

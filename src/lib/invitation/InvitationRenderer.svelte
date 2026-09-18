@@ -54,7 +54,7 @@
 		<MusicPlayer
 			bind:this={musicPlayer}
 			audioUrl={invitation.music.url}
-			title={invitation.music.title || 'Wedding Melody'}
+			title={invitation.music.title || 'Musik Pernikahan'}
 			autoPlayTrigger={audioStarted}
 		/>
 	{/if}

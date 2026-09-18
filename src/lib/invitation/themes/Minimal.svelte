@@ -70,7 +70,7 @@
 	{#if content.opening?.quote}
 		<section class="relative z-10 mx-auto max-w-3xl px-6 py-12 sm:py-20 text-center">
 			<span use:scrollReveal class="mb-4 block font-mono text-[10px] tracking-[0.3em] text-neutral-400 uppercase">
-				PREMISE
+				UNGKAPAN HATI
 			</span>
 			<blockquote use:scrollReveal={{ variant: 'blur-in', duration: 900 }} class="text-xl sm:text-3xl font-light leading-snug tracking-tight text-neutral-900 max-w-2xl mx-auto">
 				"{content.opening.quote}"
@@ -88,7 +88,7 @@
 	<section class="relative z-10 mx-auto max-w-5xl border-b border-neutral-200 px-6 py-16 sm:py-24">
 		<div use:scrollReveal class="mb-14">
 			<span class="font-mono text-xs tracking-widest text-neutral-400 uppercase block mb-2">
-				01 / THE UNION
+				01 / KEDUA MEMPELAI
 			</span>
 			<h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-neutral-900">Mempelai</h2>
 		</div>
@@ -109,7 +109,7 @@
 				{/if}
 				<div use:scrollReveal={{ delay: 100 }}>
 					<span class="font-mono text-[10px] tracking-widest text-neutral-400 uppercase block mb-1">
-						GROOM
+						MEMPELAI PRIA
 					</span>
 					<h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900">
 						{content.couple.partner1.fullName || content.couple.partner1.name}
@@ -137,7 +137,7 @@
 				{/if}
 				<div use:scrollReveal={{ delay: 100 }}>
 					<span class="font-mono text-[10px] tracking-widest text-neutral-400 uppercase block mb-1">
-						BRIDE
+						MEMPELAI WANITA
 					</span>
 					<h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900">
 						{content.couple.partner2.fullName || content.couple.partner2.name}
@@ -157,10 +157,10 @@
 		<section class="relative z-10 mx-auto max-w-4xl border-b border-neutral-200 px-6 py-16 sm:py-24">
 			<div use:scrollReveal>
 				<span class="font-mono text-xs tracking-widest text-neutral-400 uppercase block mb-2">
-					02 / PERSPECTIVE
+					02 / KISAH KAMI
 				</span>
 				<h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900 mb-6">
-					{content.story.title || 'Our Story'}
+					{content.story.title || 'Cerita Cinta'}
 				</h2>
 				<p class="text-sm sm:text-base leading-relaxed font-light whitespace-pre-wrap text-neutral-600 max-w-2xl">
 					{content.story.body}
@@ -174,7 +174,7 @@
 		<section class="relative z-10 mx-auto max-w-4xl border-b border-neutral-200 px-6 py-16 sm:py-24">
 			<div use:scrollReveal>
 				<span class="font-mono text-xs tracking-widest text-neutral-400 uppercase block mb-2">
-					03 / SCHEDULE
+					03 / JADWAL ACARA
 				</span>
 				<h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-neutral-900 mb-12">
 					Rangkaian Acara
@@ -222,7 +222,7 @@
 		<section class="relative z-10 mx-auto max-w-2xl border-b border-neutral-200 px-6 py-16 text-center">
 			<div use:scrollReveal>
 				<span class="mb-6 block font-mono text-xs tracking-widest text-neutral-400 uppercase">
-					COUNTDOWN
+					MENGHITUNG HARI
 				</span>
 				<Countdown targetDate={content.countdown.targetDate} variant="minimal" />
 			</div>
@@ -234,7 +234,7 @@
 		<section class="relative z-10 mx-auto max-w-6xl border-b border-neutral-200 px-6 py-16 sm:py-24">
 			<div use:scrollReveal>
 				<span class="font-mono text-xs tracking-widest text-neutral-400 uppercase block mb-2">
-					04 / VISUAL ARCHIVE
+					04 / GALERI FOTO
 				</span>
 				<h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-neutral-900 mb-10">Galeri Foto</h2>
 			</div>
@@ -255,7 +255,7 @@
 				<div>
 					<div use:scrollReveal>
 						<span class="font-mono text-xs tracking-widest text-neutral-400 uppercase block mb-2 text-center">
-							05 / ATTENDANCE
+							05 / KONFIRMASI KEHADIRAN
 						</span>
 						<h2 class="text-3xl font-bold tracking-tight text-neutral-900 text-center mb-10">
 							Konfirmasi Kehadiran
@@ -271,7 +271,7 @@
 				<div class="border-t border-neutral-200 pt-10">
 					<div use:scrollReveal>
 						<span class="font-mono text-xs tracking-widest text-neutral-400 uppercase block mb-2 text-center">
-							06 / GIFT
+							06 / TANDA KASIH
 						</span>
 						<h2 class="text-3xl font-bold tracking-tight text-neutral-900 text-center mb-10">
 							Tanda Kasih
@@ -285,7 +285,7 @@
 				<div class="border-t border-neutral-200 pt-10">
 					<div use:scrollReveal>
 						<span class="font-mono text-xs tracking-widest text-neutral-400 uppercase block mb-2 text-center">
-							07 / MESSAGES
+							07 / DOA & UCAPAN
 						</span>
 						<h2 class="text-3xl font-bold tracking-tight text-neutral-900 text-center mb-10">
 							Doa & Ucapan
@@ -307,6 +307,6 @@
 		<p class="text-sm font-bold text-neutral-900 mb-1 uppercase">
 			{content.couple.partner1.name} + {content.couple.partner2.name}
 		</p>
-		<p>THANK YOU FOR YOUR PRESENCE & WISHES</p>
+		<p>TERIMA KASIH ATAS KEHADIRAN & DOA RESTU ANDA</p>
 	</footer>
 </article>

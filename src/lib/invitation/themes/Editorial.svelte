@@ -43,8 +43,8 @@
 	<!-- Masthead Publication Meta -->
 	<div class="relative z-10 mx-auto max-w-5xl px-6 pt-8 text-center sm:pt-12">
 		<div class="flex items-center justify-between border-b border-[#2c2825]/15 pb-3 text-[10px] sm:text-xs font-mono tracking-[0.25em] text-[#8c7051] uppercase">
-			<span>EDITION / 2026</span>
-			<span class="font-playfair italic normal-case tracking-normal">A Celebration of Eternal Love</span>
+			<span>EDISI / 2026</span>
+			<span class="font-playfair italic normal-case tracking-normal">Perayaan Cinta Abadi</span>
 			<span>VOL. 01</span>
 		</div>
 	</div>
@@ -88,10 +88,10 @@
 				<div class="md:col-span-4 flex flex-col justify-end space-y-4 pb-2 text-left">
 					<div class="h-px w-12 bg-[#8c7051]"></div>
 					<span class="text-[10px] font-mono tracking-[0.3em] uppercase text-[#8c7051]">
-						THE INVITATION
+						UNDANGAN PERNIKAHAN
 					</span>
 					<h3 class="font-playfair text-2xl sm:text-3xl font-normal leading-snug">
-						Two souls,<br />one unified journey.
+						Dua jiwa,<br />satu perjalanan suci.
 					</h3>
 					{#if content.hero.subheadline}
 						<p class="font-playfair text-xs sm:text-sm text-[#554e48] italic leading-relaxed">
@@ -109,7 +109,7 @@
 	{#if content.opening?.quote}
 		<section class="relative z-10 mx-auto max-w-3xl px-6 py-10 sm:py-16 text-center">
 			<span class="mb-4 block text-[10px] font-mono tracking-[0.35em] text-[#8c7051] uppercase">
-				PRELUDE
+				UNGKAPAN HATI
 			</span>
 			<blockquote use:scrollReveal={{ variant: 'blur-in', duration: 900 }} class="font-playfair text-lg sm:text-2xl leading-relaxed text-[#3d3733] italic">
 				"{content.opening.quote}"
@@ -130,7 +130,7 @@
 	<section class="relative z-10 mx-auto max-w-5xl px-6 py-12 sm:py-20">
 		<div use:scrollReveal class="mb-14 text-center">
 			<span class="mb-2 block text-[11px] font-semibold tracking-[0.3em] text-[#8c7051] uppercase">
-				PROFILES
+				KEDUA MEMPELAI
 			</span>
 			<h2 class="font-playfair text-3xl font-normal sm:text-5xl">Mempelai Berbahagia</h2>
 		</div>
@@ -153,7 +153,7 @@
 				{/if}
 				<div use:scrollReveal={{ delay: 100 }}>
 					<span class="text-[10px] font-mono tracking-[0.25em] text-[#8c7051] uppercase block mb-1">
-						01 / THE GROOM
+						01 / MEMPELAI PRIA
 					</span>
 					<h3 class="font-playfair text-2xl sm:text-3xl font-medium text-[#1a1715]">
 						{content.couple.partner1.fullName || content.couple.partner1.name}
@@ -183,7 +183,7 @@
 				{/if}
 				<div use:scrollReveal={{ delay: 100 }}>
 					<span class="text-[10px] font-mono tracking-[0.25em] text-[#8c7051] uppercase block mb-1">
-						02 / THE BRIDE
+						02 / MEMPELAI WANITA
 					</span>
 					<h3 class="font-playfair text-2xl sm:text-3xl font-medium text-[#1a1715]">
 						{content.couple.partner2.fullName || content.couple.partner2.name}
@@ -204,10 +204,10 @@
 			<div use:scrollReveal class="mx-auto max-w-3xl space-y-6">
 				<div class="text-center">
 					<span class="block text-[11px] font-semibold tracking-[0.3em] text-[#8c7051] uppercase">
-						FEATURE STORY
+						KISAH CINTA
 					</span>
 					<h2 class="font-playfair text-3xl font-normal sm:text-4xl mt-1">
-						{content.story.title || 'Our Story'}
+						{content.story.title || 'Kisah Kasih Kami'}
 					</h2>
 				</div>
 				<div class="mx-auto max-w-2xl border-l-2 border-[#8c7051] pl-6 py-1">
@@ -226,7 +226,7 @@
 		<section class="relative z-10 mx-auto max-w-5xl px-6 py-14 sm:py-24">
 			<div use:scrollReveal class="mb-14 text-center">
 				<span class="mb-2 block text-[11px] font-semibold tracking-[0.3em] text-[#8c7051] uppercase">
-					ITINERARY
+					JADWAL ACARA
 				</span>
 				<h2 class="font-playfair text-3xl font-normal sm:text-5xl">Rangkaian Acara</h2>
 			</div>
@@ -283,7 +283,7 @@
 		<section class="relative z-10 bg-[#2c2825] px-6 py-14 text-center text-[#fbf9f5] sm:py-20">
 			<div class="mx-auto max-w-2xl space-y-6">
 				<span class="block text-[11px] font-semibold tracking-[0.3em] text-[#d4af37] uppercase">
-					COUNTING DOWN TO THE DAY
+					MENGHITUNG HARI BAHAGIA
 				</span>
 				<Countdown targetDate={content.countdown.targetDate} variant="editorial" />
 			</div>
@@ -295,7 +295,7 @@
 		<section class="relative z-10 mx-auto max-w-6xl px-6 py-14 sm:py-24">
 			<div class="mb-14 text-center">
 				<span class="mb-2 block text-[11px] font-semibold tracking-[0.3em] text-[#8c7051] uppercase">
-					EXHIBITION
+					GALERI FOTO
 				</span>
 				<h2 class="font-playfair text-3xl font-normal sm:text-5xl">Galeri Foto</h2>
 			</div>
@@ -331,7 +331,7 @@
 				<div>
 					<div class="mb-10 text-center">
 						<span class="mb-2 block text-[11px] font-semibold tracking-[0.3em] text-[#8c7051] uppercase">
-							RSVP
+							KONFIRMASI KEHADIRAN
 						</span>
 						<h2 class="font-playfair text-3xl font-normal sm:text-4xl">Konfirmasi Kehadiran</h2>
 					</div>
@@ -357,7 +357,7 @@
 				<div class="border-t border-[#2c2825]/10 pt-8">
 					<div class="mb-10 text-center">
 						<span class="mb-2 block text-[11px] font-semibold tracking-[0.3em] text-[#8c7051] uppercase">
-							WISHES
+							DOA & UCAPAN
 						</span>
 						<h2 class="font-playfair text-3xl font-normal sm:text-4xl">Doa & Ucapan</h2>
 					</div>

@@ -324,7 +324,7 @@
 				<div>
 					<div class="mb-10 text-center">
 						<span class="mb-2 block text-[11px] font-semibold tracking-[0.35em] text-[#606c38] uppercase">
-							RSVP
+							Konfirmasi
 						</span>
 						<h2 class="font-italiana text-3xl sm:text-4xl text-[#1b2710]">Konfirmasi Kehadiran</h2>
 					</div>

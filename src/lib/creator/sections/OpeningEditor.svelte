@@ -13,7 +13,7 @@
 			id="op-greeting"
 			type="text"
 			bind:value={opening.greeting}
-			placeholder="The Wedding Celebration Of"
+			placeholder="Undangan Pernikahan"
 			class="creator-border creator-shadow-sm w-full bg-[#fffdf7] px-3.5 py-2.5 text-sm font-medium focus:outline-hidden"
 		/>
 	</div>

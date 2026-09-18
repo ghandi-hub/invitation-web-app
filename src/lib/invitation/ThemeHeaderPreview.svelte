@@ -6,7 +6,7 @@
 	const config = $derived(getThemeConfig(theme));
 	// Display-only labels; never written to the invitation or database.
 	const header = $derived({
-		opening: { greeting: content?.opening.greeting || 'The Wedding Of' },
+		opening: { greeting: content?.opening.greeting || 'Undangan Pernikahan' },
 		couple: {
 			partner1: { name: content?.couple.partner1.name || 'Mempelai' },
 			partner2: { name: content?.couple.partner2.name || 'Pasangan' }

@@ -70,21 +70,19 @@
 	<!-- Couple Stars Section: Film Premiere Casting Layout -->
 	<section class="relative z-10 mx-auto max-w-5xl px-6 py-12 sm:py-20">
 		<div use:scrollReveal class="mb-14 text-center">
-			<div
-				class="mb-3 inline-flex items-center gap-2 rounded-full border border-[#d4af37]/30 bg-white/5 px-4 py-1 text-[10px] tracking-[0.35em] text-[#d4af37] uppercase backdrop-blur-xs"
-			>
+			<div class="inline-flex items-center gap-2 rounded-full border border-[#d4af37]/30 bg-white/5 px-4 py-1 text-[10px] tracking-[0.35em] text-[#d4af37] uppercase mb-3 backdrop-blur-xs">
 				<Sparkles class="h-3 w-3" />
-				<span>STARRING IN THIS CHAPTER</span>
+				<span>KEDUA MEMPELAI</span>
 			</div>
-			<h2 class="font-cinzel text-3xl tracking-wide text-white sm:text-5xl">Pemeran Utama</h2>
+			<h2 class="font-cinzel text-3xl sm:text-5xl text-white tracking-wide">Pemeran Utama</h2>
 		</div>
 
-		<div class="mx-auto grid max-w-4xl grid-cols-1 items-center gap-12 sm:gap-16 md:grid-cols-2">
+		<div class="grid grid-cols-1 items-center gap-12 sm:gap-16 md:grid-cols-2 max-w-4xl mx-auto">
 			<!-- Groom -->
 			<div class="space-y-5 text-center">
 				{#if content.couple.partner1.photoUrl}
 					<div
-						class="relative mx-auto h-72 w-56 overflow-hidden border border-[#d4af37]/40 bg-neutral-900 p-2 shadow-2xl shadow-black/80 sm:h-88 sm:w-68"
+						class="relative mx-auto h-72 w-56 sm:h-88 sm:w-68 overflow-hidden border border-[#d4af37]/40 bg-neutral-900 p-2 shadow-2xl shadow-black/80"
 					>
 						<div class="h-full w-full overflow-hidden">
 							<img
@@ -95,19 +93,17 @@
 								loading="lazy"
 							/>
 						</div>
-						<div
-							class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-3 font-mono text-[10px] tracking-[0.2em] text-[#d4af37] uppercase"
-						>
-							THE GROOM
+						<div class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-3 text-[10px] font-mono tracking-[0.2em] text-[#d4af37] uppercase">
+							MEMPELAI PRIA
 						</div>
 					</div>
 				{/if}
 				<div use:scrollReveal={{ delay: 100 }}>
-					<h3 class="font-cinzel text-2xl tracking-wide text-white sm:text-3xl">
+					<h3 class="font-cinzel text-2xl sm:text-3xl text-white tracking-wide">
 						{content.couple.partner1.fullName || content.couple.partner1.name}
 					</h3>
 					{#if content.couple.partner1.childOf}
-						<p class="mx-auto mt-2 max-w-xs text-xs font-light text-white/60 sm:text-sm">
+						<p class="mx-auto mt-2 max-w-xs text-xs text-white/60 sm:text-sm font-light">
 							{content.couple.partner1.childOf}
 						</p>
 					{/if}
@@ -118,7 +114,7 @@
 			<div class="space-y-5 text-center">
 				{#if content.couple.partner2.photoUrl}
 					<div
-						class="relative mx-auto h-72 w-56 overflow-hidden border border-[#d4af37]/40 bg-neutral-900 p-2 shadow-2xl shadow-black/80 sm:h-88 sm:w-68"
+						class="relative mx-auto h-72 w-56 sm:h-88 sm:w-68 overflow-hidden border border-[#d4af37]/40 bg-neutral-900 p-2 shadow-2xl shadow-black/80"
 					>
 						<div class="h-full w-full overflow-hidden">
 							<img
@@ -129,19 +125,17 @@
 								loading="lazy"
 							/>
 						</div>
-						<div
-							class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-3 font-mono text-[10px] tracking-[0.2em] text-[#d4af37] uppercase"
-						>
-							THE BRIDE
+						<div class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-3 text-[10px] font-mono tracking-[0.2em] text-[#d4af37] uppercase">
+							MEMPELAI WANITA
 						</div>
 					</div>
 				{/if}
 				<div use:scrollReveal={{ delay: 100 }}>
-					<h3 class="font-cinzel text-2xl tracking-wide text-white sm:text-3xl">
+					<h3 class="font-cinzel text-2xl sm:text-3xl text-white tracking-wide">
 						{content.couple.partner2.fullName || content.couple.partner2.name}
 					</h3>
 					{#if content.couple.partner2.childOf}
-						<p class="mx-auto mt-2 max-w-xs text-xs font-light text-white/60 sm:text-sm">
+						<p class="mx-auto mt-2 max-w-xs text-xs text-white/60 sm:text-sm font-light">
 							{content.couple.partner2.childOf}
 						</p>
 					{/if}
@@ -154,15 +148,13 @@
 	{#if content.story?.body}
 		<section class="relative z-10 border-y border-[#d4af37]/20 bg-[#14141a] px-6 py-14 sm:py-20">
 			<div use:scrollReveal class="mx-auto max-w-3xl space-y-6 text-center">
-				<span class="block font-mono text-[10px] tracking-[0.4em] text-[#d4af37] uppercase">
-					SCENE / SYNOPSIS
+				<span class="block text-[10px] font-mono tracking-[0.4em] text-[#d4af37] uppercase">
+					KISAH / SINOPSIS
 				</span>
-				<h2 class="font-cinzel text-3xl tracking-wide text-white sm:text-4xl">
-					{content.story.title || 'Our Story'}
+				<h2 class="font-cinzel text-3xl sm:text-4xl text-white tracking-wide">
+					{content.story.title || 'Kisah Cinta Kami'}
 				</h2>
-				<p
-					class="mx-auto max-w-2xl font-sans text-sm leading-relaxed font-light whitespace-pre-wrap text-white/80 sm:text-base"
-				>
+				<p class="font-sans text-sm sm:text-base leading-relaxed whitespace-pre-wrap text-white/80 max-w-2xl mx-auto font-light">
 					{content.story.body}
 				</p>
 			</div>
@@ -173,8 +165,8 @@
 	{#if content.events && content.events.length > 0}
 		<section class="relative z-10 mx-auto max-w-5xl px-6 py-14 sm:py-24">
 			<div use:scrollReveal class="mb-14 text-center">
-				<span class="mb-2 block font-mono text-[10px] tracking-[0.35em] text-[#d4af37] uppercase">
-					PREMIERE SCHEDULE
+				<span class="mb-2 block text-[10px] font-mono tracking-[0.35em] text-[#d4af37] uppercase">
+					JADWAL ACARA
 				</span>
 				<h2 class="font-cinzel text-3xl tracking-wide text-white sm:text-5xl">Rangkaian Acara</h2>
 			</div>
@@ -216,7 +208,7 @@
 									rel="noopener noreferrer"
 									class="inline-flex items-center gap-2 border border-[#d4af37]/60 bg-transparent px-6 py-2.5 font-mono text-xs tracking-widest text-[#d4af37] uppercase transition-all hover:bg-[#d4af37] hover:text-black"
 								>
-									<span>VIEW LOCATION</span>
+									<span>LIHAT LOKASI</span>
 									<ExternalLink class="h-3.5 w-3.5" />
 								</a>
 							</div>
@@ -234,7 +226,7 @@
 		>
 			<div class="mx-auto max-w-2xl space-y-6">
 				<span class="block font-mono text-[10px] tracking-[0.35em] text-[#d4af37] uppercase">
-					COUNTDOWN TO PREMIERE
+					MENGHITUNG HARI
 				</span>
 				<div class="[&_span]:text-[#d4af37]">
 					<Countdown targetDate={content.countdown.targetDate} variant="cinematic" />
@@ -248,7 +240,7 @@
 		<section class="relative z-10 mx-auto max-w-6xl px-6 py-14 sm:py-24">
 			<div class="mb-14 text-center">
 				<span class="mb-2 block font-mono text-[10px] tracking-[0.35em] text-[#d4af37] uppercase">
-					GALLERY ARCHIVE
+					GALERI FOTO
 				</span>
 				<h2 class="font-cinzel text-3xl tracking-wide text-white sm:text-5xl">Galeri Momen</h2>
 			</div>
@@ -288,9 +280,9 @@
 						<span
 							class="mb-2 block font-mono text-[10px] tracking-[0.35em] text-[#d4af37] uppercase"
 						>
-							RSVP
+							KONFIRMASI KEHADIRAN
 						</span>
-						<h2 class="font-cinzel text-3xl text-white sm:text-4xl">Konfirmasi Kehadiran</h2>
+						<h2 class="font-cinzel text-3xl text-white sm:text-4xl">Buku Tamu & Kehadiran</h2>
 					</div>
 					<div
 						class="[&_button[type=submit]]:rounded-none [&_button[type=submit]]:bg-[#d4af37] [&_button[type=submit]]:font-bold [&_button[type=submit]]:text-black [&_button[type=submit]]:hover:bg-[#f1c40f]"
@@ -306,9 +298,9 @@
 						<span
 							class="mb-2 block font-mono text-[10px] tracking-[0.35em] text-[#d4af37] uppercase"
 						>
-							WEDDING GIFT
+							TANDA KASIH
 						</span>
-						<h2 class="font-cinzel text-3xl text-white sm:text-4xl">Tanda Kasih</h2>
+						<h2 class="font-cinzel text-3xl text-white sm:text-4xl">Kirim Hadiah</h2>
 					</div>
 					<div
 						class="[&_.bg-white\/70]:bg-[#181822] [&_.border-current\/15]:border-[#d4af37]/30 [&_.border-current\/30]:border-[#d4af37]/50 [&_button]:hover:bg-[#d4af37] [&_button]:hover:text-black"
@@ -324,9 +316,9 @@
 						<span
 							class="mb-2 block font-mono text-[10px] tracking-[0.35em] text-[#d4af37] uppercase"
 						>
-							GUEST WISHES
+							DOA & UCAPAN
 						</span>
-						<h2 class="font-cinzel text-3xl text-white sm:text-4xl">Doa & Ucapan</h2>
+						<h2 class="font-cinzel text-3xl text-white sm:text-4xl">Ucapan Selamat</h2>
 					</div>
 					<GuestbookSection
 						invitationId={invitation.id}
@@ -346,6 +338,6 @@
 		<p class="font-cinzel mb-2 text-xl text-[#d4af37]">
 			{content.couple.partner1.name} & {content.couple.partner2.name}
 		</p>
-		<p>Thank you for being part of our story.</p>
+		<p>Terima kasih telah menjadi bagian dari kisah bahagia kami.</p>
 	</footer>
 </article>

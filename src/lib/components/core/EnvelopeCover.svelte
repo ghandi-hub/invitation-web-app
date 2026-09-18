@@ -75,10 +75,10 @@
 				<span>Walimatul Khitan</span>
 			{:else if event.themeId === 'cyber-party'}
 				<Sparkles class="w-3.5 h-3.5" />
-				<span>Birthday Celebration</span>
+				<span>Perayaan Ulang Tahun</span>
 			{:else}
 				<Heart class="w-3.5 h-3.5" />
-				<span>The Wedding Invitation</span>
+				<span>Undangan Pernikahan</span>
 			{/if}
 		</div>
 

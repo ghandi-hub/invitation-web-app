@@ -89,7 +89,7 @@
 		<!-- Groom -->
 		<div use:scrollReveal={{ delay: 100 }} class="border-brutal-thick shadow-brutal space-y-4 bg-white p-6 sm:p-8">
 			<div class="border-brutal inline-block bg-black px-3 py-1 font-mono text-xs font-bold text-white uppercase shadow-brutal-sm">
-				THE GROOM
+				MEMPELAI PRIA
 			</div>
 			{#if content.couple.partner1.photoUrl}
 				<div class="border-brutal aspect-4/5 overflow-hidden bg-neutral-100">
@@ -119,7 +119,7 @@
 			<div
 				class="border-brutal inline-block bg-[#facc15] px-3 py-1 font-mono text-xs font-bold text-black uppercase shadow-brutal-sm"
 			>
-				THE BRIDE
+				MEMPELAI WANITA
 			</div>
 			{#if content.couple.partner2.photoUrl}
 				<div class="border-brutal aspect-4/5 overflow-hidden bg-neutral-100">
@@ -151,10 +151,10 @@
 			<span
 				class="border-brutal mb-4 inline-block bg-black px-3 py-1 font-mono text-xs font-bold text-white uppercase shadow-brutal-sm"
 			>
-				STORY
+				KISAH KAMI
 			</span>
 			<h2 class="font-syne mb-4 text-3xl font-black uppercase sm:text-4xl">
-				{content.story.title || 'Our Story'}
+				{content.story.title || 'Cerita Cinta'}
 			</h2>
 			<p class="text-sm leading-relaxed font-medium whitespace-pre-wrap opacity-90 sm:text-base">
 				{content.story.body}
@@ -224,7 +224,7 @@
 			class="relative z-10 border-brutal-thick shadow-brutal mx-auto mb-12 max-w-2xl bg-black p-8 text-center text-white sm:p-12"
 		>
 			<span class="mb-4 block font-mono text-xs font-bold tracking-widest text-[#facc15] uppercase">
-				COUNTDOWN
+				HITUNG MUNDUR
 			</span>
 			<Countdown targetDate={content.countdown.targetDate} variant="brutalist" />
 		</div>
@@ -259,7 +259,7 @@
 					<span
 						class="border-brutal mb-2 inline-block bg-[#facc15] px-3 py-1 font-mono text-xs font-bold uppercase shadow-brutal-sm"
 					>
-						RSVP
+						KONFIRMASI KEHADIRAN
 					</span>
 					<h2 class="font-syne text-3xl font-black uppercase">Konfirmasi Kehadiran</h2>
 				</div>
@@ -275,7 +275,7 @@
 					<span
 						class="border-brutal mb-2 inline-block bg-black px-3 py-1 font-mono text-xs font-bold text-white uppercase shadow-brutal-sm"
 					>
-						GIFT
+						TANDA KASIH
 					</span>
 					<h2 class="font-syne text-3xl font-black uppercase">Kirim Hadiah</h2>
 				</div>
@@ -291,7 +291,7 @@
 					<span
 						class="border-brutal mb-2 inline-block bg-[#facc15] px-3 py-1 font-mono text-xs font-bold uppercase shadow-brutal-sm"
 					>
-						WISHES
+						DOA & UCAPAN
 					</span>
 					<h2 class="font-syne text-3xl font-black uppercase">Doa & Ucapan</h2>
 				</div>
@@ -310,6 +310,6 @@
 		<p class="font-syne mb-1 text-xl text-[#facc15]">
 			{content.couple.partner1.name} & {content.couple.partner2.name}
 		</p>
-		<p class="font-mono text-[11px]">SEE YOU AT THE BIG DAY!</p>
+		<p class="font-mono text-[11px]">SAMPAI JUMPA DI HARI BAHAGIA KAMI!</p>
 	</footer>
 </article>

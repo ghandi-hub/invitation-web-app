@@ -67,7 +67,7 @@
 	<header class="relative z-20 min-h-screen flex flex-col items-center justify-center text-center px-4 py-16">
 		<div use:parallax={{ speed: 0.2 }} class="mb-4 flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-cyan-400/40 text-cyan-300 text-xs font-mono uppercase tracking-widest">
 			<Sparkles class="w-3.5 h-3.5 text-cyan-400" />
-			<span>Exclusive VIP Party Access</span>
+			<span>Akses Acara Eksklusif</span>
 			<Flame class="w-3.5 h-3.5 text-fuchsia-400" />
 		</div>
 
@@ -104,10 +104,10 @@
 		<!-- Countdown Section -->
 		<div class="mt-10 grid grid-cols-4 gap-3 md:gap-5 font-mono">
 			{#each [
-				{ label: 'Days', val: countdown.days },
-				{ label: 'Hours', val: countdown.hours },
-				{ label: 'Mins', val: countdown.minutes },
-				{ label: 'Secs', val: countdown.seconds }
+				{ label: 'Hari', val: countdown.days },
+				{ label: 'Jam', val: countdown.hours },
+				{ label: 'Menit', val: countdown.minutes },
+				{ label: 'Detik', val: countdown.seconds }
 			] as item}
 				<div class="flex flex-col items-center p-3 md:p-4 rounded-2xl bg-slate-900/80 border border-cyan-400/30 backdrop-blur-md shadow-[0_0_15px_rgba(34,211,238,0.15)] min-w-[65px] md:min-w-[85px]">
 					<span class="text-2xl md:text-4xl font-black text-cyan-300">
@@ -122,7 +122,7 @@
 
 		<!-- Scroll Indicator -->
 		<div class="mt-14 text-stone-500 text-xs flex flex-col items-center gap-2 animate-pulse">
-			<span class="font-mono tracking-wider uppercase text-[11px]">Scroll Down</span>
+			<span class="font-mono tracking-wider uppercase text-[11px]">Gulir Ke Bawah</span>
 			<div class="w-4 h-7 rounded-full border-2 border-stone-600 flex justify-center p-1">
 				<div class="w-1 h-2 bg-cyan-400 rounded-full animate-bounce"></div>
 			</div>
@@ -132,8 +132,8 @@
 	<!-- SECTION: LINEUP / SCHEDULE -->
 	<section class="relative z-20 py-16 px-4 max-w-4xl mx-auto">
 		<div class="text-center mb-12">
-			<span class="text-xs font-mono font-semibold text-cyan-400 uppercase tracking-widest">When &amp; Where</span>
-			<h2 class="text-3xl md:text-4xl font-black uppercase text-white mt-1">Party Rundown</h2>
+			<span class="text-xs font-mono font-semibold text-cyan-400 uppercase tracking-widest">Waktu &amp; Tempat</span>
+			<h2 class="text-3xl md:text-4xl font-black uppercase text-white mt-1">Rundown Acara</h2>
 		</div>
 
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -179,7 +179,7 @@
 								class="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-cyan-500 to-fuchsia-500 hover:opacity-90 transition shadow-lg shadow-cyan-500/20"
 							>
 								<ExternalLink class="w-3.5 h-3.5" />
-								<span>Open in Google Maps</span>
+								<span>Buka Petunjuk Google Maps</span>
 							</a>
 						</div>
 					{/if}
@@ -192,8 +192,8 @@
 	{#if galleries.length > 0}
 		<section class="relative z-20 py-16 px-4 max-w-4xl mx-auto">
 			<div class="text-center mb-10">
-				<span class="text-xs font-mono font-semibold text-fuchsia-400 uppercase tracking-widest">Memories &amp; Moments</span>
-				<h2 class="text-3xl md:text-4xl font-black uppercase text-white mt-1">Photo Gallery</h2>
+				<span class="text-xs font-mono font-semibold text-fuchsia-400 uppercase tracking-widest">Momen Bahagia</span>
+				<h2 class="text-3xl md:text-4xl font-black uppercase text-white mt-1">Galeri Foto</h2>
 			</div>
 
 			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -201,7 +201,7 @@
 					<div class="group relative overflow-hidden rounded-2xl aspect-[4/5] bg-slate-900 border border-white/10 shadow-xl">
 						<img
 							src={photo.url}
-							alt={photo.caption || 'Party Gallery'}
+							alt={photo.caption || 'Foto Galeri'}
 							class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
 							loading="lazy"
 						/>
@@ -233,7 +233,7 @@
 
 	<!-- FOOTER -->
 	<footer class="relative z-20 py-12 text-center text-stone-500 text-xs border-t border-white/5 font-mono">
-		<p class="mb-2">See you on the dance floor!</p>
+		<p class="mb-2">Sampai jumpa di hari bahagia!</p>
 		<p class="text-stone-300">{event.content.hosts.join(' & ')}</p>
 	</footer>
 </div>

@@ -6,7 +6,7 @@
 		partner1,
 		partner2,
 		coverUrl,
-		headline = 'The Wedding Of',
+		headline = 'Undangan Pernikahan',
 		dateText = '',
 		recipientName = '',
 		onOpen

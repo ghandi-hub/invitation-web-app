@@ -122,7 +122,7 @@
 	<section class="relative z-10 mx-auto max-w-5xl px-6 py-12 sm:py-20">
 		<div use:scrollReveal class="mb-14 text-center">
 			<span class="font-script mb-1 block text-2xl sm:text-3xl text-[#a87474]">
-				With Joyful Hearts
+				Dengan Penuh Bahagia
 			</span>
 			<h2 class="font-cormorant text-3xl sm:text-5xl text-[#2a1e20] font-normal">
 				Mempelai Pengantin
@@ -193,10 +193,10 @@
 		<section class="relative z-10 border-y border-[#a87474]/20 bg-[#f3eae8]/70 px-6 py-14 sm:py-20 backdrop-blur-xs">
 			<div use:scrollReveal class="mx-auto max-w-2xl space-y-4 text-center">
 				<span class="font-script block text-2xl sm:text-3xl text-[#a87474]">
-					Our Love Story
+					Kisah Kasih Kami
 				</span>
 				<h2 class="font-cormorant text-3xl sm:text-4xl text-[#2a1e20]">
-					{content.story.title || 'A Journey of Two Hearts'}
+					{content.story.title || 'Perjalanan Dua Hati'}
 				</h2>
 				<p class="font-cormorant text-base sm:text-lg leading-relaxed whitespace-pre-wrap text-[#553b3d] italic">
 					{content.story.body}
@@ -209,7 +209,7 @@
 	{#if content.events && content.events.length > 0}
 		<section class="relative z-10 mx-auto max-w-5xl px-6 py-14 sm:py-24">
 			<div use:scrollReveal class="mb-14 text-center">
-				<span class="font-script mb-1 block text-2xl sm:text-3xl text-[#a87474]">Save The Date</span>
+				<span class="font-script mb-1 block text-2xl sm:text-3xl text-[#a87474]">Hari Bahagia</span>
 				<h2 class="font-cormorant text-3xl sm:text-5xl text-[#2a1e20]">Rangkaian Acara</h2>
 			</div>
 
@@ -263,7 +263,7 @@
 		<section class="relative z-10 bg-[#593d40] px-6 py-14 text-center text-white sm:py-20 shadow-inner">
 			<div class="mx-auto max-w-2xl space-y-6">
 				<span class="font-script block text-2xl text-[#f3d2d2]">
-					Counting Down The Days
+					Menghitung Hari Bahagia
 				</span>
 				<Countdown targetDate={content.countdown.targetDate} variant="romantic" />
 			</div>
@@ -274,7 +274,7 @@
 	{#if content.gallery && content.gallery.length > 0}
 		<section class="relative z-10 mx-auto max-w-6xl px-6 py-14 sm:py-24">
 			<div class="mb-14 text-center">
-				<span class="font-script mb-1 block text-2xl sm:text-3xl text-[#a87474]">Sweet Memories</span>
+				<span class="font-script mb-1 block text-2xl sm:text-3xl text-[#a87474]">Momen Bahagia</span>
 				<h2 class="font-cormorant text-3xl sm:text-5xl text-[#2a1e20]">Galeri Momen</h2>
 			</div>
 
@@ -286,7 +286,7 @@
 						<div class="relative h-full w-full overflow-hidden rounded-xl">
 							<img
 								src={item.url}
-								alt="Gallery item"
+								alt="Foto galeri"
 								class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
 								loading="lazy"
 							/>
@@ -303,7 +303,7 @@
 			{#if content.rsvp?.enabled}
 				<div>
 					<div class="mb-10 text-center">
-						<span class="font-script block text-2xl text-[#a87474]">RSVP</span>
+						<span class="font-script block text-2xl text-[#a87474]">Konfirmasi</span>
 						<h2 class="font-cormorant text-3xl sm:text-4xl text-[#2a1e20]">Konfirmasi Kehadiran</h2>
 					</div>
 					<div class="[&_button[type=submit]]:rounded-full [&_button[type=submit]]:bg-[#a87474] [&_button[type=submit]]:hover:bg-[#8e5e5e]">
@@ -315,7 +315,7 @@
 			{#if content.gift?.enabled}
 				<div class="border-t border-[#a87474]/20 pt-8">
 					<div class="mb-10 text-center">
-						<span class="font-script block text-2xl text-[#a87474]">Wedding Gift</span>
+						<span class="font-script block text-2xl text-[#a87474]">Hadiah</span>
 						<h2 class="font-cormorant text-3xl sm:text-4xl text-[#2a1e20]">Tanda Kasih</h2>
 					</div>
 					<GiftSection gift={content.gift} theme="romantic" />
@@ -325,7 +325,7 @@
 			{#if content.guestbook?.enabled}
 				<div class="border-t border-[#a87474]/20 pt-8">
 					<div class="mb-10 text-center">
-						<span class="font-script block text-2xl text-[#a87474]">Wishes</span>
+						<span class="font-script block text-2xl text-[#a87474]">Untaian Doa</span>
 						<h2 class="font-cormorant text-3xl sm:text-4xl text-[#2a1e20]">Doa & Ucapan</h2>
 					</div>
 					<GuestbookSection

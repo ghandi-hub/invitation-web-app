@@ -64,7 +64,7 @@
 		<div use:parallax={{ speed: 0.18 }} class="mb-4 text-rose-300 flex flex-col items-center">
 			<Heart class="w-8 h-8 mb-2 fill-rose-400/40 text-rose-300 animate-pulse" />
 			<p class="text-xs uppercase tracking-[0.3em] text-rose-200/80">
-				The Wedding of
+				Undangan Pernikahan
 			</p>
 		</div>
 
@@ -236,7 +236,7 @@
 	{#if galleries.length > 0}
 		<section class="relative z-20 py-16 px-4 max-w-4xl mx-auto font-sans">
 			<div class="text-center mb-10">
-				<span class="text-xs font-semibold text-rose-300 uppercase tracking-widest">Our Love Journey</span>
+				<span class="text-xs font-semibold text-rose-300 uppercase tracking-widest">Kisah Cinta Kami</span>
 				<h2 class="text-3xl font-serif font-bold text-white mt-1">Galeri Kisah Cinta</h2>
 			</div>
 
