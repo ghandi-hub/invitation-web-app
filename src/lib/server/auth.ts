@@ -1,21 +1,38 @@
 import { env } from '$env/dynamic/private';
+import { env as publicEnv } from '$env/dynamic/public';
 import { getUsersCollection } from '$lib/server/db';
 import type { User } from '$lib/types/invitation';
 
 const GOOGLE_CLIENT_ID = env.GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = env.GOOGLE_CLIENT_SECRET;
-const PUBLIC_BASE_URL = env.PUBLIC_BASE_URL || 'http://localhost:5173';
+
+export function getBaseUrl(fallbackOrigin?: string): string {
+	const rawUrl =
+		publicEnv.PUBLIC_BASE_URL ||
+		env.PUBLIC_BASE_URL ||
+		env.ORIGIN ||
+		env.BASE_URL ||
+		process.env.PUBLIC_BASE_URL ||
+		(process.env.VERCEL_PROJECT_PRODUCTION_URL
+			? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+			: undefined) ||
+		(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined) ||
+		fallbackOrigin ||
+		'http://localhost:5173';
+
+	return rawUrl.replace(/\/$/, '');
+}
 
 export function isGoogleAuthAvailable(): boolean {
 	return Boolean(GOOGLE_CLIENT_ID && GOOGLE_CLIENT_SECRET);
 }
 
-export function generateGoogleOAuthUrl(state: string): string {
+export function generateGoogleOAuthUrl(state: string, fallbackOrigin?: string): string {
 	if (!GOOGLE_CLIENT_ID) {
 		throw new Error('GOOGLE_CLIENT_ID is not configured');
 	}
 
-	const redirectUri = `${PUBLIC_BASE_URL}/auth/google/callback`;
+	const redirectUri = `${getBaseUrl(fallbackOrigin)}/auth/google/callback`;
 	const params = new URLSearchParams({
 		client_id: GOOGLE_CLIENT_ID,
 		redirect_uri: redirectUri,
@@ -29,12 +46,15 @@ export function generateGoogleOAuthUrl(state: string): string {
 	return `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`;
 }
 
-export async function handleGoogleCallback(code: string): Promise<User> {
+export async function handleGoogleCallback(
+	code: string,
+	fallbackOrigin?: string
+): Promise<User> {
 	if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET) {
 		throw new Error('Google OAuth credentials not configured');
 	}
 
-	const redirectUri = `${PUBLIC_BASE_URL}/auth/google/callback`;
+	const redirectUri = `${getBaseUrl(fallbackOrigin)}/auth/google/callback`;
 
 	const tokenRes = await fetch('https://oauth2.googleapis.com/token', {
 		method: 'POST',

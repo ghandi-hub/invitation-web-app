@@ -2,7 +2,7 @@ import { redirect, type RequestHandler } from '@sveltejs/kit';
 import { generateGoogleOAuthUrl, isGoogleAuthAvailable } from '$lib/server/auth';
 import crypto from 'node:crypto';
 
-export const GET: RequestHandler = async ({ cookies }) => {
+export const GET: RequestHandler = async ({ url, cookies }) => {
 	if (!isGoogleAuthAvailable()) {
 		throw redirect(303, '/?auth=unavailable');
 	}
@@ -16,6 +16,6 @@ export const GET: RequestHandler = async ({ cookies }) => {
 		maxAge: 60 * 15 // 15 minutes
 	});
 
-	const url = generateGoogleOAuthUrl(state);
-	throw redirect(303, url);
+	const authUrl = generateGoogleOAuthUrl(state, url.origin);
+	throw redirect(303, authUrl);
 };
