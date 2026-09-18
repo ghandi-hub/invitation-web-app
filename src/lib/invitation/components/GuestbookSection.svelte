@@ -72,6 +72,7 @@
 			return '';
 		}
 	}
+	const isCinematic = $derived(theme === 'cinematic');
 </script>
 
 {#if settings.enabled}
@@ -79,21 +80,23 @@
 		<!-- Submission Form -->
 		<form
 			onsubmit={handleSubmit}
-			class="space-y-4 border border-current/15 bg-white/70 p-6 backdrop-blur-xs sm:p-8"
+			class="space-y-4 p-6 sm:p-8 backdrop-blur-xs rounded-xl transition-all {isCinematic
+				? 'bg-[#181824]/90 border border-[#d4af37]/30 shadow-2xl'
+				: 'bg-white/80 border border-neutral-300 shadow-sm'}"
 		>
-			<h4 class="flex items-center gap-2 text-base font-semibold">
-				<MessageSquare class="h-4 w-4 opacity-70" />
+			<h4 class="flex items-center gap-2 text-base font-semibold {isCinematic ? 'text-white' : 'text-neutral-900'}">
+				<MessageSquare class="h-4 w-4 {isCinematic ? 'text-[#d4af37]' : 'text-neutral-600'}" />
 				<span>Tuliskan Doa & Ucapan</span>
 			</h4>
 
 			{#if errorMsg}
-				<p class="text-xs text-red-600">{errorMsg}</p>
+				<p class="text-xs {isCinematic ? 'text-rose-400' : 'text-red-600'}">{errorMsg}</p>
 			{/if}
 
 			<div>
 				<label
 					for="gb-name"
-					class="mb-1 block text-[11px] font-semibold tracking-wider uppercase opacity-70"
+					class="mb-1 block font-semibold tracking-wider uppercase {isCinematic ? 'text-[#d4af37] font-mono text-[11px]' : 'text-neutral-700 text-xs'}"
 				>
 					Nama Anda
 				</label>
@@ -103,14 +106,16 @@
 					bind:value={name}
 					required
 					placeholder="Contoh: Sarah & Rekan Kerja"
-					class="w-full border border-current/20 bg-white px-3.5 py-2.5 text-sm focus:border-current focus:outline-hidden"
+					class="w-full px-3.5 py-2.5 text-sm rounded-sm transition-all {isCinematic
+						? 'bg-[#101016] border border-[#d4af37]/40 text-white placeholder:text-stone-400 focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] focus:outline-hidden'
+						: 'bg-white border border-neutral-300 text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:outline-hidden'}"
 				/>
 			</div>
 
 			<div>
 				<label
 					for="gb-msg"
-					class="mb-1 block text-[11px] font-semibold tracking-wider uppercase opacity-70"
+					class="mb-1 block font-semibold tracking-wider uppercase {isCinematic ? 'text-[#d4af37] font-mono text-[11px]' : 'text-neutral-700 text-xs'}"
 				>
 					Ucapan & Doa Restu
 				</label>
@@ -120,14 +125,18 @@
 					required
 					rows={3}
 					placeholder="Semoga senantiasa dilimpahkan kebahagiaan dan berkah dalam rumah tangga..."
-					class="w-full resize-none border border-current/20 bg-white px-3.5 py-2.5 text-sm focus:border-current focus:outline-hidden"
+					class="w-full resize-none px-3.5 py-2.5 text-sm rounded-sm transition-all {isCinematic
+						? 'bg-[#101016] border border-[#d4af37]/40 text-white placeholder:text-stone-400 focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] focus:outline-hidden'
+						: 'bg-white border border-neutral-300 text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:outline-hidden'}"
 				></textarea>
 			</div>
 
 			<button
 				type="submit"
 				disabled={submitting}
-				class="flex w-full cursor-pointer items-center justify-center gap-2 bg-black px-6 py-2.5 text-xs font-semibold tracking-widest text-white uppercase transition-opacity hover:opacity-90 disabled:opacity-50 sm:w-auto"
+				class="flex w-full cursor-pointer items-center justify-center gap-2 px-6 py-2.5 text-xs font-bold tracking-widest uppercase transition-all disabled:opacity-50 sm:w-auto rounded-sm {isCinematic
+					? 'bg-[#d4af37] hover:bg-[#f1c40f] text-black font-cinzel shadow-md shadow-[#d4af37]/20'
+					: 'bg-black text-white hover:opacity-90'}"
 			>
 				{#if submitting}
 					<Loader2 class="h-3.5 w-3.5 animate-spin" />
@@ -142,26 +151,32 @@
 		<!-- Entries Stream -->
 		<div class="max-h-[460px] space-y-4 overflow-y-auto pr-1">
 			{#if entries.length === 0}
-				<div class="border border-dashed border-current/20 p-8 text-center text-sm opacity-60">
+				<div class="p-8 text-center text-sm rounded-xl {isCinematic
+					? 'bg-[#181824]/50 border border-dashed border-[#d4af37]/30 text-stone-300'
+					: 'border border-dashed border-neutral-300 text-neutral-600'}">
 					Belum ada ucapan. Jadilah yang pertama memberikan doa dan restu!
 				</div>
 			{:else}
 				{#each entries as entry (entry.id)}
 					<div
-						class="guestbook-entry space-y-2 border border-current/10 bg-white/60 p-4 backdrop-blur-xs sm:p-5"
+						class="guestbook-entry space-y-2 p-4 sm:p-5 backdrop-blur-xs rounded-xl transition-all {isCinematic
+							? 'bg-[#181824]/90 border border-[#d4af37]/25 text-white shadow-md'
+							: 'bg-white/80 border border-neutral-200 text-neutral-900 shadow-xs'}"
 					>
 						<div class="flex items-center justify-between gap-2">
 							<div class="flex items-center gap-2">
 								<div
-									class="flex h-7 w-7 items-center justify-center rounded-full bg-current/10 text-xs font-bold"
+									class="flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold {isCinematic
+										? 'bg-[#d4af37]/20 border border-[#d4af37]/40 text-[#d4af37]'
+										: 'bg-neutral-100 text-neutral-800'}"
 								>
 									{entry.name.charAt(0).toUpperCase()}
 								</div>
-								<span class="text-sm font-semibold">{entry.name}</span>
+								<span class="text-sm font-semibold {isCinematic ? 'text-white' : 'text-neutral-900'}">{entry.name}</span>
 							</div>
-							<span class="text-[11px] opacity-50">{formatDate(entry.createdAt)}</span>
+							<span class="text-[11px] {isCinematic ? 'text-[#d4af37]/80 font-mono' : 'text-neutral-500'}">{formatDate(entry.createdAt)}</span>
 						</div>
-						<p class="pl-9 text-xs leading-relaxed whitespace-pre-wrap opacity-80 sm:text-sm">
+						<p class="pl-9 text-xs leading-relaxed whitespace-pre-wrap sm:text-sm {isCinematic ? 'text-stone-200' : 'text-neutral-700'}">
 							{entry.message}
 						</p>
 					</div>

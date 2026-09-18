@@ -58,29 +58,30 @@
 			submitting = false;
 		}
 	}
+	const isCinematic = $derived(theme === 'cinematic');
 </script>
 
 {#if settings.enabled}
 	<div class="w-full max-w-xl mx-auto">
 		{#if submitted}
-			<div class="p-8 text-center bg-emerald-50 text-emerald-900 border border-emerald-200 rounded-sm">
-				<CheckCircle class="w-10 h-10 mx-auto mb-3 text-emerald-600" />
-				<h4 class="text-xl font-semibold mb-1">Terima Kasih atas Konfirmasinya</h4>
-				<p class="text-sm text-emerald-700">
+			<div class="p-8 text-center rounded-xl border {isCinematic ? 'bg-[#181824] text-white border-emerald-500/40 shadow-xl' : 'bg-emerald-50 text-emerald-900 border-emerald-200'}">
+				<CheckCircle class="w-10 h-10 mx-auto mb-3 {isCinematic ? 'text-emerald-400' : 'text-emerald-600'}" />
+				<h4 class="text-xl font-semibold mb-1 {isCinematic ? 'text-white' : 'text-emerald-950'}">Terima Kasih atas Konfirmasinya</h4>
+				<p class="text-sm {isCinematic ? 'text-stone-300' : 'text-emerald-700'}">
 					Konfirmasi kehadiran Anda telah tersimpan dengan baik.
 				</p>
 			</div>
 		{:else}
 			<form onsubmit={handleSubmit} class="space-y-5">
 				{#if errorMessage}
-					<div class="p-3 text-sm bg-red-50 text-red-700 border border-red-200 flex items-center gap-2">
+					<div class="p-3.5 text-sm flex items-center gap-2 rounded-lg {isCinematic ? 'bg-rose-950/70 text-rose-200 border border-rose-500/50' : 'bg-red-50 text-red-700 border border-red-200'}">
 						<AlertCircle class="w-4 h-4 shrink-0" />
 						<span>{errorMessage}</span>
 					</div>
 				{/if}
 
 				<div>
-					<label for="rsvp-name" class="block text-xs uppercase tracking-wider font-semibold mb-1.5 opacity-80">
+					<label for="rsvp-name" class="block text-xs uppercase tracking-wider font-semibold mb-1.5 {isCinematic ? 'text-[#d4af37] font-mono text-[11px]' : 'text-neutral-800 opacity-80'}">
 						Nama Lengkap <span class="text-red-500">*</span>
 					</label>
 					<input
@@ -89,33 +90,53 @@
 						bind:value={name}
 						required
 						placeholder="Contoh: Budi Santoso & Pasangan"
-						class="w-full px-4 py-3 bg-white/70 backdrop-blur-xs border border-current/20 focus:border-current focus:outline-hidden text-sm transition-colors"
+						class="w-full px-4 py-3 text-sm transition-all rounded-sm {isCinematic
+							? 'bg-[#181824] border border-[#d4af37]/40 text-white placeholder:text-stone-400 focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] focus:outline-hidden'
+							: 'bg-white border border-neutral-300 text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:outline-hidden'}"
 					/>
 				</div>
 
 				<div>
-					<label for="rsvp-attendance" class="block text-xs uppercase tracking-wider font-semibold mb-1.5 opacity-80">
+					<label for="rsvp-attendance" class="block text-xs uppercase tracking-wider font-semibold mb-1.5 {isCinematic ? 'text-[#d4af37] font-mono text-[11px]' : 'text-neutral-800 opacity-80'}">
 						Konfirmasi Kehadiran <span class="text-red-500">*</span>
 					</label>
 					<div class="grid grid-cols-3 gap-2">
 						<button
 							type="button"
 							onclick={() => (attendance = 'attending')}
-							class="py-2.5 px-3 text-xs font-medium border text-center transition-all {attendance === 'attending' ? 'bg-black text-white border-black' : 'border-current/20 hover:border-current/50'}"
+							class="py-2.5 px-3 text-xs font-semibold border text-center transition-all cursor-pointer rounded-sm {attendance === 'attending'
+								? isCinematic
+									? 'bg-[#d4af37] text-black border-[#d4af37] shadow-md shadow-[#d4af37]/25'
+									: 'bg-black text-white border-black'
+								: isCinematic
+									? 'bg-[#181824] text-stone-200 border-[#d4af37]/30 hover:border-[#d4af37]/70 hover:text-white'
+									: 'bg-white text-neutral-700 border-neutral-300 hover:border-neutral-600'}"
 						>
 							Hadir
 						</button>
 						<button
 							type="button"
 							onclick={() => (attendance = 'maybe')}
-							class="py-2.5 px-3 text-xs font-medium border text-center transition-all {attendance === 'maybe' ? 'bg-black text-white border-black' : 'border-current/20 hover:border-current/50'}"
+							class="py-2.5 px-3 text-xs font-semibold border text-center transition-all cursor-pointer rounded-sm {attendance === 'maybe'
+								? isCinematic
+									? 'bg-[#d4af37] text-black border-[#d4af37] shadow-md shadow-[#d4af37]/25'
+									: 'bg-black text-white border-black'
+								: isCinematic
+									? 'bg-[#181824] text-stone-200 border-[#d4af37]/30 hover:border-[#d4af37]/70 hover:text-white'
+									: 'bg-white text-neutral-700 border-neutral-300 hover:border-neutral-600'}"
 						>
 							Belum Pasti
 						</button>
 						<button
 							type="button"
 							onclick={() => (attendance = 'not_attending')}
-							class="py-2.5 px-3 text-xs font-medium border text-center transition-all {attendance === 'not_attending' ? 'bg-black text-white border-black' : 'border-current/20 hover:border-current/50'}"
+							class="py-2.5 px-3 text-xs font-semibold border text-center transition-all cursor-pointer rounded-sm {attendance === 'not_attending'
+								? isCinematic
+									? 'bg-rose-900/70 text-rose-200 border-rose-500/70'
+									: 'bg-black text-white border-black'
+								: isCinematic
+									? 'bg-[#181824] text-stone-200 border-[#d4af37]/30 hover:border-[#d4af37]/70 hover:text-white'
+									: 'bg-white text-neutral-700 border-neutral-300 hover:border-neutral-600'}"
 						>
 							Tidak Hadir
 						</button>
@@ -124,25 +145,27 @@
 
 				{#if settings.allowGuestCount && attendance !== 'not_attending'}
 					<div>
-						<label for="rsvp-count" class="block text-xs uppercase tracking-wider font-semibold mb-1.5 opacity-80">
+						<label for="rsvp-count" class="block text-xs uppercase tracking-wider font-semibold mb-1.5 {isCinematic ? 'text-[#d4af37] font-mono text-[11px]' : 'text-neutral-800 opacity-80'}">
 							Jumlah Tamu
 						</label>
 						<select
 							id="rsvp-count"
 							bind:value={guestCount}
-							class="w-full px-4 py-3 bg-white/70 backdrop-blur-xs border border-current/20 focus:border-current focus:outline-hidden text-sm"
+							class="w-full px-4 py-3 text-sm rounded-sm transition-all {isCinematic
+								? 'bg-[#181824] border border-[#d4af37]/40 text-white focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] focus:outline-hidden'
+								: 'bg-white border border-neutral-300 text-neutral-900 focus:border-neutral-900 focus:outline-hidden'}"
 						>
-							<option value={1}>1 Orang</option>
-							<option value={2}>2 Orang</option>
-							<option value={3}>3 Orang</option>
-							<option value={4}>4 Orang</option>
-							<option value={5}>5+ Orang</option>
+							{#each [1, 2, 3, 4, 5] as count}
+								<option value={count} class={isCinematic ? 'bg-[#181824] text-white' : 'bg-white text-neutral-900'}>
+									{count} {count === 5 ? '5+ Orang' : 'Orang'}
+								</option>
+							{/each}
 						</select>
 					</div>
 				{/if}
 
 				<div>
-					<label for="rsvp-message" class="block text-xs uppercase tracking-wider font-semibold mb-1.5 opacity-80">
+					<label for="rsvp-message" class="block text-xs uppercase tracking-wider font-semibold mb-1.5 {isCinematic ? 'text-[#d4af37] font-mono text-[11px]' : 'text-neutral-800 opacity-80'}">
 						Pesan / Ucapan
 					</label>
 					<textarea
@@ -150,14 +173,18 @@
 						bind:value={message}
 						rows={3}
 						placeholder="Tuliskan ucapan selamat atau catatan untuk kedua mempelai..."
-						class="w-full px-4 py-3 bg-white/70 backdrop-blur-xs border border-current/20 focus:border-current focus:outline-hidden text-sm transition-colors resize-none"
+						class="w-full px-4 py-3 text-sm transition-all resize-none rounded-sm {isCinematic
+							? 'bg-[#181824] border border-[#d4af37]/40 text-white placeholder:text-stone-400 focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] focus:outline-hidden'
+							: 'bg-white border border-neutral-300 text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:outline-hidden'}"
 					></textarea>
 				</div>
 
 				<button
 					type="submit"
 					disabled={submitting}
-					class="w-full py-3.5 px-6 bg-black text-white font-medium text-xs uppercase tracking-widest hover:opacity-90 transition-opacity flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+					class="w-full py-3.5 px-6 text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 rounded-sm {isCinematic
+						? 'bg-[#d4af37] hover:bg-[#f1c40f] text-black font-bold font-cinzel shadow-lg shadow-[#d4af37]/20'
+						: 'bg-black hover:opacity-90 text-white font-medium'}"
 				>
 					{#if submitting}
 						<Loader2 class="w-4 h-4 animate-spin" />

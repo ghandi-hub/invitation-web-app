@@ -272,7 +272,7 @@
 	{/if}
 
 	<!-- RSVP & Interactive Section -->
-	<section class="relative z-10 border-t border-[#d4af37]/20 bg-[#121218] px-6 py-14 sm:py-24">
+	<section class="relative z-10 border-t border-[#d4af37]/20 bg-[#121218] px-6 py-14 sm:py-24 text-white">
 		<div class="mx-auto max-w-3xl space-y-16">
 			{#if content.rsvp?.enabled}
 				<div>
@@ -282,18 +282,16 @@
 						>
 							KONFIRMASI KEHADIRAN
 						</span>
-						<h2 class="font-cinzel text-3xl text-white sm:text-4xl">Buku Tamu & Kehadiran</h2>
+						<h2 class="font-cinzel text-3xl text-white sm:text-4xl">Konfirmasi Kehadiran</h2>
 					</div>
-					<div
-						class="[&_button[type=submit]]:rounded-none [&_button[type=submit]]:bg-[#d4af37] [&_button[type=submit]]:font-bold [&_button[type=submit]]:text-black [&_button[type=submit]]:hover:bg-[#f1c40f]"
-					>
+					<div>
 						<RSVPSection invitationId={invitation.id} settings={content.rsvp} theme="cinematic" />
 					</div>
 				</div>
 			{/if}
 
 			{#if content.gift?.enabled}
-				<div class="border-t border-[#d4af37]/20 pt-8">
+				<div class="border-t border-[#d4af37]/20 pt-10">
 					<div class="mb-10 text-center">
 						<span
 							class="mb-2 block font-mono text-[10px] tracking-[0.35em] text-[#d4af37] uppercase"
@@ -302,16 +300,14 @@
 						</span>
 						<h2 class="font-cinzel text-3xl text-white sm:text-4xl">Kirim Hadiah</h2>
 					</div>
-					<div
-						class="[&_.bg-white\/70]:bg-[#181822] [&_.border-current\/15]:border-[#d4af37]/30 [&_.border-current\/30]:border-[#d4af37]/50 [&_button]:hover:bg-[#d4af37] [&_button]:hover:text-black"
-					>
+					<div>
 						<GiftSection gift={content.gift} theme="cinematic" />
 					</div>
 				</div>
 			{/if}
 
 			{#if content.guestbook?.enabled}
-				<div class="border-t border-[#d4af37]/20 pt-8">
+				<div class="border-t border-[#d4af37]/20 pt-10">
 					<div class="mb-10 text-center">
 						<span
 							class="mb-2 block font-mono text-[10px] tracking-[0.35em] text-[#d4af37] uppercase"
