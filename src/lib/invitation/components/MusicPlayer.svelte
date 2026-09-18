@@ -20,6 +20,7 @@
 	let fadeTimer: ReturnType<typeof setInterval> | null = null;
 	let isPlaying = $state(false);
 	let playBlocked = $state(false);
+	let userPaused = $state(false);
 	let listenersAttached = false;
 
 	$effect(() => {
@@ -29,6 +30,7 @@
 	});
 
 	export function stop() {
+		userPaused = true;
 		if (fadeTimer) {
 			clearInterval(fadeTimer);
 			fadeTimer = null;
@@ -56,6 +58,8 @@
 	}
 
 	export function pause() {
+		userPaused = true;
+		removeInteractionListeners();
 		if (fadeTimer) {
 			clearInterval(fadeTimer);
 			fadeTimer = null;
@@ -75,6 +79,8 @@
 		const el = audioEl || directAudioRef;
 		if (!el) return;
 		if (isPlaying && !el.paused) return;
+
+		userPaused = false;
 
 		if (fadeTimer) {
 			clearInterval(fadeTimer);
@@ -103,13 +109,15 @@
 					console.warn('Audio play restricted by browser, waiting for user gesture:', err);
 					isPlaying = false;
 					playBlocked = true;
-					setupInteractionListener();
+					if (!userPaused) {
+						setupInteractionListener();
+					}
 				});
 		}
 	}
 
 	function handleFirstInteraction() {
-		if (!isPlaying) {
+		if (!userPaused && !isPlaying) {
 			play();
 		}
 		removeInteractionListeners();
@@ -135,25 +143,29 @@
 		}
 	}
 
-	export function toggle() {
+	export function toggle(e?: Event) {
+		if (e) {
+			e.stopPropagation();
+		}
 		if (isPlaying) {
 			pause();
 		} else {
+			userPaused = false;
 			play();
 		}
 	}
 
+	let prevTrigger = false;
 	$effect(() => {
-		if (audioEl) {
-			directAudioRef = audioEl;
-			if ((autoPlay || autoPlayTrigger) && !isPlaying && !playBlocked) {
-				play();
-			}
+		if (autoPlayTrigger && !prevTrigger) {
+			userPaused = false;
+			play();
 		}
+		prevTrigger = autoPlayTrigger;
 	});
 
 	onMount(() => {
-		if (autoPlay) {
+		if (autoPlay && !userPaused) {
 			// Mencoba putar otomatis di awal
 			play();
 			// Pasang listener jika browser memblokir sebelum ada gesture
@@ -178,7 +190,6 @@
 		src={audioUrl}
 		loop
 		preload="auto"
-		autoplay={autoPlay}
 		onplay={() => {
 			isPlaying = true;
 			playBlocked = false;
@@ -194,7 +205,7 @@
 	>
 		<button
 			type="button"
-			onclick={toggle}
+			onclick={(e) => toggle(e)}
 			class="group flex items-center gap-2.5 rounded-full bg-neutral-900/90 text-white pl-2.5 pr-4 py-2 text-xs shadow-2xl backdrop-blur-md border border-white/20 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer {playBlocked
 				? 'ring-2 ring-amber-400 ring-offset-2 ring-offset-black animate-pulse'
 				: ''}"
