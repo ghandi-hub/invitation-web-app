@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { GiftRegistryItem } from '$lib/types';
-	import { Copy, Check, Gift, CreditCard, MapPin, Building2 } from 'lucide-svelte';
+	import { Copy, Check, Gift, CreditCard, MapPin, Building2 } from '@lucide/svelte';
 
 	interface Props {
 		giftRegistries?: GiftRegistryItem[];

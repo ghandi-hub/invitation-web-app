@@ -5,7 +5,11 @@
 	import RSVPSection from '$lib/invitation/components/RSVPSection.svelte';
 	import GuestbookSection from '$lib/invitation/components/GuestbookSection.svelte';
 	import GiftSection from '$lib/invitation/components/GiftSection.svelte';
-	import { Calendar, Clock, MapPin, ExternalLink, Film } from '@lucide/svelte';
+	import BotanicalDivider from '$lib/invitation/ornaments/BotanicalDivider.svelte';
+	import MonogramFrame from '$lib/invitation/ornaments/MonogramFrame.svelte';
+	import PaperTexture from '$lib/invitation/ornaments/PaperTexture.svelte';
+	import { parallax } from '$lib/actions/parallax';
+	import { Calendar, Clock, MapPin, ExternalLink, Film, Sparkles } from '@lucide/svelte';
 
 	let {
 		invitation,
@@ -19,63 +23,82 @@
 </script>
 
 <article
-	class="font-sans-clean min-h-screen bg-[#0d0d11] leading-relaxed text-[#e8e6e3] selection:bg-[#d4af37] selection:text-black"
+	class="relative min-h-screen bg-[#0d0d11] font-sans-clean leading-relaxed text-[#e8e6e3] overflow-x-hidden selection:bg-[#d4af37] selection:text-black"
 >
-	<!-- Cinematic Full-Bleed Hero -->
-	<ThemeHeader theme="cinematic" {content} />
+	<!-- Subtle Dark Film Texture -->
+	<PaperTexture opacity={0.03} blendMode="screen" />
 
-	<!-- Opening Quote -->
+	<!-- Cinematic Full-Bleed Hero -->
+	<header class="relative z-10">
+		<ThemeHeader theme="cinematic" {content} />
+	</header>
+
+	<!-- Monogram Emblem -->
+	<div class="relative z-10 flex justify-center -mt-6 mb-10">
+		<MonogramFrame
+			partner1={content.couple.partner1.name}
+			partner2={content.couple.partner2.name}
+			variant="arch"
+			color="#d4af37"
+			size={110}
+		/>
+	</div>
+
+	<!-- Dramatic Quote with Art Deco Golden Dividers -->
 	{#if content.opening?.quote}
-		<section class="mx-auto max-w-3xl px-6 py-16 text-center sm:py-24">
-			<div
-				class="mx-auto mb-10 h-px w-16 bg-linear-to-r from-transparent via-[#d4af37] to-transparent"
-			></div>
-			<blockquote class="font-cinzel text-base leading-relaxed text-white/90 italic sm:text-xl">
+		<section class="relative z-10 mx-auto max-w-3xl px-6 py-10 sm:py-16 text-center">
+			<BotanicalDivider variant="cinematic" color="#d4af37" />
+			<blockquote class="font-cinzel text-lg sm:text-2xl leading-relaxed text-white/95 italic my-4">
 				"{content.opening.quote}"
 			</blockquote>
 			{#if content.opening.quoteSource}
 				<cite
-					class="mt-6 block font-mono text-xs tracking-[0.25em] text-[#d4af37] uppercase not-italic"
+					class="mt-4 block font-mono text-xs tracking-[0.3em] text-[#d4af37] uppercase not-italic"
 				>
 					— {content.opening.quoteSource}
 				</cite>
 			{/if}
-			<div
-				class="mx-auto mt-10 h-px w-16 bg-linear-to-r from-transparent via-[#d4af37] to-transparent"
-			></div>
+			<BotanicalDivider variant="cinematic" color="#d4af37" />
 		</section>
 	{/if}
 
-	<!-- Couple Stars -->
-	<section class="mx-auto max-w-5xl px-6 py-16 sm:py-24">
-		<div class="mb-16 text-center">
-			<span class="mb-2 block text-[11px] font-semibold tracking-[0.4em] text-[#d4af37] uppercase">
-				Starring In This Chapter
-			</span>
-			<h2 class="font-cinzel text-3xl text-white sm:text-5xl">Mempelai</h2>
+	<!-- Couple Stars Section: Film Premiere Casting Layout -->
+	<section class="relative z-10 mx-auto max-w-5xl px-6 py-12 sm:py-20">
+		<div class="mb-14 text-center">
+			<div class="inline-flex items-center gap-2 rounded-full border border-[#d4af37]/30 bg-white/5 px-4 py-1 text-[10px] tracking-[0.35em] text-[#d4af37] uppercase mb-3 backdrop-blur-xs">
+				<Sparkles class="h-3 w-3" />
+				<span>STARRING IN THIS CHAPTER</span>
+			</div>
+			<h2 class="font-cinzel text-3xl sm:text-5xl text-white tracking-wide">Pemeran Utama</h2>
 		</div>
 
-		<div class="grid grid-cols-1 items-center gap-12 sm:gap-16 md:grid-cols-2">
+		<div class="grid grid-cols-1 items-center gap-12 sm:gap-16 md:grid-cols-2 max-w-4xl mx-auto">
 			<!-- Groom -->
-			<div class="group space-y-5 text-center">
+			<div class="space-y-5 text-center">
 				{#if content.couple.partner1.photoUrl}
 					<div
-						class="relative mx-auto h-72 w-52 overflow-hidden border border-[#d4af37]/30 bg-neutral-900 shadow-2xl shadow-black/80 sm:h-88 sm:w-64"
+						class="relative mx-auto h-72 w-56 sm:h-88 sm:w-68 overflow-hidden border border-[#d4af37]/40 bg-neutral-900 p-2 shadow-2xl shadow-black/80"
 					>
-						<img
-							src={content.couple.partner1.photoUrl}
-							alt={content.couple.partner1.name}
-							class="h-full w-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0"
-							loading="lazy"
-						/>
+						<div class="h-full w-full overflow-hidden">
+							<img
+								use:parallax={{ speed: 0.03, scale: 1.1 }}
+								src={content.couple.partner1.photoUrl}
+								alt={content.couple.partner1.name}
+								class="h-full w-full object-cover contrast-105"
+								loading="lazy"
+							/>
+						</div>
+						<div class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-3 text-[10px] font-mono tracking-[0.2em] text-[#d4af37] uppercase">
+							THE GROOM
+						</div>
 					</div>
 				{/if}
 				<div>
-					<h3 class="font-cinzel text-2xl text-white sm:text-3xl">
+					<h3 class="font-cinzel text-2xl sm:text-3xl text-white tracking-wide">
 						{content.couple.partner1.fullName || content.couple.partner1.name}
 					</h3>
 					{#if content.couple.partner1.childOf}
-						<p class="mx-auto mt-2 max-w-xs text-xs text-white/60 sm:text-sm">
+						<p class="mx-auto mt-2 max-w-xs text-xs text-white/60 sm:text-sm font-light">
 							{content.couple.partner1.childOf}
 						</p>
 					{/if}
@@ -83,25 +106,31 @@
 			</div>
 
 			<!-- Bride -->
-			<div class="group space-y-5 text-center">
+			<div class="space-y-5 text-center">
 				{#if content.couple.partner2.photoUrl}
 					<div
-						class="relative mx-auto h-72 w-52 overflow-hidden border border-[#d4af37]/30 bg-neutral-900 shadow-2xl shadow-black/80 sm:h-88 sm:w-64"
+						class="relative mx-auto h-72 w-56 sm:h-88 sm:w-68 overflow-hidden border border-[#d4af37]/40 bg-neutral-900 p-2 shadow-2xl shadow-black/80"
 					>
-						<img
-							src={content.couple.partner2.photoUrl}
-							alt={content.couple.partner2.name}
-							class="h-full w-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0"
-							loading="lazy"
-						/>
+						<div class="h-full w-full overflow-hidden">
+							<img
+								use:parallax={{ speed: 0.03, scale: 1.1 }}
+								src={content.couple.partner2.photoUrl}
+								alt={content.couple.partner2.name}
+								class="h-full w-full object-cover contrast-105"
+								loading="lazy"
+							/>
+						</div>
+						<div class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-3 text-[10px] font-mono tracking-[0.2em] text-[#d4af37] uppercase">
+							THE BRIDE
+						</div>
 					</div>
 				{/if}
 				<div>
-					<h3 class="font-cinzel text-2xl text-white sm:text-3xl">
+					<h3 class="font-cinzel text-2xl sm:text-3xl text-white tracking-wide">
 						{content.couple.partner2.fullName || content.couple.partner2.name}
 					</h3>
 					{#if content.couple.partner2.childOf}
-						<p class="mx-auto mt-2 max-w-xs text-xs text-white/60 sm:text-sm">
+						<p class="mx-auto mt-2 max-w-xs text-xs text-white/60 sm:text-sm font-light">
 							{content.couple.partner2.childOf}
 						</p>
 					{/if}
@@ -110,51 +139,48 @@
 		</div>
 	</section>
 
-	<!-- Synopsis / Story -->
+	<!-- Story Section: Cinematic Narrative Script -->
 	{#if content.story?.body}
-		<section class="border-y border-[#d4af37]/20 bg-[#14141a] px-6 py-16 sm:py-24">
+		<section class="relative z-10 border-y border-[#d4af37]/20 bg-[#14141a] px-6 py-14 sm:py-20">
 			<div class="mx-auto max-w-3xl space-y-6 text-center">
-				<span class="block text-[11px] font-semibold tracking-[0.35em] text-[#d4af37] uppercase">
-					The Synopsis
+				<span class="block text-[10px] font-mono tracking-[0.4em] text-[#d4af37] uppercase">
+					SCENE / SYNOPSIS
 				</span>
-				<h2 class="font-cinzel text-3xl text-white sm:text-4xl">
-					{content.story.title || 'Our Journey'}
+				<h2 class="font-cinzel text-3xl sm:text-4xl text-white tracking-wide">
+					{content.story.title || 'Our Story'}
 				</h2>
-				<p
-					class="text-sm leading-relaxed font-light whitespace-pre-wrap text-white/70 sm:text-base"
-				>
+				<p class="font-sans text-sm sm:text-base leading-relaxed whitespace-pre-wrap text-white/80 max-w-2xl mx-auto font-light">
 					{content.story.body}
 				</p>
 			</div>
 		</section>
 	{/if}
 
-	<!-- Events / Premiere -->
+	<!-- Events Schedule: Premiere Screening Itinerary -->
 	{#if content.events && content.events.length > 0}
-		<section class="mx-auto max-w-5xl px-6 py-16 sm:py-24">
-			<div class="mb-16 text-center">
-				<span
-					class="mb-2 block text-[11px] font-semibold tracking-[0.4em] text-[#d4af37] uppercase"
-				>
-					Schedule of Premiere
+		<section class="relative z-10 mx-auto max-w-5xl px-6 py-14 sm:py-24">
+			<div class="mb-14 text-center">
+				<span class="mb-2 block text-[10px] font-mono tracking-[0.35em] text-[#d4af37] uppercase">
+					PREMIERE SCHEDULE
 				</span>
-				<h2 class="font-cinzel text-3xl text-white sm:text-5xl">Rangkaian Acara</h2>
+				<h2 class="font-cinzel text-3xl sm:text-5xl text-white tracking-wide">Rangkaian Acara</h2>
 			</div>
 
-			<div class="grid grid-cols-1 gap-8 sm:gap-12 md:grid-cols-2">
+			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 max-w-4xl mx-auto">
 				{#each content.events as event}
 					<div
-						class="space-y-4 border border-[#d4af37]/30 bg-[#14141a] p-8 text-center shadow-xl sm:p-10"
+						class="relative space-y-5 rounded-sm border border-[#d4af37]/30 bg-[#15151c] p-8 text-center shadow-xl transition-all hover:border-[#d4af37]/60"
 					>
-						<h3 class="font-cinzel text-2xl text-white">
-							{event.title}
-						</h3>
-						<div class="mx-auto h-px w-12 bg-[#d4af37]"></div>
+						<span class="text-[10px] font-mono tracking-[0.3em] text-[#d4af37] uppercase block">
+							{event.type.toUpperCase()}
+						</span>
+						<h3 class="font-cinzel text-2xl text-white">{event.title}</h3>
+						<div class="mx-auto h-px w-10 bg-[#d4af37]/40"></div>
 
-						<div class="space-y-2 text-xs text-white/80 sm:text-sm">
+						<div class="space-y-2.5 text-xs sm:text-sm text-white/70">
 							<div class="flex items-center justify-center gap-2">
 								<Calendar class="h-4 w-4 text-[#d4af37]" />
-								<span>{event.date}</span>
+								<span class="font-medium text-white">{event.date}</span>
 							</div>
 							<div class="flex items-center justify-center gap-2">
 								<Clock class="h-4 w-4 text-[#d4af37]" />
@@ -163,8 +189,8 @@
 							<div class="flex items-start justify-center gap-2 pt-2">
 								<MapPin class="mt-0.5 h-4 w-4 shrink-0 text-[#d4af37]" />
 								<div>
-									<p class="font-semibold text-white">{event.venue}</p>
-									<p class="mt-0.5 text-[11px] text-white/60 sm:text-xs">{event.address}</p>
+									<p class="font-medium text-white">{event.venue}</p>
+									<p class="mt-0.5 text-xs text-white/50">{event.address}</p>
 								</div>
 							</div>
 						</div>
@@ -175,9 +201,9 @@
 									href={event.mapsUrl}
 									target="_blank"
 									rel="noopener noreferrer"
-									class="inline-flex items-center gap-2 border border-[#d4af37] px-6 py-2.5 text-xs font-semibold tracking-widest text-[#d4af37] uppercase transition-all hover:bg-[#d4af37] hover:text-black"
+									class="inline-flex items-center gap-2 border border-[#d4af37]/60 bg-transparent px-6 py-2.5 text-xs font-mono tracking-widest text-[#d4af37] uppercase transition-all hover:bg-[#d4af37] hover:text-black"
 								>
-									<span>View Location</span>
+									<span>VIEW LOCATION</span>
 									<ExternalLink class="h-3.5 w-3.5" />
 								</a>
 							</div>
@@ -188,126 +214,109 @@
 		</section>
 	{/if}
 
-	<!-- Countdown -->
+	<!-- Countdown Timer -->
 	{#if content.countdown?.targetDate}
-		<section
-			class="border-y border-white/10 bg-radial from-[#1e1e28] to-[#0d0d11] px-6 py-16 text-center"
-		>
+		<section class="relative z-10 border-y border-[#d4af37]/20 bg-[#08080a] px-6 py-14 text-center text-white sm:py-20">
 			<div class="mx-auto max-w-2xl space-y-6">
-				<span class="block text-[11px] font-semibold tracking-[0.4em] text-[#d4af37] uppercase">
-					Counting Down To The Premiere
+				<span class="block text-[10px] font-mono tracking-[0.35em] text-[#d4af37] uppercase">
+					COUNTDOWN TO PREMIERE
 				</span>
-				<div class="text-white">
+				<div class="[&_span]:text-[#d4af37]">
 					<Countdown targetDate={content.countdown.targetDate} variant="cinematic" />
 				</div>
 			</div>
 		</section>
 	{/if}
 
-	<!-- Gallery Scenes -->
+	<!-- Photo Gallery: Film Reel Grid -->
 	{#if content.gallery && content.gallery.length > 0}
-		<section class="mx-auto max-w-6xl px-6 py-16 sm:py-24">
-			<div class="mb-16 text-center">
-				<span
-					class="mb-2 block text-[11px] font-semibold tracking-[0.4em] text-[#d4af37] uppercase"
-				>
-					Scenes From The Journey
+		<section class="relative z-10 mx-auto max-w-6xl px-6 py-14 sm:py-24">
+			<div class="mb-14 text-center">
+				<span class="mb-2 block text-[10px] font-mono tracking-[0.35em] text-[#d4af37] uppercase">
+					GALLERY ARCHIVE
 				</span>
-				<h2 class="font-cinzel text-3xl text-white sm:text-5xl">Galeri Foto</h2>
+				<h2 class="font-cinzel text-3xl sm:text-5xl text-white tracking-wide">Galeri Momen</h2>
 			</div>
 
-			<div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+			<div class="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-4">
 				{#each content.gallery as item}
-					<div
-						class="group relative aspect-3/4 overflow-hidden border border-white/10 bg-neutral-900"
-					>
-						<img
-							src={item.url}
-							alt={item.caption || 'Scene photo'}
-							class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-							loading="lazy"
-						/>
-						{#if item.caption}
-							<div
-								class="absolute inset-0 flex items-end bg-linear-to-t from-black via-black/40 to-transparent p-4 font-mono text-xs text-white opacity-0 transition-opacity group-hover:opacity-100"
-							>
-								<p>{item.caption}</p>
-							</div>
-						{/if}
+					<div class="group relative aspect-3/4 overflow-hidden border border-[#d4af37]/30 bg-black p-1 shadow-lg transition-transform duration-500 hover:-translate-y-1">
+						<div class="relative h-full w-full overflow-hidden bg-neutral-900">
+							<img
+								src={item.url}
+								alt={item.caption || 'Foto Galeri'}
+								class="h-full w-full object-cover contrast-105 transition-transform duration-700 group-hover:scale-110"
+								loading="lazy"
+							/>
+							{#if item.caption}
+								<div
+									class="absolute inset-0 flex items-end bg-gradient-to-t from-black/80 via-black/20 to-transparent p-3 text-xs text-[#d4af37] opacity-0 transition-opacity group-hover:opacity-100 font-cinzel"
+								>
+									<p>{item.caption}</p>
+								</div>
+							{/if}
+						</div>
 					</div>
 				{/each}
 			</div>
 		</section>
 	{/if}
 
-	<!-- Interactive Section (Dark theme styled) -->
-	<section class="border-t border-white/10 bg-[#121217] px-6 py-16 sm:py-24">
+	<!-- RSVP & Interactive Section -->
+	<section class="relative z-10 border-t border-[#d4af37]/20 bg-[#121218] px-6 py-14 sm:py-24">
 		<div class="mx-auto max-w-3xl space-y-16">
 			{#if content.rsvp?.enabled}
 				<div>
 					<div class="mb-10 text-center">
-						<span
-							class="mb-2 block text-[11px] font-semibold tracking-[0.4em] text-[#d4af37] uppercase"
-						>
+						<span class="mb-2 block text-[10px] font-mono tracking-[0.35em] text-[#d4af37] uppercase">
 							RSVP
 						</span>
-						<h2 class="font-cinzel text-3xl text-white sm:text-4xl">Konfirmasi Kehadiran</h2>
+						<h2 class="font-cinzel text-3xl sm:text-4xl text-white">Konfirmasi Kehadiran</h2>
 					</div>
-					<div
-						class="[&_button[type=submit]]:bg-[#d4af37] [&_button[type=submit]]:text-black [&_input]:border-white/20 [&_input]:bg-white/5 [&_input]:text-white [&_select]:border-white/20 [&_select]:bg-[#1a1a22] [&_select]:text-white [&_textarea]:border-white/20 [&_textarea]:bg-white/5 [&_textarea]:text-white"
-					>
+					<div class="[&_button[type=submit]]:rounded-none [&_button[type=submit]]:bg-[#d4af37] [&_button[type=submit]]:text-black [&_button[type=submit]]:font-bold [&_button[type=submit]]:hover:bg-[#f1c40f]">
 						<RSVPSection invitationId={invitation.id} settings={content.rsvp} theme="cinematic" />
 					</div>
 				</div>
 			{/if}
 
 			{#if content.gift?.enabled}
-				<div class="border-t border-white/10 pt-8">
+				<div class="border-t border-[#d4af37]/20 pt-8">
 					<div class="mb-10 text-center">
-						<span
-							class="mb-2 block text-[11px] font-semibold tracking-[0.4em] text-[#d4af37] uppercase"
-						>
-							Wedding Gift
+						<span class="mb-2 block text-[10px] font-mono tracking-[0.35em] text-[#d4af37] uppercase">
+							WEDDING GIFT
 						</span>
-						<h2 class="font-cinzel text-3xl text-white sm:text-4xl">Kirim Hadiah</h2>
+						<h2 class="font-cinzel text-3xl sm:text-4xl text-white">Tanda Kasih</h2>
 					</div>
-					<div
-						class="[&_button]:border-[#d4af37] [&_button]:text-[#d4af37] [&_div]:border-white/10 [&_div]:bg-white/5 [&_div]:text-white"
-					>
+					<div class="[&_.bg-white\/70]:bg-[#181822] [&_.border-current\/15]:border-[#d4af37]/30 [&_.border-current\/30]:border-[#d4af37]/50 [&_button]:hover:bg-[#d4af37] [&_button]:hover:text-black">
 						<GiftSection gift={content.gift} theme="cinematic" />
 					</div>
 				</div>
 			{/if}
 
 			{#if content.guestbook?.enabled}
-				<div class="border-t border-white/10 pt-8">
+				<div class="border-t border-[#d4af37]/20 pt-8">
 					<div class="mb-10 text-center">
-						<span
-							class="mb-2 block text-[11px] font-semibold tracking-[0.4em] text-[#d4af37] uppercase"
-						>
-							Wishes
+						<span class="mb-2 block text-[10px] font-mono tracking-[0.35em] text-[#d4af37] uppercase">
+							GUEST WISHES
 						</span>
-						<h2 class="font-cinzel text-3xl text-white sm:text-4xl">Doa & Ucapan</h2>
+						<h2 class="font-cinzel text-3xl sm:text-4xl text-white">Doa & Ucapan</h2>
 					</div>
-					<div
-						class="[&_.guestbook-entry]:bg-white/5 [&_.guestbook-entry]:text-white [&_button[type=submit]]:bg-[#d4af37] [&_button[type=submit]]:text-black [&_form]:border-white/10 [&_form]:bg-white/5 [&_form]:text-white [&_input]:bg-white/10 [&_input]:text-white [&_textarea]:bg-white/10 [&_textarea]:text-white"
-					>
-						<GuestbookSection
-							invitationId={invitation.id}
-							settings={content.guestbook}
-							initialEntries={initialGuestbook}
-							theme="cinematic"
-						/>
-					</div>
+					<GuestbookSection
+						invitationId={invitation.id}
+						settings={content.guestbook}
+						initialEntries={initialGuestbook}
+						theme="cinematic"
+					/>
 				</div>
 			{/if}
 		</div>
 	</section>
 
-	<footer class="border-t border-white/10 px-6 py-12 text-center text-xs text-white/50">
-		<p class="font-cinzel mb-2 text-lg text-white">
+	<!-- Footer -->
+	<footer class="relative z-10 border-t border-[#d4af37]/20 px-6 py-12 text-center text-xs text-white/50">
+		<p class="font-cinzel mb-2 text-xl text-[#d4af37]">
 			{content.couple.partner1.name} & {content.couple.partner2.name}
 		</p>
-		<p>Thank you for celebrating with us</p>
+		<p>Thank you for being part of our story.</p>
 	</footer>
 </article>

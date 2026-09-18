@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { EventDocument } from '$lib/types';
-	import { MailOpen, Heart, Sparkles, Moon } from 'lucide-svelte';
+	import { MailOpen, Heart, Sparkles, Moon } from '@lucide/svelte';
 
 	interface Props {
 		event: EventDocument;

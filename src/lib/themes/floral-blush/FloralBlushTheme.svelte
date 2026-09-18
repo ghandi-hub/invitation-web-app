@@ -4,7 +4,7 @@
 	import { formatDate, formatTime } from '$lib/utils';
 	import DigitalEnvelope from '$lib/components/core/DigitalEnvelope.svelte';
 	import RsvpSection from '$lib/components/core/RsvpSection.svelte';
-	import { Calendar, MapPin, ExternalLink, Heart, Clock } from 'lucide-svelte';
+	import { Calendar, MapPin, ExternalLink, Heart, Clock } from '@lucide/svelte';
 	import { onMount } from 'svelte';
 
 	interface Props {

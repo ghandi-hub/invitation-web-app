@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { GuestDocument } from '$lib/types';
-	import { MessageSquare, Users, CheckCircle2, XCircle, Send, Clock } from 'lucide-svelte';
+	import { MessageSquare, Users, CheckCircle2, XCircle, Send, Clock } from '@lucide/svelte';
 
 	interface Props {
 		slug: string;

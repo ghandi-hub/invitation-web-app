@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
-	import { Music, Volume2, VolumeX } from 'lucide-svelte';
+	import { Music, Volume2, VolumeX } from '@lucide/svelte';
 
 	interface Props {
 		musicUrl?: string;
