@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { MailOpen } from '@lucide/svelte';
 	import PaperTexture from '$lib/invitation/ornaments/PaperTexture.svelte';
+	import { fade } from 'svelte/transition';
 
 	let {
 		partner1,
@@ -30,6 +31,7 @@
 
 {#if isOpen}
 	<div
+		transition:fade={{ duration: 700 }}
 		class="fixed inset-0 z-50 flex flex-col items-center justify-between bg-cover bg-center p-8 text-center transition-all duration-700 ease-out overflow-hidden"
 		style={coverUrl
 			? `background-image: linear-gradient(to bottom, rgba(15,15,20,0.5), rgba(15,15,20,0.85)), url('${coverUrl}')`

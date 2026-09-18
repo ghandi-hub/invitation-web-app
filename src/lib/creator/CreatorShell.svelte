@@ -1,7 +1,8 @@
 <script lang="ts">
 	import './creator.css';
 	import logoColour from '$lib/assets/logo-colour.png';
-	import { untrack, setContext, tick } from 'svelte';
+	import { untrack, setContext, tick, onDestroy } from 'svelte';
+	import { beforeNavigate } from '$app/navigation';
 	import { MEDIA_EDITOR, type MediaEditorContext } from './media-context';
 	import type { Invitation, InvitationTheme } from '$lib/types/invitation';
 	import InvitationRenderer from '$lib/invitation/InvitationRenderer.svelte';
@@ -141,6 +142,48 @@
 
 	// Mobile fullscreen preview toggle
 	let showMobilePreview = $state(false);
+	let invitationRenderer: any = $state();
+
+	function stopPreviewAudio() {
+		if (invitationRenderer?.stopAudio) {
+			invitationRenderer.stopAudio();
+		}
+		if (typeof document !== 'undefined') {
+			document.querySelectorAll<HTMLAudioElement>('audio').forEach((a) => {
+				try {
+					a.pause();
+					a.currentTime = 0;
+				} catch {}
+			});
+		}
+	}
+
+	async function openMobilePreview() {
+		showMobilePreview = true;
+		await tick();
+		invitationRenderer?.playAudio?.();
+	}
+
+	function closeMobilePreview() {
+		showMobilePreview = false;
+		stopPreviewAudio();
+	}
+
+	let prevMobilePreview = false;
+	$effect(() => {
+		if (prevMobilePreview && !showMobilePreview) {
+			stopPreviewAudio();
+		}
+		prevMobilePreview = showMobilePreview;
+	});
+
+	beforeNavigate(() => {
+		stopPreviewAudio();
+	});
+
+	onDestroy(() => {
+		stopPreviewAudio();
+	});
 
 	// Save status
 	let saving = $state(false);
@@ -233,7 +276,7 @@
 
 <svelte:window
 	onkeydown={(event) => {
-		if (event.key === 'Escape') showMobilePreview = false;
+		if (event.key === 'Escape') closeMobilePreview();
 	}}
 />
 
@@ -388,7 +431,7 @@
 						>{:else}<button
 							type="button"
 							class="studio-button studio-next"
-							onclick={() => (showMobilePreview = true)}><Eye size={16} /> Pratinjau</button
+							onclick={openMobilePreview}><Eye size={16} /> Pratinjau</button
 						>{/if}
 				</div>
 			</div>
@@ -415,7 +458,7 @@
 				<button
 					type="button"
 					class="preview-close studio-button"
-					onclick={() => (showMobilePreview = false)}><X size={18} /> Kembali edit</button
+					onclick={closeMobilePreview}><X size={18} /> Kembali edit</button
 				>
 			</div>
 			<div class="preview-canvas">
@@ -424,14 +467,20 @@
 					class:phone={viewport === 'mobile'}
 					class:tablet={viewport === 'tablet'}
 				>
-					<InvitationRenderer {invitation} isEditor={true} showCover={false} />
+					<InvitationRenderer
+						bind:this={invitationRenderer}
+						{invitation}
+						isEditor={true}
+						showCover={false}
+						allowAudio={showMobilePreview}
+					/>
 				</div>
 			</div>
 			<p class="preview-footnote">Pratinjau langsung ? Perubahan tersimpan setelah klik Simpan</p>
 		</aside>
 	</div>
 	<footer class="studio-mobile-actions">
-		<button type="button" class="studio-button" onclick={() => (showMobilePreview = true)}
+		<button type="button" class="studio-button" onclick={openMobilePreview}
 			><Eye size={17} /> Pratinjau</button
 		>{@render saveButton()}
 	</footer>

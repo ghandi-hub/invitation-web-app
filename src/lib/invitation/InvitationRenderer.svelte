@@ -11,29 +11,69 @@
 	import MusicPlayer from '$lib/invitation/components/MusicPlayer.svelte';
 	import CoverModal from '$lib/invitation/components/CoverModal.svelte';
 
+	import { onMount, onDestroy } from 'svelte';
+	import { beforeNavigate } from '$app/navigation';
+
 	let {
 		invitation,
 		initialGuestbook = [],
 		isEditor = false,
 		recipientName = '',
-		showCover = true
+		showCover = true,
+		allowAudio = !isEditor
 	}: {
 		invitation: Invitation;
 		initialGuestbook?: GuestbookItem[];
 		isEditor?: boolean;
 		showCover?: boolean;
 		recipientName?: string;
+		allowAudio?: boolean;
 	} = $props();
 
 	let audioStarted = $state(false);
 	let musicPlayer: any = $state();
 
-	function handleOpenCover() {
+	export function playAudio() {
+		if (!allowAudio) return;
 		audioStarted = true;
 		if (musicPlayer?.play) {
 			musicPlayer.play();
 		}
 	}
+
+	function handleOpenCover() {
+		playAudio();
+	}
+
+	onMount(() => {
+		if (!showCover && allowAudio) {
+			audioStarted = true;
+		}
+	});
+
+	export function stopAudio() {
+		if (musicPlayer?.stop) {
+			musicPlayer.stop();
+		} else if (musicPlayer?.pause) {
+			musicPlayer.pause();
+		}
+		if (typeof document !== 'undefined') {
+			document.querySelectorAll('audio').forEach((a) => {
+				try {
+					a.pause();
+					a.currentTime = 0;
+				} catch {}
+			});
+		}
+	}
+
+	beforeNavigate(() => {
+		stopAudio();
+	});
+
+	onDestroy(() => {
+		stopAudio();
+	});
 </script>
 
 <div class="invitation-root relative w-full overflow-x-hidden">
@@ -50,11 +90,12 @@
 	{/if}
 
 	<!-- Music Player Component -->
-	{#if invitation.music?.url}
+	{#if invitation.music?.url && allowAudio}
 		<MusicPlayer
 			bind:this={musicPlayer}
 			audioUrl={invitation.music.url}
 			title={invitation.music.title || 'Musik Pernikahan'}
+			autoPlay={true}
 			autoPlayTrigger={audioStarted}
 		/>
 	{/if}

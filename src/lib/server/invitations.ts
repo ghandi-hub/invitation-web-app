@@ -111,6 +111,12 @@ export async function createDefaultInvitation(userId: string): Promise<Invitatio
 		status: 'draft',
 		theme: 'editorial' as InvitationTheme,
 		content: defaultContent,
+		music: {
+			type: 'library' as const,
+			musicId: '6aad52aefbd641276ebe81c1',
+			url: 'https://res.cloudinary.com/diton4fcf/video/upload/v1789742766/Payung-Teduh-Akad-Official-Music_tqdhnl.mp3',
+			title: 'Payung Teduh - Akad'
+		},
 		createdAt: now,
 		updatedAt: now,
 		publishedAt: null
