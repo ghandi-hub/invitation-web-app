@@ -259,7 +259,7 @@
 			<a href="/" class="studio-back" aria-label="Kembali ke beranda"><ArrowLeft size={18} /></a>
 			<div class="studio-title">
 				<span class="studio-wordmark"
-					><img src={logoColour} alt="WedVow" width="472" height="588" /><span>/ studio</span></span
+					><img src={logoColour} alt="Invita" width="472" height="588" /><span>/ studio</span></span
 				>
 				<h1 title={invitationTitle}>{invitationTitle}</h1>
 			</div>

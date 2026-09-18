@@ -13,7 +13,7 @@
 </script>
 
 <svelte:head>
-	<title>WedVow — Ruang untuk cerita kalian</title>
+	<title>Invita — Ruang untuk cerita kalian</title>
 	<meta
 		name="description"
 		content="Buat undangan pernikahan personal. Susun cerita, pilih tema, dan bagikan hari bahagia kalian."
@@ -22,8 +22,8 @@
 
 <div class="home">
 	<header class="topbar wrap">
-		<a href="/" class="brand" aria-label="WedVow beranda"
-			><img src={logoColour} alt="" width="472" height="588" /><span>wedvow</span></a
+		<a href="/" class="brand" aria-label="Invita beranda"
+			><img src={logoColour} alt="" width="472" height="588" /><span>Invita</span></a
 		>
 		<nav aria-label="Navigasi utama">
 			<a href="#themes" class="theme-link">Koleksi tema</a>
@@ -144,11 +144,11 @@
 		</section>
 	</main>
 	<footer class="wrap">
-		<a href="/" class="brand" aria-label="WedVow beranda"
-			><img src={logoBlack} alt="" width="472" height="588" /><span>wedvow</span></a
+		<a href="/" class="brand" aria-label="Invita beranda"
+			><img src={logoBlack} alt="" width="472" height="588" /><span>Invita</span></a
 		>
 		<p>Dibuat untuk merayakan kebersamaan.</p>
-		<span>© {new Date().getFullYear()} WedVow</span>
+		<span>© {new Date().getFullYear()} Invita</span>
 	</footer>
 </div>
 
