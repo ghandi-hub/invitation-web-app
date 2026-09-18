@@ -1,5 +1,6 @@
 <script lang="ts">
 	import './creator.css';
+	import logoColour from '$lib/assets/logo-colour.png';
 	import { untrack, setContext, tick } from 'svelte';
 	import { MEDIA_EDITOR, type MediaEditorContext } from './media-context';
 	import type { Invitation, InvitationTheme } from '$lib/types/invitation';
@@ -257,7 +258,9 @@
 		<div class="studio-identity">
 			<a href="/" class="studio-back" aria-label="Kembali ke beranda"><ArrowLeft size={18} /></a>
 			<div class="studio-title">
-				<span class="studio-wordmark">wedvow <span>/ studio</span></span>
+				<span class="studio-wordmark"
+					><img src={logoColour} alt="WedVow" width="472" height="588" /><span>/ studio</span></span
+				>
 				<h1 title={invitationTitle}>{invitationTitle}</h1>
 			</div>
 		</div>

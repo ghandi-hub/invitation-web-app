@@ -51,6 +51,9 @@
 	min-width: 0;
 }
 .studio-wordmark {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
 	font-family: 'Syne', sans-serif;
 	font-size: 19px;
 	font-weight: 800;
@@ -533,4 +536,11 @@
 		font-size: 12px;
 		padding: 10px;
 	}
+}
+
+.studio-wordmark img {
+	width: 24px;
+	height: 30px;
+	object-fit: contain;
+	flex-shrink: 0;
 }

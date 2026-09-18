@@ -1,4 +1,6 @@
 ﻿<script lang="ts">
+	import logoColour from '$lib/assets/logo-colour.png';
+	import logoBlack from '$lib/assets/logo-black.png';
 	import ThemeHeaderPreview from '$lib/invitation/ThemeHeaderPreview.svelte';
 	import { ArrowUpRight, ArrowRight, Plus, LogOut } from '@lucide/svelte';
 	import { THEME_LIST } from '$lib/invitation/theme-registry';
@@ -20,7 +22,9 @@
 
 <div class="home">
 	<header class="topbar wrap">
-		<a href="/" class="brand" aria-label="WedVow beranda">wedvow<span>®</span></a>
+		<a href="/" class="brand" aria-label="WedVow beranda"
+			><img src={logoColour} alt="" width="472" height="588" /><span>wedvow</span></a
+		>
 		<nav aria-label="Navigasi utama">
 			<a href="#themes" class="theme-link">Koleksi tema</a>
 			{#if data.user}
@@ -140,7 +144,9 @@
 		</section>
 	</main>
 	<footer class="wrap">
-		<a href="/" class="brand">wedvow<span>®</span></a>
+		<a href="/" class="brand" aria-label="WedVow beranda"
+			><img src={logoBlack} alt="" width="472" height="588" /><span>wedvow</span></a
+		>
 		<p>Dibuat untuk merayakan kebersamaan.</p>
 		<span>© {new Date().getFullYear()} WedVow</span>
 	</footer>
@@ -166,16 +172,21 @@
 		gap: 20px;
 	}
 	.brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 12px;
+		flex-shrink: 0;
 		font-family: 'Syne', sans-serif;
 		font-size: 32px;
 		font-weight: 800;
 		letter-spacing: -2px;
 		text-decoration: none;
 	}
-	.brand span {
-		font-size: 13px;
-		vertical-align: top;
-		margin-left: 3px;
+	.brand img {
+		width: 38px;
+		height: 48px;
+		object-fit: contain;
+		flex-shrink: 0;
 	}
 	nav {
 		display: flex;
