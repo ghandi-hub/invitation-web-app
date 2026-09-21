@@ -10,6 +10,7 @@
 	import JavaneseDivider from '$lib/invitation/ornaments/JavaneseDivider.svelte';
 	import BatikKawungTexture from '$lib/invitation/ornaments/BatikKawungTexture.svelte';
 	import MelatiFloating from '$lib/invitation/ornaments/MelatiFloating.svelte';
+	import MegaMendung from '$lib/invitation/ornaments/MegaMendung.svelte';
 	import MonogramFrame from '$lib/invitation/ornaments/MonogramFrame.svelte';
 	import PaperTexture from '$lib/invitation/ornaments/PaperTexture.svelte';
 	import { parallax } from '$lib/actions/parallax';
@@ -99,6 +100,20 @@
 					</div>
 				</div>
 
+				<!-- Parallax Floating Mega Mendung Cloud Accents -->
+				<div
+					use:parallax={{ speed: -0.14 }}
+					class="pointer-events-none absolute -top-8 -right-8 z-20 hidden opacity-85 sm:block text-[#c59b27]"
+				>
+					<MegaMendung variant="cluster" size={170} color="#c59b27" secondaryColor="#dfb743" tertiaryColor="#7a4b27" />
+				</div>
+				<div
+					use:parallax={{ speed: 0.09 }}
+					class="pointer-events-none absolute -bottom-10 -left-6 z-10 hidden opacity-75 sm:block text-[#c59b27]"
+				>
+					<MegaMendung variant="cluster" size={145} color="#c59b27" secondaryColor="#dfb743" tertiaryColor="#7a4b27" flip />
+				</div>
+
 				<!-- Parallax Foreground Layer: Gebyok Carved Corner overlapping the frame -->
 				<div
 					use:parallax={{ speed: -0.1 }}
@@ -124,7 +139,10 @@
 		</section>
 	{/if}
 
-	<JavaneseDivider variant="gunungan" color="#c59b27" />
+	<!-- Section Transition: Mega Mendung Wave Divider -->
+	<div class="flex justify-center my-3 opacity-90">
+		<MegaMendung variant="divider" size={290} color="#c59b27" secondaryColor="#dfb743" />
+	</div>
 
 	<!-- Opening Quote & Javanese Blessing (Purwaka) -->
 	{#if content.opening?.quote}
@@ -160,6 +178,14 @@
 		<!-- Atmospheric Gunungan Backdrop Watermark -->
 		<div class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 opacity-15">
 			<GununganOrnament variant="full" size={320} color="#c59b27" />
+		</div>
+
+		<!-- Mega Mendung Edge Clouds framing the couple stage -->
+		<div class="pointer-events-none absolute left-0 top-1/3 z-0 hidden opacity-40 md:block">
+			<MegaMendung variant="edge-left" size={170} color="#c59b27" secondaryColor="#dfb743" />
+		</div>
+		<div class="pointer-events-none absolute right-0 top-1/3 z-0 hidden opacity-40 md:block">
+			<MegaMendung variant="edge-right" size={170} color="#c59b27" secondaryColor="#dfb743" />
 		</div>
 
 		<div use:scrollReveal class="relative z-10 mb-16 text-center">
@@ -353,6 +379,20 @@
 				<GununganOrnament variant="full" size={160} color="#c59b27" />
 			</div>
 
+			<!-- Flanking Golden Mega Mendung Celestial Clouds in Keraton Night Sky -->
+			<div
+				use:parallax={{ speed: 0.12 }}
+				class="pointer-events-none absolute -left-8 top-6 z-0 hidden opacity-40 lg:block text-[#dfb743]"
+			>
+				<MegaMendung variant="cluster" size={210} color="#c59b27" secondaryColor="#dfb743" tertiaryColor="#1c120a" />
+			</div>
+			<div
+				use:parallax={{ speed: -0.12 }}
+				class="pointer-events-none absolute -right-8 bottom-4 z-0 hidden opacity-40 lg:block text-[#dfb743]"
+			>
+				<MegaMendung variant="cluster" size={210} color="#c59b27" secondaryColor="#dfb743" tertiaryColor="#1c120a" flip />
+			</div>
+
 			<div class="relative z-10 mx-auto max-w-2xl space-y-6">
 				<div class="inline-flex items-center gap-2 text-[#c59b27]">
 					<span class="text-xs">❖</span>
@@ -478,8 +518,9 @@
 
 	<!-- Footer / Panutup -->
 	<footer class="relative z-10 border-t border-[#c59b27]/25 px-6 py-14 text-center text-xs text-[#7a4b27] space-y-4">
-		<div class="flex justify-center">
-			<GununganOrnament variant="divider" size={32} color="#c59b27" />
+		<div class="flex flex-col items-center justify-center gap-2">
+			<MegaMendung variant="crest" size={150} color="#c59b27" secondaryColor="#dfb743" />
+			<GununganOrnament variant="divider" size={28} color="#c59b27" />
 		</div>
 		<p class="font-cinzel text-xl sm:text-2xl text-[#2b1810]">
 			{content.couple.partner1.name} <span class="font-cormorant italic text-[#c59b27]">&</span> {content.couple.partner2.name}

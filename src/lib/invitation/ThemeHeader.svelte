@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { InvitationContent, InvitationTheme } from '$lib/types/invitation';
 	import { Film, Zap, Sparkles } from '@lucide/svelte';
+	import MegaMendung from '$lib/invitation/ornaments/MegaMendung.svelte';
 	let {
 		theme,
 		content,
@@ -250,6 +251,11 @@
 			this={preview ? 'div' : 'header'}
 			class="mx-auto max-w-4xl px-6 py-14 text-center sm:py-24"
 		>
+			<!-- Mega Mendung Crown Crest -->
+			<div class="mb-3 flex justify-center opacity-85">
+				<MegaMendung variant="crest" size={preview ? 90 : 130} color="#c59b27" secondaryColor="#dfb743" />
+			</div>
+
 			<!-- Royal Crest Motif -->
 			<div class="mb-4 inline-flex items-center justify-center gap-2.5 text-[#c59b27]">
 				<span class="text-xs opacity-70">❖</span>

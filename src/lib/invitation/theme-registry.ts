@@ -92,10 +92,10 @@ export const THEME_REGISTRY: Record<InvitationTheme, ThemeConfig> = {
 	'javanese-heritage': {
 		id: 'javanese-heritage',
 		name: 'Javanese Heritage',
-		description: 'Kemegahan tradisi Keraton Jawa dengan sentuhan Gunungan Wayang, ukiran gebyok, motif batik sogan & aksen prada emas nan agung.',
+		description: 'Kemegahan tradisi Keraton Jawa dengan sentuhan Gunungan Wayang, ukiran gebyok, motif batik Kawung & Mega Mendung, serta aksen prada emas nan agung.',
 		fontFamilyDisplay: 'font-cinzel',
 		fontFamilyBody: 'font-sans-clean',
-		aesthetic: 'Batik sogan hangat, prada emas keraton & keanggunan ronce melati',
+		aesthetic: 'Batik sogan hangat, ornamen Mega Mendung, prada emas & keanggunan melati',
 		supportsParallax: true,
 		primaryColor: '#c59b27',
 		bgColor: '#faf5eb'

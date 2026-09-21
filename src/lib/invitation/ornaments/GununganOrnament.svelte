@@ -13,8 +13,8 @@
 </script>
 
 <div
-	class="inline-flex items-center justify-center select-none pointer-events-none {className}"
-	style:color={color}
+	class="pointer-events-none inline-flex items-center justify-center select-none {className}"
+	style:color
 	aria-hidden="true"
 >
 	{#if variant === 'full'}
@@ -28,7 +28,14 @@
 			class="max-w-full drop-shadow-xs"
 		>
 			<defs>
-				<linearGradient id="gunungan-glow-{size}" x1="80" y1="10" x2="80" y2="210" gradientUnits="userSpaceOnUse">
+				<linearGradient
+					id="gunungan-glow-{size}"
+					x1="80"
+					y1="10"
+					x2="80"
+					y2="210"
+					gradientUnits="userSpaceOnUse"
+				>
 					<stop offset="0%" stop-color="currentColor" stop-opacity="0.35" />
 					<stop offset="50%" stop-color="currentColor" stop-opacity="0.15" />
 					<stop offset="100%" stop-color="currentColor" stop-opacity="0.05" />
@@ -59,9 +66,27 @@
 			<circle cx="80" cy="4" r="1.5" fill="currentColor" />
 
 			<!-- Sacred Tree of Life (Kalpataru) Trunk & Roots -->
-			<line x1="80" y1="90" x2="80" y2="204" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-			<path d="M80 170 C72 178 64 190 60 204" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" />
-			<path d="M80 170 C88 178 96 190 100 204" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" />
+			<line
+				x1="80"
+				y1="90"
+				x2="80"
+				y2="204"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+			/>
+			<path
+				d="M80 170 C72 178 64 190 60 204"
+				stroke="currentColor"
+				stroke-width="1.25"
+				stroke-linecap="round"
+			/>
+			<path
+				d="M80 170 C88 178 96 190 100 204"
+				stroke="currentColor"
+				stroke-width="1.25"
+				stroke-linecap="round"
+			/>
 
 			<!-- Lower Gapura / Sacred Gate Portal of Keraton -->
 			<path
@@ -71,7 +96,15 @@
 				fill="currentColor"
 				fill-opacity="0.1"
 			/>
-			<line x1="80" y1="138" x2="80" y2="206" stroke="currentColor" stroke-width="0.75" stroke-dasharray="2 2" />
+			<line
+				x1="80"
+				y1="138"
+				x2="80"
+				y2="206"
+				stroke="currentColor"
+				stroke-width="0.75"
+				stroke-dasharray="2 2"
+			/>
 			<path d="M70 156 H90" stroke="currentColor" stroke-width="0.75" />
 
 			<!-- Stylized Branches & Foliage (Lung-Lungan) -->
@@ -154,7 +187,16 @@
 				stroke-width="0.75"
 				stroke-opacity="0.3"
 			/>
-			<line x1="80" y1="20" x2="80" y2="208" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2" stroke-dasharray="4 3" />
+			<line
+				x1="80"
+				y1="20"
+				x2="80"
+				y2="208"
+				stroke="currentColor"
+				stroke-width="0.5"
+				stroke-opacity="0.2"
+				stroke-dasharray="4 3"
+			/>
 		</svg>
 	{:else if variant === 'arch-cap'}
 		<!-- Gunungan Crest Cap for Arch Frames -->
@@ -178,8 +220,18 @@
 			<circle cx="60" cy="24" r="2" fill="currentColor" />
 			<circle cx="60" cy="40" r="1.5" fill="currentColor" />
 			<!-- Flanking crest curls -->
-			<path d="M48 38 C42 32 34 35 32 42" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" />
-			<path d="M72 38 C78 32 86 35 88 42" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" />
+			<path
+				d="M48 38 C42 32 34 35 32 42"
+				stroke="currentColor"
+				stroke-width="0.8"
+				stroke-linecap="round"
+			/>
+			<path
+				d="M72 38 C78 32 86 35 88 42"
+				stroke="currentColor"
+				stroke-width="0.8"
+				stroke-linecap="round"
+			/>
 		</svg>
 	{:else}
 		<!-- Small Gunungan Motif as Section Badge / Divider Finial -->
