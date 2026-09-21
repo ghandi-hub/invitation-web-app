@@ -8,7 +8,8 @@ export type InvitationTheme =
 	| 'romantic-classic'
 	| 'modern-mono'
 	| 'brutalist'
-	| 'contemporary-color';
+	| 'contemporary-color'
+	| 'javanese-heritage';
 
 export interface Partner {
 	name: string;

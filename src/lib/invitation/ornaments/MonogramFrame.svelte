@@ -9,7 +9,7 @@
 	}: {
 		partner1?: string;
 		partner2?: string;
-		variant?: 'wreath' | 'oval' | 'editorial' | 'arch' | 'modern';
+		variant?: 'wreath' | 'oval' | 'editorial' | 'arch' | 'modern' | 'keraton';
 		color?: string;
 		size?: number;
 		className?: string;
@@ -124,6 +124,33 @@
 			<div class="absolute -top-1 -right-1 w-2 h-2 bg-current"></div>
 			<div class="absolute -bottom-1 -left-1 w-2 h-2 bg-current"></div>
 			<div class="absolute -bottom-1 -right-1 w-2 h-2 bg-current"></div>
+		</div>
+	{:else if variant === 'keraton'}
+		<!-- Royal Keraton Gold Medallion Monogram -->
+		<svg
+			viewBox="0 0 120 120"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+			class="absolute inset-0 w-full h-full pointer-events-none drop-shadow-xs"
+		>
+			<!-- 8-Pointed Star Lotus / Asthabrata Rosette Outer Ring -->
+			<circle cx="60" cy="60" r="54" stroke="currentColor" stroke-width="1.5" />
+			<circle cx="60" cy="60" r="50" stroke="currentColor" stroke-width="0.75" stroke-dasharray="2 2" opacity="0.7" />
+			<!-- 8 Radiating Javanese Petals (Cecek Padma) -->
+			{#each [0, 45, 90, 135, 180, 225, 270, 315] as angle}
+				<g transform="rotate({angle} 60 60)">
+					<circle cx="60" cy="7" r="2" fill="currentColor" />
+					<path d="M57 14 C57 10 63 10 63 14 L60 17 Z" fill="currentColor" fill-opacity="0.5" />
+				</g>
+			{/each}
+			<!-- Inner Octagonal Filigree Band -->
+			<circle cx="60" cy="60" r="42" stroke="currentColor" stroke-width="0.8" />
+			<circle cx="60" cy="60" r="39" fill="currentColor" fill-opacity="0.06" />
+		</svg>
+		<div class="relative z-10 flex items-center justify-center gap-1.5 font-cinzel text-center">
+			<span class="text-xl font-bold tracking-tight">{initial1}</span>
+			<span class="text-xs font-serif italic text-current opacity-70">ꦢꦤ꧀</span>
+			<span class="text-xl font-bold tracking-tight">{initial2}</span>
 		</div>
 	{:else}
 		<!-- Modern Brutalist / Mono Block -->

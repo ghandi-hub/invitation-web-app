@@ -8,6 +8,7 @@
 	import ModernMono from '$lib/invitation/themes/ModernMono.svelte';
 	import Brutalist from '$lib/invitation/themes/Brutalist.svelte';
 	import ContemporaryColor from '$lib/invitation/themes/ContemporaryColor.svelte';
+	import JavaneseHeritage from '$lib/invitation/themes/JavaneseHeritage.svelte';
 	import MusicPlayer from '$lib/invitation/components/MusicPlayer.svelte';
 	import CoverModal from '$lib/invitation/components/CoverModal.svelte';
 
@@ -128,6 +129,8 @@
 			<Brutalist {invitation} {initialGuestbook} />
 		{:else if invitation.theme === 'contemporary-color'}
 			<ContemporaryColor {invitation} {initialGuestbook} />
+		{:else if invitation.theme === 'javanese-heritage'}
+			<JavaneseHeritage {invitation} {initialGuestbook} />
 		{:else}
 			<Editorial {invitation} {initialGuestbook} {isEditor} />
 		{/if}

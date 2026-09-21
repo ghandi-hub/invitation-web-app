@@ -88,6 +88,17 @@ export const THEME_REGISTRY: Record<InvitationTheme, ThemeConfig> = {
 		supportsParallax: true,
 		primaryColor: '#c85a32',
 		bgColor: '#faf3ee'
+	},
+	'javanese-heritage': {
+		id: 'javanese-heritage',
+		name: 'Javanese Heritage',
+		description: 'Kemegahan tradisi Keraton Jawa dengan sentuhan Gunungan Wayang, ukiran gebyok, motif batik sogan & aksen prada emas nan agung.',
+		fontFamilyDisplay: 'font-cinzel',
+		fontFamilyBody: 'font-sans-clean',
+		aesthetic: 'Batik sogan hangat, prada emas keraton & keanggunan ronce melati',
+		supportsParallax: true,
+		primaryColor: '#c59b27',
+		bgColor: '#faf5eb'
 	}
 };
 

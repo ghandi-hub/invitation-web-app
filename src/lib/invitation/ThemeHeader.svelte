@@ -245,6 +245,41 @@
 				</p>
 			{/if}
 		</svelte:element>
+	{:else if theme === 'javanese-heritage'}
+		<svelte:element
+			this={preview ? 'div' : 'header'}
+			class="mx-auto max-w-4xl px-6 py-14 text-center sm:py-24"
+		>
+			<!-- Royal Crest Motif -->
+			<div class="mb-4 inline-flex items-center justify-center gap-2.5 text-[#c59b27]">
+				<span class="text-xs opacity-70">❖</span>
+				<span class="text-[10px] font-cinzel font-semibold tracking-[0.4em] uppercase text-[#7a4b27] sm:text-xs">
+					{content.opening?.greeting || 'Pawiwahan Ageng'}
+				</span>
+				<span class="text-xs opacity-70">❖</span>
+			</div>
+
+			<!-- Couple Names in Regal Inscription Serif -->
+			<svelte:element
+				this={preview ? 'h3' : 'h1'}
+				class="font-cinzel mb-4 text-4xl font-normal tracking-wide text-[#2b1810] sm:text-7xl"
+			>
+				{content.couple.partner1.name}
+				<span class="font-cormorant font-light italic text-[#c59b27] sm:text-6xl mx-1">&</span>
+				{content.couple.partner2.name}
+			</svelte:element>
+
+			<!-- Royal Date Seal -->
+			{#if content.hero?.dateBadge}
+				<div class="mt-4 inline-block">
+					<span
+						class="inline-block border-y border-[#c59b27]/50 bg-[#faf5eb]/80 px-6 py-1.5 font-cinzel text-xs tracking-[0.3em] text-[#7a4b27] uppercase sm:text-sm"
+					>
+						{content.hero.dateBadge}
+					</span>
+				</div>
+			{/if}
+		</svelte:element>
 	{/if}
 </div>
 
