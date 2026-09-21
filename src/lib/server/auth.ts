@@ -100,7 +100,7 @@ export async function findOrCreateGoogleUser(params: {
 	const usersCol = await getUsersCollection();
 	const now = new Date();
 
-	let userDoc = await usersCol.findOne({
+	const userDoc = await usersCol.findOne({
 		$or: [{ googleId: params.googleId }, { email: params.email }]
 	});
 
@@ -112,6 +112,7 @@ export async function findOrCreateGoogleUser(params: {
 			avatarUrl: params.avatarUrl,
 			role: 'user',
 			plan: 'free',
+			tokenVersion: 1,
 			createdAt: now,
 			updatedAt: now
 		});
@@ -123,6 +124,7 @@ export async function findOrCreateGoogleUser(params: {
 			avatarUrl: params.avatarUrl,
 			role: 'user',
 			plan: 'free',
+			tokenVersion: 1,
 			createdAt: now,
 			updatedAt: now
 		};
@@ -148,6 +150,7 @@ export async function findOrCreateGoogleUser(params: {
 		avatarUrl: params.avatarUrl || userDoc.avatarUrl,
 		role: userDoc.role || 'user',
 		plan: userDoc.plan || 'free',
+		tokenVersion: typeof userDoc.tokenVersion === 'number' ? userDoc.tokenVersion : 1,
 		createdAt: userDoc.createdAt,
 		updatedAt: now
 	};

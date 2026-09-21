@@ -130,6 +130,7 @@ export interface User {
 	avatarUrl: string | null;
 	role: 'user';
 	plan: 'free';
+	tokenVersion?: number;
 	createdAt: string | Date;
 	updatedAt: string | Date;
 }

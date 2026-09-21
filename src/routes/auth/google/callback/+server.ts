@@ -15,7 +15,7 @@ export const GET: RequestHandler = async ({ url, cookies }) => {
 
 	try {
 		const user = await handleGoogleCallback(code, url.origin);
-		setSessionCookie(cookies, user.id);
+		setSessionCookie(cookies, user.id, user.tokenVersion || 1);
 	} catch (err) {
 		console.error('Google OAuth callback failed:', err);
 		throw error(500, 'Authentication failed');

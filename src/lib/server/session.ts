@@ -22,15 +22,15 @@ function getSessionSecret(): string {
 	return secret || DEFAULT_DEV_SECRET;
 }
 
-export function createSessionToken(userId: string): string {
+export function createSessionToken(userId: string, tokenVersion = 1): string {
 	const secret = getSessionSecret();
 	const expires = Date.now() + SESSION_MAX_AGE * 1000;
-	const payload = `${userId}:${expires}`;
+	const payload = `${userId}:${expires}:${tokenVersion}`;
 	const signature = crypto.createHmac('sha256', secret).update(payload).digest('base64url');
 	return `${Buffer.from(payload).toString('base64url')}.${signature}`;
 }
 
-export function verifySessionToken(token: string): { userId: string } | null {
+export function verifySessionToken(token: string): { userId: string; tokenVersion: number } | null {
 	try {
 		const [encodedPayload, signature] = token.split('.');
 		if (!encodedPayload || !signature) return null;
@@ -51,20 +51,22 @@ export function verifySessionToken(token: string): { userId: string } | null {
 			return null;
 		}
 
-		const [userId, expiresStr] = payload.split(':');
+		const [userId, expiresStr, versionStr] = payload.split(':');
 		const expires = parseInt(expiresStr, 10);
 		if (isNaN(expires) || Date.now() > expires) {
 			return null;
 		}
 
-		return { userId };
+		const tokenVersion = versionStr ? parseInt(versionStr, 10) : 1;
+
+		return { userId, tokenVersion: isNaN(tokenVersion) ? 1 : tokenVersion };
 	} catch {
 		return null;
 	}
 }
 
-export function setSessionCookie(cookies: Cookies, userId: string): void {
-	const token = createSessionToken(userId);
+export function setSessionCookie(cookies: Cookies, userId: string, tokenVersion = 1): void {
+	const token = createSessionToken(userId, tokenVersion);
 	cookies.set(COOKIE_NAME, token, {
 		path: '/',
 		httpOnly: true,
@@ -78,6 +80,21 @@ export function clearSessionCookie(cookies: Cookies): void {
 	cookies.delete(COOKIE_NAME, {
 		path: '/'
 	});
+}
+
+export async function revokeUserSessions(userId: string): Promise<void> {
+	try {
+		const usersCol = await getUsersCollection();
+		let filter;
+		try {
+			filter = { _id: new ObjectId(userId) };
+		} catch {
+			filter = { _id: userId as unknown as ObjectId };
+		}
+		await usersCol.updateOne(filter, { $inc: { tokenVersion: 1 } });
+	} catch (err) {
+		console.error('Failed to revoke user sessions:', err);
+	}
 }
 
 export async function getSessionUser(cookies: Cookies): Promise<User | null> {
@@ -98,6 +115,11 @@ export async function getSessionUser(cookies: Cookies): Promise<User | null> {
 
 		const doc = await usersCol.findOne(filter);
 		if (!doc || doc.googleId?.startsWith('dev_')) return null;
+
+		const currentTokenVersion = typeof doc.tokenVersion === 'number' ? doc.tokenVersion : 1;
+		if (verified.tokenVersion < currentTokenVersion) {
+			return null;
+		}
 
 		return {
 			id: doc._id.toString(),
