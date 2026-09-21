@@ -3,6 +3,8 @@ import { getInvitationById } from '$lib/server/invitations';
 import { uploadMediaBuffer, deleteMediaByPublicId } from '$lib/server/cloudinary';
 import { getMediaCollection } from '$lib/server/db';
 import { ObjectId } from 'mongodb';
+import { detectImageMimeType } from '$lib/server/media';
+import path from 'node:path';
 
 const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/avif', 'image/gif'];
 const MAX_IMAGE_BYTES = 10 * 1024 * 1024; // 10 MB
@@ -36,10 +38,17 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 		const arrayBuffer = await file.arrayBuffer();
 		const buffer = Buffer.from(arrayBuffer);
 
+		const verifiedMime = detectImageMimeType(buffer);
+		if (!verifiedMime || !ALLOWED_IMAGE_TYPES.includes(verifiedMime)) {
+			throw error(400, 'INVALID_IMAGE_CONTENT');
+		}
+
+		const safeOriginalName = path.basename(file.name).replace(/[^a-zA-Z0-9._-]/g, '_').slice(0, 100);
+
 		const result = await uploadMediaBuffer(buffer, {
 			folder: `invitation/${locals.user.id}`,
-			filename: file.name,
-			mimeType: file.type,
+			filename: safeOriginalName,
+			mimeType: verifiedMime,
 			resourceType: 'image'
 		});
 
@@ -62,8 +71,8 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 				secureUrl: result.secureUrl,
 				resourceType: result.resourceType
 			},
-			originalName: file.name,
-			mimeType: file.type,
+			originalName: safeOriginalName,
+			mimeType: verifiedMime,
 			width: result.width || 1200,
 			height: result.height || 800,
 			bytes: result.bytes,

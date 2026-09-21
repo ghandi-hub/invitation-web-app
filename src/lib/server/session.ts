@@ -6,13 +6,27 @@ import { ObjectId } from 'mongodb';
 import type { User } from '$lib/types/invitation';
 
 const COOKIE_NAME = 'inv_session';
-const SECRET = env.SESSION_SECRET || 'default-dev-session-secret-change-in-prod-12345';
+const DEFAULT_DEV_SECRET = 'default-dev-session-secret-change-in-prod-12345';
 const SESSION_MAX_AGE = 60 * 60 * 24 * 14; // 14 days in seconds
 
+function getSessionSecret(): string {
+	const secret = env.SESSION_SECRET;
+	if (process.env.NODE_ENV === 'production') {
+		if (!secret || secret === DEFAULT_DEV_SECRET || secret.length < 32) {
+			throw new Error(
+				'FATAL: SESSION_SECRET must be configured with a strong secret (at least 32 characters) in production.'
+			);
+		}
+		return secret;
+	}
+	return secret || DEFAULT_DEV_SECRET;
+}
+
 export function createSessionToken(userId: string): string {
+	const secret = getSessionSecret();
 	const expires = Date.now() + SESSION_MAX_AGE * 1000;
 	const payload = `${userId}:${expires}`;
-	const signature = crypto.createHmac('sha256', SECRET).update(payload).digest('base64url');
+	const signature = crypto.createHmac('sha256', secret).update(payload).digest('base64url');
 	return `${Buffer.from(payload).toString('base64url')}.${signature}`;
 }
 
@@ -22,12 +36,18 @@ export function verifySessionToken(token: string): { userId: string } | null {
 		if (!encodedPayload || !signature) return null;
 
 		const payload = Buffer.from(encodedPayload, 'base64url').toString('utf8');
+		const secret = getSessionSecret();
 		const expectedSignature = crypto
-			.createHmac('sha256', SECRET)
+			.createHmac('sha256', secret)
 			.update(payload)
 			.digest('base64url');
 
-		if (!crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expectedSignature))) {
+		const sigBuffer = Buffer.from(signature);
+		const expectedBuffer = Buffer.from(expectedSignature);
+		if (
+			sigBuffer.length !== expectedBuffer.length ||
+			!crypto.timingSafeEqual(sigBuffer, expectedBuffer)
+		) {
 			return null;
 		}
 

@@ -63,7 +63,14 @@ export async function uploadMediaBuffer(
 	const uploadsDir = path.resolve('static', 'uploads');
 	await fs.mkdir(uploadsDir, { recursive: true });
 
-	const ext = options.filename ? path.extname(options.filename) : '.jpg';
+	const MIME_TO_EXT: Record<string, string> = {
+		'image/jpeg': '.jpg',
+		'image/png': '.png',
+		'image/webp': '.webp',
+		'image/avif': '.avif',
+		'image/gif': '.gif'
+	};
+	const ext = (options.mimeType && MIME_TO_EXT[options.mimeType]) || '.jpg';
 	const safeId = `local_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
 	const filename = `${safeId}${ext}`;
 	const filePath = path.join(uploadsDir, filename);

@@ -5,7 +5,7 @@ import {
 	getGuestbookCollection
 } from '$lib/server/db';
 import { ObjectId } from 'mongodb';
-import type { Invitation, InvitationContent, InvitationTheme } from '$lib/types/invitation';
+import type { Invitation, InvitationContent, InvitationTheme, WeddingEvent } from '$lib/types/invitation';
 import { imageIds, deleteUnusedImage } from '$lib/server/media';
 import { deleteMediaByPublicId } from '$lib/server/cloudinary';
 
@@ -35,6 +35,33 @@ export function sanitizeSlug(input: string): string {
 		.replace(/-+/g, '-')
 		.replace(/^-|-$/g, '')
 		.slice(0, 60);
+}
+
+export function sanitizeExternalUrl(url: unknown): string | null {
+	if (typeof url !== 'string') return null;
+	const trimmed = url.trim();
+	if (!trimmed) return null;
+	try {
+		const parsed = new URL(trimmed);
+		if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
+			return parsed.href;
+		}
+		return null;
+	} catch {
+		return null;
+	}
+}
+
+export function sanitizeContentEvents(content: InvitationContent): InvitationContent {
+	if (!content || typeof content !== 'object') return content;
+	if (!Array.isArray(content.events)) return content;
+	return {
+		...content,
+		events: content.events.map((evt: WeddingEvent) => ({
+			...evt,
+			mapsUrl: sanitizeExternalUrl(evt?.mapsUrl)
+		}))
+	};
 }
 
 export async function isSlugAvailable(slug: string, excludeId?: string): Promise<boolean> {
@@ -80,7 +107,7 @@ function mapDocToInvitation(doc: any): Invitation {
 		slug: doc.slug,
 		status: doc.status || 'draft',
 		theme: doc.theme || 'editorial',
-		content: doc.content || createDefaultContent(),
+		content: sanitizeContentEvents(doc.content || createDefaultContent()),
 		music: doc.music,
 		createdAt: doc.createdAt,
 		updatedAt: doc.updatedAt,
@@ -212,7 +239,7 @@ export async function updateInvitation(
 	}
 
 	if (updates.content) {
-		setFields.content = updates.content;
+		setFields.content = sanitizeContentEvents(updates.content);
 	}
 
 	if (updates.music !== undefined) {
