@@ -1,14 +1,6 @@
 <script lang="ts">
 	import type { Invitation, GuestbookItem } from '$lib/types/invitation';
-	import Editorial from '$lib/invitation/themes/Editorial.svelte';
-	import Cinematic from '$lib/invitation/themes/Cinematic.svelte';
-	import Minimal from '$lib/invitation/themes/Minimal.svelte';
-	import Botanical from '$lib/invitation/themes/Botanical.svelte';
-	import RomanticClassic from '$lib/invitation/themes/RomanticClassic.svelte';
-	import ModernMono from '$lib/invitation/themes/ModernMono.svelte';
-	import Brutalist from '$lib/invitation/themes/Brutalist.svelte';
-	import ContemporaryColor from '$lib/invitation/themes/ContemporaryColor.svelte';
-	import JavaneseHeritage from '$lib/invitation/themes/JavaneseHeritage.svelte';
+	import { getThemeComponent } from '$lib/invitation/theme-registry';
 	import MusicPlayer from '$lib/invitation/components/MusicPlayer.svelte';
 	import CoverModal from '$lib/invitation/components/CoverModal.svelte';
 
@@ -30,6 +22,8 @@
 		recipientName?: string;
 		allowAudio?: boolean;
 	} = $props();
+
+	const ActiveTheme = $derived(getThemeComponent(invitation.theme));
 
 	let audioStarted = $state(false);
 	let musicPlayer: any = $state();
@@ -87,6 +81,7 @@
 			dateText={invitation.content.hero?.dateBadge}
 			onOpen={handleOpenCover}
 			{recipientName}
+			theme={invitation.theme}
 		/>
 	{/if}
 
@@ -114,26 +109,8 @@
 			{#if isEditor}<span class="empty-hint">01 / Mulai dari bagian Mempelai</span>{/if}
 		</section>
 	{:else}
-		<!-- Render theme according to invitation.theme -->
-		{#if invitation.theme === 'cinematic'}
-			<Cinematic {invitation} {initialGuestbook} />
-		{:else if invitation.theme === 'minimal'}
-			<Minimal {invitation} {initialGuestbook} />
-		{:else if invitation.theme === 'botanical'}
-			<Botanical {invitation} {initialGuestbook} />
-		{:else if invitation.theme === 'romantic-classic'}
-			<RomanticClassic {invitation} {initialGuestbook} />
-		{:else if invitation.theme === 'modern-mono'}
-			<ModernMono {invitation} {initialGuestbook} />
-		{:else if invitation.theme === 'brutalist'}
-			<Brutalist {invitation} {initialGuestbook} />
-		{:else if invitation.theme === 'contemporary-color'}
-			<ContemporaryColor {invitation} {initialGuestbook} />
-		{:else if invitation.theme === 'javanese-heritage'}
-			<JavaneseHeritage {invitation} {initialGuestbook} />
-		{:else}
-			<Editorial {invitation} {initialGuestbook} {isEditor} />
-		{/if}
+		<!-- Render theme dynamically from registry -->
+		<ActiveTheme {invitation} {initialGuestbook} {isEditor} />
 	{/if}
 </div>
 

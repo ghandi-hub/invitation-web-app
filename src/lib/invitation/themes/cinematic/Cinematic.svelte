@@ -51,7 +51,7 @@
 			<BotanicalDivider variant="cinematic" color="#d4af37" />
 			<blockquote
 				use:scrollReveal={{ variant: 'blur-in', duration: 900 }}
-				class="font-cinzel my-4 text-lg leading-relaxed text-white/95 italic sm:text-2xl"
+				class="font-cormorant my-4 text-xl leading-relaxed text-white/95 italic sm:text-3xl font-normal tracking-wide"
 			>
 				"{content.opening.quote}"
 			</blockquote>

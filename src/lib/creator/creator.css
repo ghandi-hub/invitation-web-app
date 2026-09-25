@@ -316,6 +316,9 @@
 	scrollbar-width: thin;
 }
 .preview-frame {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
 	width: 100%;
 	margin: 0 auto;
 	min-height: 100%;

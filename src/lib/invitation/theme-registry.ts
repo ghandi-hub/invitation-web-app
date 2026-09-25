@@ -1,4 +1,14 @@
 import type { InvitationTheme, ThemeConfig } from '$lib/invitation/types';
+import type { Component } from 'svelte';
+import Editorial from '$lib/invitation/themes/editorial/Editorial.svelte';
+import Cinematic from '$lib/invitation/themes/cinematic/Cinematic.svelte';
+import Minimal from '$lib/invitation/themes/minimal/Minimal.svelte';
+import Botanical from '$lib/invitation/themes/botanical/Botanical.svelte';
+import RomanticClassic from '$lib/invitation/themes/romantic-classic/RomanticClassic.svelte';
+import ModernMono from '$lib/invitation/themes/modern-mono/ModernMono.svelte';
+import Brutalist from '$lib/invitation/themes/brutalist/Brutalist.svelte';
+import ContemporaryColor from '$lib/invitation/themes/contemporary-color/ContemporaryColor.svelte';
+import JavaneseHeritage from '$lib/invitation/themes/javanese-heritage/JavaneseHeritage.svelte';
 
 export const THEME_REGISTRY: Record<InvitationTheme, ThemeConfig> = {
 	editorial: {
@@ -18,64 +28,64 @@ export const THEME_REGISTRY: Record<InvitationTheme, ThemeConfig> = {
 		description: 'Dramatic full-bleed photography, bold cinema titles, moody lighting & film atmosphere.',
 		fontFamilyDisplay: 'font-cinzel',
 		fontFamilyBody: 'font-sans-clean',
-		aesthetic: 'Deep charcoal, gold accents & cinematic widescreen drama',
+		aesthetic: 'Deep charcoal black, golden accents & theatrical movie premiere vibes',
 		supportsParallax: true,
 		primaryColor: '#d4af37',
 		bgColor: '#0d0d11'
 	},
 	minimal: {
 		id: 'minimal',
-		name: 'Pure Minimalist',
-		description: 'Pristine whitespace, purposeful typography, balanced proportion & zero visual noise.',
-		fontFamilyDisplay: 'font-grotesk',
-		fontFamilyBody: 'font-sans-clean',
-		aesthetic: 'Clean architectural lines and serene quiet luxury',
+		name: 'Swiss Minimal',
+		description: 'Grid-based precision, high-contrast typography, objective simplicity.',
+		fontFamilyDisplay: 'font-sans-clean',
+		fontFamilyBody: 'font-mono',
+		aesthetic: 'Pure black & white, stark minimalist beauty & Swiss modernist geometry',
 		supportsParallax: false,
-		primaryColor: '#2b2b2b',
+		primaryColor: '#171717',
 		bgColor: '#ffffff'
 	},
 	botanical: {
 		id: 'botanical',
 		name: 'Botanical Garden',
-		description: 'Natural organic elegance, muted sage & olive tones, refined serif & garden romance.',
+		description: 'Delicate foliage illustrations, organic earth tones, soft romantic serif.',
 		fontFamilyDisplay: 'font-italiana',
 		fontFamilyBody: 'font-sans-clean',
-		aesthetic: 'Earthy greens, soft cream & romantic botanical serenity',
+		aesthetic: 'Sage green, organic olive & delicate hand-drawn wild flora',
 		supportsParallax: true,
 		primaryColor: '#4a6741',
-		bgColor: '#f4f6f0'
+		bgColor: '#f8faf7'
 	},
 	'romantic-classic': {
 		id: 'romantic-classic',
 		name: 'Romantic Classic',
-		description: 'Symmetrical grace, timeless script flourishes, champagne highlights & traditional elegance.',
-		fontFamilyDisplay: 'font-cormorant',
-		fontFamilyBody: 'font-sans-clean',
-		aesthetic: 'Ivory, rose-gold accents & timeless fairytale vows',
-		supportsParallax: false,
+		description: 'Timeless calligraphy, soft blush accents, refined serif body text.',
+		fontFamilyDisplay: 'font-script',
+		fontFamilyBody: 'font-cormorant',
+		aesthetic: 'Dusty rose, romantic handwritten scripts & vintage gold leafing',
+		supportsParallax: true,
 		primaryColor: '#a87474',
-		bgColor: '#faf6f5'
+		bgColor: '#fffbfa'
 	},
 	'modern-mono': {
 		id: 'modern-mono',
-		name: 'Modern Monochrome',
-		description: 'Stark black and white, monospace accents, strong grid lines & contemporary edge.',
-		fontFamilyDisplay: 'font-mono-code',
-		fontFamilyBody: 'font-mono-code',
-		aesthetic: 'Editorial brutalism, precise grid rules & sharp contrast',
+		name: 'Modern Mono',
+		description: 'Brutalist monospace, technical details, raw editorial energy.',
+		fontFamilyDisplay: 'font-mono',
+		fontFamilyBody: 'font-mono',
+		aesthetic: 'Bold terminal monospace, raw stamps & contemporary architectural grit',
 		supportsParallax: false,
 		primaryColor: '#000000',
-		bgColor: '#f5f5f5'
+		bgColor: '#ffffff'
 	},
 	brutalist: {
 		id: 'brutalist',
 		name: 'Neo Brutalist',
-		description: 'Thick black outlines, hard offset drop shadows, punchy badges & unapologetic energy.',
+		description: 'High contrast, bold borders, vivid accent colors, unapologetic statement.',
 		fontFamilyDisplay: 'font-syne',
-		fontFamilyBody: 'font-grotesk',
-		aesthetic: 'Bold paper yellow, thick border lines & tactile block layout',
+		fontFamilyBody: 'font-mono',
+		aesthetic: 'Electric yellow, thick hard borders, stark shadows & street posters',
 		supportsParallax: false,
-		primaryColor: '#facc15',
+		primaryColor: '#000000',
 		bgColor: '#fffdf5'
 	},
 	'contemporary-color': {
@@ -91,14 +101,14 @@ export const THEME_REGISTRY: Record<InvitationTheme, ThemeConfig> = {
 	},
 	'javanese-heritage': {
 		id: 'javanese-heritage',
-		name: 'Javanese Heritage',
-		description: 'Kemegahan tradisi Keraton Jawa dengan sentuhan Gunungan Wayang, ukiran gebyok, motif batik Kawung & Mega Mendung, serta aksen prada emas nan agung.',
-		fontFamilyDisplay: 'font-cinzel',
-		fontFamilyBody: 'font-sans-clean',
-		aesthetic: 'Batik sogan hangat, ornamen Mega Mendung, prada emas & keanggunan melati',
+		name: 'Javanese Heritage (Azurite)',
+		description: 'Kemegahan tradisi Jawa berpadu Royal Navy Azurite & Emas Prada. Dihiasi Gunungan Wayang Kamajaya-Ratih beranimasi swing, motif Mega Mendung, dan divider pita klasik.',
+		fontFamilyDisplay: 'font-philosopher',
+		fontFamilyBody: 'font-lora',
+		aesthetic: 'Royal Navy Azurite, Gunungan & Wayang Kamajaya-Ratih beranimasi, ornamen pita Jawa & aksen emas mewah',
 		supportsParallax: true,
 		primaryColor: '#c59b27',
-		bgColor: '#faf5eb'
+		bgColor: '#00163D'
 	}
 };
 
@@ -106,4 +116,20 @@ export const THEME_LIST = Object.values(THEME_REGISTRY);
 
 export function getThemeConfig(themeName: string): ThemeConfig {
 	return THEME_REGISTRY[themeName as InvitationTheme] || THEME_REGISTRY.editorial;
+}
+
+export const THEME_COMPONENTS: Record<InvitationTheme, Component<any>> = {
+	'editorial': Editorial,
+	'cinematic': Cinematic,
+	'minimal': Minimal,
+	'botanical': Botanical,
+	'romantic-classic': RomanticClassic,
+	'modern-mono': ModernMono,
+	'brutalist': Brutalist,
+	'contemporary-color': ContemporaryColor,
+	'javanese-heritage': JavaneseHeritage
+};
+
+export function getThemeComponent(themeName: string): Component<any> {
+	return THEME_COMPONENTS[themeName as InvitationTheme] || THEME_COMPONENTS.editorial;
 }
