@@ -11,17 +11,22 @@
 </script>
 
 <div
-	class="pointer-events-none absolute inset-0 z-0 select-none overflow-hidden {className}"
+	class="pointer-events-none fixed inset-0 z-0 select-none overflow-hidden {className}"
 	style:opacity
 	style:mix-blend-mode={blendMode}
 	aria-hidden="true"
 >
-	<!-- Fine SVG Grain / Linen Texture -->
+	<!-- Fine SVG Grain / Linen Texture with Tiled Pattern (GPU-friendly, zero lag on mobile) -->
 	<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
-		<filter id="stationery-grain">
-			<feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
-			<feColorMatrix type="saturate" values="0" />
-		</filter>
-		<rect width="100%" height="100%" filter="url(#stationery-grain)" />
+		<defs>
+			<filter id="stationery-grain" x="0" y="0" width="100%" height="100%">
+				<feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch" />
+				<feColorMatrix type="saturate" values="0" />
+			</filter>
+			<pattern id="grain-pattern" width="160" height="160" patternUnits="userSpaceOnUse">
+				<rect width="160" height="160" filter="url(#stationery-grain)" />
+			</pattern>
+		</defs>
+		<rect width="100%" height="100%" fill="url(#grain-pattern)" />
 	</svg>
 </div>

@@ -2,7 +2,6 @@
 	import type { Invitation, GuestbookItem } from '$lib/types/invitation';
 	import Countdown from '$lib/invitation/components/Countdown.svelte';
 	import PaperTexture from '$lib/invitation/ornaments/PaperTexture.svelte';
-	import MelatiFloating from './ornaments/MelatiFloating.svelte';
 	import JavaneseRSVP from './components/JavaneseRSVP.svelte';
 	import JavaneseGift from './components/JavaneseGift.svelte';
 	import JavaneseGuestbook from './components/JavaneseGuestbook.svelte';
@@ -93,9 +92,6 @@
 >
 	<!-- Background Delicate Paper Grain -->
 	<PaperTexture opacity={0.035} blendMode="screen" />
-
-	<!-- Floating Soft Petals -->
-	<MelatiFloating count={6} />
 
 	<!-- TOP / HERO SECTION (HOME) -->
 	<section
@@ -241,7 +237,7 @@
 		>
 			<!-- Groom (Pinanganten Kakung) -->
 			<div
-				class="group border-jv-gold-40 bg-jv-card relative rounded-2xl border p-6 text-center shadow-2xl backdrop-blur-md sm:p-8"
+				class="group border-jv-gold-40 bg-jv-card relative rounded-2xl border p-6 text-center shadow-2xl sm:p-8"
 			>
 				<!-- Photo Container with Gunungan in Background -->
 				<div class="relative mx-auto h-64 w-52 sm:h-76 sm:w-60">
@@ -293,7 +289,7 @@
 
 			<!-- Bride (Pinanganten Putri) -->
 			<div
-				class="group border-jv-gold-40 bg-jv-card relative rounded-2xl border p-6 text-center shadow-2xl backdrop-blur-md sm:p-8"
+				class="group border-jv-gold-40 bg-jv-card relative rounded-2xl border p-6 text-center shadow-2xl sm:p-8"
 			>
 				<!-- Photo Container with Gunungan in Background -->
 				<div class="relative mx-auto h-64 w-52 sm:h-76 sm:w-60">
@@ -371,7 +367,7 @@
 		<!-- Countdown Timer Section -->
 		{#if content.countdown?.targetDate}
 			<div
-				class="border-jv-gold-50 bg-jv-card relative mx-auto mb-14 max-w-3xl overflow-hidden rounded-2xl border p-6 text-center shadow-2xl backdrop-blur-md sm:p-10"
+				class="border-jv-gold-50 bg-jv-card relative mx-auto mb-14 max-w-3xl overflow-hidden rounded-2xl border p-6 text-center shadow-2xl sm:p-10"
 			>
 				<div class="text-jv-gold mb-4 inline-flex items-center gap-2">
 					<span class="text-xs">❖</span>
@@ -396,7 +392,7 @@
 			<div class="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-2">
 				{#each content.events as event}
 					<div
-						class="border-jv-gold-hover border-jv-gold-40 bg-jv-card-90 relative space-y-5 rounded-2xl border p-8 text-center shadow-2xl backdrop-blur-md transition-all duration-300 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+						class="border-jv-gold-hover border-jv-gold-40 bg-jv-card-90 relative space-y-5 rounded-2xl border p-8 text-center shadow-2xl transition-all duration-300 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
 					>
 						<!-- Event Title -->
 						<div class="space-y-1">
@@ -472,7 +468,7 @@
 			</div>
 
 			<div
-				class="border-jv-gold-40 bg-jv-card relative mx-auto max-w-2xl rounded-2xl border p-8 text-center shadow-2xl backdrop-blur-md sm:p-12"
+				class="border-jv-gold-40 bg-jv-card relative mx-auto max-w-2xl rounded-2xl border p-8 text-center shadow-2xl sm:p-12"
 			>
 				<p
 					class="font-lora text-jv-secondary text-sm leading-relaxed whitespace-pre-wrap sm:text-base"

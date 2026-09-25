@@ -25,11 +25,24 @@ export function scrollReveal(node: HTMLElement, options: ScrollRevealOptions = {
 	}
 
 	const delay = options.delay ?? 0;
-	const duration = options.duration ?? 450;
-	const distance = options.distance ?? 16;
-	const threshold = options.threshold ?? 0.01;
+	const duration = options.duration ?? 400;
+	const distance = options.distance ?? 14;
+	const threshold = 0;
 	const once = options.once ?? true;
 	const variant = options.variant ?? 'fade-up';
+
+	// Periksa apakah elemen saat inisialisasi sudah berada di dalam atau sangat dekat dengan viewport
+	const rect = node.getBoundingClientRect();
+	const windowHeight = window.innerHeight || document.documentElement.clientHeight || 800;
+	const isNearOrInViewport = rect.top < windowHeight + 250 && rect.bottom > -100;
+
+	if (isNearOrInViewport) {
+		// Elemen sudah terlihat / dekat layar: langsung tampilkan seketika tanpa opacity: 0
+		// Ini mencegah glitch / blank flash saat load awal atau scroll pertama di mobile
+		node.style.opacity = '1';
+		node.style.transform = 'translate3d(0, 0, 0)';
+		return;
+	}
 
 	// Siapkan kondisi awal animasi
 	node.style.opacity = '0';
@@ -40,7 +53,7 @@ export function scrollReveal(node: HTMLElement, options: ScrollRevealOptions = {
 		node.style.transform = `translate3d(0, ${distance}px, 0)`;
 	} else if (variant === 'blur-in') {
 		node.style.transform = `translate3d(0, ${distance / 2}px, 0)`;
-		node.style.filter = 'blur(3px)';
+		node.style.filter = 'blur(2px)';
 		node.style.transition += `, filter ${duration}ms ease-out`;
 	}
 
@@ -57,7 +70,7 @@ export function scrollReveal(node: HTMLElement, options: ScrollRevealOptions = {
 							node.style.filter = 'blur(0px)';
 						}
 
-						// Bersihkan will-change setelah animasi selesai
+						// Bersihkan will-change setelah animasi selesai agar memori GPU dibebaskan
 						setTimeout(() => {
 							node.style.willChange = 'auto';
 						}, duration + 50);
@@ -79,14 +92,15 @@ export function scrollReveal(node: HTMLElement, options: ScrollRevealOptions = {
 						node.style.transform = `translate3d(0, ${distance}px, 0)`;
 					} else if (variant === 'blur-in') {
 						node.style.transform = `translate3d(0, ${distance / 2}px, 0)`;
-						node.style.filter = 'blur(3px)';
+						node.style.filter = 'blur(2px)';
 					}
 				}
 			});
 		},
 		{
-			threshold,
-			rootMargin: '140px 0px 80px 0px' // Memicu sebelum elemen mencapai layar agar sudah siap render saat scroll cepat
+			threshold: 0,
+			// Margin 450px bawah memicu elemen SEBELUM scroll cepat mobile tiba di elemen tersebut
+			rootMargin: '250px 0px 450px 0px'
 		}
 	);
 
