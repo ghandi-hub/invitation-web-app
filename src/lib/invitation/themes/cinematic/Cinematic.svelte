@@ -50,14 +50,14 @@
 		<section class="relative z-10 mx-auto max-w-3xl px-6 py-10 text-center sm:py-16">
 			<BotanicalDivider variant="cinematic" color="#d4af37" />
 			<blockquote
-				use:scrollReveal={{ variant: 'blur-in', duration: 900 }}
+				use:scrollReveal={{ duration: 400 }}
 				class="font-cormorant my-4 text-xl leading-relaxed text-white/95 italic sm:text-3xl font-normal tracking-wide"
 			>
 				"{content.opening.quote}"
 			</blockquote>
 			{#if content.opening.quoteSource}
 				<cite
-					use:scrollReveal={{ delay: 150 }}
+					use:scrollReveal
 					class="mt-4 block font-mono text-xs tracking-[0.3em] text-[#d4af37] uppercase not-italic"
 				>
 					— {content.opening.quoteSource}
@@ -90,7 +90,8 @@
 								src={content.couple.partner1.photoUrl}
 								alt={content.couple.partner1.name}
 								class="h-full w-full object-cover contrast-105"
-								loading="lazy"
+								loading="eager"
+								decoding="async"
 							/>
 						</div>
 						<div class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-3 text-[10px] font-mono tracking-[0.2em] text-[#d4af37] uppercase">
@@ -98,7 +99,7 @@
 						</div>
 					</div>
 				{/if}
-				<div use:scrollReveal={{ delay: 100 }}>
+				<div use:scrollReveal>
 					<h3 class="font-cinzel text-2xl sm:text-3xl text-white tracking-wide">
 						{content.couple.partner1.fullName || content.couple.partner1.name}
 					</h3>
@@ -122,7 +123,8 @@
 								src={content.couple.partner2.photoUrl}
 								alt={content.couple.partner2.name}
 								class="h-full w-full object-cover contrast-105"
-								loading="lazy"
+								loading="eager"
+								decoding="async"
 							/>
 						</div>
 						<div class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-3 text-[10px] font-mono tracking-[0.2em] text-[#d4af37] uppercase">
@@ -130,7 +132,7 @@
 						</div>
 					</div>
 				{/if}
-				<div use:scrollReveal={{ delay: 100 }}>
+				<div use:scrollReveal>
 					<h3 class="font-cinzel text-2xl sm:text-3xl text-white tracking-wide">
 						{content.couple.partner2.fullName || content.couple.partner2.name}
 					</h3>

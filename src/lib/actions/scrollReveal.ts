@@ -25,22 +25,23 @@ export function scrollReveal(node: HTMLElement, options: ScrollRevealOptions = {
 	}
 
 	const delay = options.delay ?? 0;
-	const duration = options.duration ?? 800;
-	const distance = options.distance ?? 20;
-	const threshold = options.threshold ?? 0.12;
+	const duration = options.duration ?? 450;
+	const distance = options.distance ?? 16;
+	const threshold = options.threshold ?? 0.01;
 	const once = options.once ?? true;
 	const variant = options.variant ?? 'fade-up';
 
 	// Siapkan kondisi awal animasi
 	node.style.opacity = '0';
 	node.style.willChange = 'opacity, transform';
-	node.style.transition = `opacity ${duration}ms cubic-bezier(0.16, 1, 0.3, 1), transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1), filter ${duration}ms ease-out`;
+	node.style.transition = `opacity ${duration}ms cubic-bezier(0.16, 1, 0.3, 1), transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1)`;
 
 	if (variant === 'fade-up') {
 		node.style.transform = `translate3d(0, ${distance}px, 0)`;
 	} else if (variant === 'blur-in') {
 		node.style.transform = `translate3d(0, ${distance / 2}px, 0)`;
-		node.style.filter = 'blur(6px)';
+		node.style.filter = 'blur(3px)';
+		node.style.transition += `, filter ${duration}ms ease-out`;
 	}
 
 	let timer: any = null;
@@ -49,7 +50,7 @@ export function scrollReveal(node: HTMLElement, options: ScrollRevealOptions = {
 		(entries) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
-					timer = setTimeout(() => {
+					const trigger = () => {
 						node.style.opacity = '1';
 						node.style.transform = 'translate3d(0, 0, 0)';
 						if (variant === 'blur-in') {
@@ -60,7 +61,13 @@ export function scrollReveal(node: HTMLElement, options: ScrollRevealOptions = {
 						setTimeout(() => {
 							node.style.willChange = 'auto';
 						}, duration + 50);
-					}, delay);
+					};
+
+					if (delay > 0) {
+						timer = setTimeout(trigger, delay);
+					} else {
+						trigger();
+					}
 
 					if (once) {
 						observer.unobserve(node);
@@ -72,14 +79,14 @@ export function scrollReveal(node: HTMLElement, options: ScrollRevealOptions = {
 						node.style.transform = `translate3d(0, ${distance}px, 0)`;
 					} else if (variant === 'blur-in') {
 						node.style.transform = `translate3d(0, ${distance / 2}px, 0)`;
-						node.style.filter = 'blur(6px)';
+						node.style.filter = 'blur(3px)';
 					}
 				}
 			});
 		},
 		{
 			threshold,
-			rootMargin: '0px 0px -40px 0px' // Memicu tepat saat elemen mulai terlihat nyaman di layar HP
+			rootMargin: '140px 0px 80px 0px' // Memicu sebelum elemen mencapai layar agar sudah siap render saat scroll cepat
 		}
 	);
 

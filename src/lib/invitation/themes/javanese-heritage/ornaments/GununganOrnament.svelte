@@ -46,7 +46,8 @@
 		alt="Gunungan"
 		style:width="{size}px"
 		class="drop-shadow-lg {animationClass}"
-		loading="lazy"
+		loading="eager"
+		decoding="async"
 	/>
 </div>
 

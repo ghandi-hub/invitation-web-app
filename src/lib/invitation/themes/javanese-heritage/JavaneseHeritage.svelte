@@ -194,7 +194,7 @@
 			</div>
 
 			<blockquote
-				use:scrollReveal={{ variant: 'blur-in', duration: 800 }}
+				use:scrollReveal={{ duration: 400 }}
 				class="font-lora text-jv-quote mx-auto max-w-2xl text-base leading-relaxed italic sm:text-xl"
 			>
 				"{content.opening.quote}"
@@ -202,7 +202,7 @@
 
 			{#if content.opening.quoteSource}
 				<cite
-					use:scrollReveal={{ delay: 150 }}
+					use:scrollReveal
 					class="font-philosopher text-jv-quote mt-4 block text-xs font-semibold tracking-[0.25em] uppercase not-italic"
 				>
 					— {content.opening.quoteSource}
@@ -264,14 +264,15 @@
 								src={content.couple.partner1.photoUrl}
 								alt={content.couple.partner1.name}
 								class="h-full w-full rounded-t-[98px] object-cover"
-								loading="lazy"
+								loading="eager"
+								decoding="async"
 							/>
 						</div>
 					{/if}
 				</div>
 
 				<!-- Nama & Detail Pengantin Pria (Terbuka, Jelas & Bebas Terhalang) -->
-				<div use:scrollReveal={{ delay: 100 }} class="relative z-10 mt-6 space-y-2">
+				<div use:scrollReveal class="relative z-10 mt-6 space-y-2">
 					<span
 						class="font-philosopher border-jv-gold-40 text-jv-gold inline-block border-b pb-0.5 text-[11px] font-semibold tracking-[0.3em] uppercase"
 					>
@@ -315,14 +316,15 @@
 								src={content.couple.partner2.photoUrl}
 								alt={content.couple.partner2.name}
 								class="h-full w-full rounded-t-[98px] object-cover"
-								loading="lazy"
+								loading="eager"
+								decoding="async"
 							/>
 						</div>
 					{/if}
 				</div>
 
 				<!-- Nama & Detail Pengantin Wanita (Terbuka, Jelas & Bebas Terhalang) -->
-				<div use:scrollReveal={{ delay: 100 }} class="relative z-10 mt-6 space-y-2">
+				<div use:scrollReveal class="relative z-10 mt-6 space-y-2">
 					<span
 						class="font-philosopher border-jv-gold-40 text-jv-gold inline-block border-b pb-0.5 text-[11px] font-semibold tracking-[0.3em] uppercase"
 					>

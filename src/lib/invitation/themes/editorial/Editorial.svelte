@@ -111,12 +111,12 @@
 			<span class="mb-4 block text-[10px] font-mono tracking-[0.35em] text-[#8c7051] uppercase">
 				UNGKAPAN HATI
 			</span>
-			<blockquote use:scrollReveal={{ variant: 'blur-in', duration: 900 }} class="font-playfair text-lg sm:text-2xl leading-relaxed text-[#3d3733] italic">
+			<blockquote use:scrollReveal={{ duration: 400 }} class="font-playfair text-lg sm:text-2xl leading-relaxed text-[#3d3733] italic">
 				"{content.opening.quote}"
 			</blockquote>
 			{#if content.opening.quoteSource}
 				<cite
-					use:scrollReveal={{ delay: 150 }}
+					use:scrollReveal
 					class="mt-4 block font-sans text-xs font-semibold tracking-widest text-[#8c7051] uppercase not-italic"
 				>
 					— {content.opening.quoteSource}
@@ -146,12 +146,13 @@
 								src={content.couple.partner1.photoUrl}
 								alt={content.couple.partner1.name}
 								class="h-full w-full object-cover"
-								loading="lazy"
+								loading="eager"
+								decoding="async"
 							/>
 						</div>
 					</div>
 				{/if}
-				<div use:scrollReveal={{ delay: 100 }}>
+				<div use:scrollReveal>
 					<span class="text-[10px] font-mono tracking-[0.25em] text-[#8c7051] uppercase block mb-1">
 						01 / MEMPELAI PRIA
 					</span>
@@ -176,12 +177,13 @@
 								src={content.couple.partner2.photoUrl}
 								alt={content.couple.partner2.name}
 								class="h-full w-full object-cover"
-								loading="lazy"
+								loading="eager"
+								decoding="async"
 							/>
 						</div>
 					</div>
 				{/if}
-				<div use:scrollReveal={{ delay: 100 }}>
+				<div use:scrollReveal>
 					<span class="text-[10px] font-mono tracking-[0.25em] text-[#8c7051] uppercase block mb-1">
 						02 / MEMPELAI WANITA
 					</span>

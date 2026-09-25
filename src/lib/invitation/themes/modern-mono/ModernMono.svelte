@@ -85,11 +85,11 @@
 		<section class="relative z-10 border-b-2 border-black bg-white px-6 py-12 sm:py-16 text-center">
 			<div class="mx-auto max-w-3xl space-y-4">
 				<span use:scrollReveal class="text-[10px] text-neutral-400 uppercase block tracking-widest">// KATA_PEMBUKA</span>
-				<blockquote use:scrollReveal={{ variant: 'blur-in', duration: 900 }} class="text-base sm:text-xl font-bold uppercase tracking-tight text-neutral-900 leading-snug">
+				<blockquote use:scrollReveal={{ duration: 400 }} class="text-base sm:text-xl font-bold uppercase tracking-tight text-neutral-900 leading-snug">
 					"{content.opening.quote}"
 				</blockquote>
 				{#if content.opening.quoteSource}
-					<cite use:scrollReveal={{ delay: 150 }} class="block text-xs font-bold text-neutral-500 uppercase not-italic tracking-wider">
+					<cite use:scrollReveal class="block text-xs font-bold text-neutral-500 uppercase not-italic tracking-wider">
 						— {content.opening.quoteSource}
 					</cite>
 				{/if}
@@ -115,11 +115,12 @@
 							src={content.couple.partner1.photoUrl}
 							alt={content.couple.partner1.name}
 							class="h-full w-full object-cover contrast-125 grayscale"
-							loading="lazy"
+							loading="eager"
+							decoding="async"
 						/>
 					</div>
 				{/if}
-				<div use:scrollReveal={{ delay: 100 }}>
+				<div use:scrollReveal>
 					<h3 class="text-2xl font-bold uppercase tracking-tight">
 						{content.couple.partner1.fullName || content.couple.partner1.name}
 					</h3>
@@ -142,11 +143,12 @@
 							src={content.couple.partner2.photoUrl}
 							alt={content.couple.partner2.name}
 							class="h-full w-full object-cover contrast-125 grayscale"
-							loading="lazy"
+							loading="eager"
+							decoding="async"
 						/>
 					</div>
 				{/if}
-				<div use:scrollReveal={{ delay: 100 }}>
+				<div use:scrollReveal>
 					<h3 class="text-2xl font-bold uppercase tracking-tight">
 						{content.couple.partner2.fullName || content.couple.partner2.name}
 					</h3>

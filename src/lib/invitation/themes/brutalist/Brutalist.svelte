@@ -87,7 +87,7 @@
 	<!-- Couple Cards -->
 	<div class="relative z-10 mx-auto mb-12 grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
 		<!-- Groom -->
-		<div use:scrollReveal={{ delay: 100 }} class="border-brutal-thick shadow-brutal space-y-4 bg-white p-6 sm:p-8">
+		<div use:scrollReveal class="border-brutal-thick shadow-brutal space-y-4 bg-white p-6 sm:p-8">
 			<div class="border-brutal inline-block bg-black px-3 py-1 font-mono text-xs font-bold text-white uppercase shadow-brutal-sm">
 				MEMPELAI PRIA
 			</div>
@@ -98,7 +98,8 @@
 						src={content.couple.partner1.photoUrl}
 						alt={content.couple.partner1.name}
 						class="h-full w-full object-cover"
-						loading="lazy"
+						loading="eager"
+						decoding="async"
 					/>
 				</div>
 			{/if}
@@ -115,7 +116,7 @@
 		</div>
 
 		<!-- Bride -->
-		<div use:scrollReveal={{ delay: 200 }} class="border-brutal-thick shadow-brutal space-y-4 bg-white p-6 sm:p-8">
+		<div use:scrollReveal class="border-brutal-thick shadow-brutal space-y-4 bg-white p-6 sm:p-8">
 			<div
 				class="border-brutal inline-block bg-[#facc15] px-3 py-1 font-mono text-xs font-bold text-black uppercase shadow-brutal-sm"
 			>
@@ -128,7 +129,8 @@
 						src={content.couple.partner2.photoUrl}
 						alt={content.couple.partner2.name}
 						class="h-full w-full object-cover"
-						loading="lazy"
+						loading="eager"
+						decoding="async"
 					/>
 				</div>
 			{/if}

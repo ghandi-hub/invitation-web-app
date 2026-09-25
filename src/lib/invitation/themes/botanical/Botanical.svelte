@@ -106,12 +106,12 @@
 	<!-- Opening Quote -->
 	{#if content.opening?.quote}
 		<section class="relative z-10 mx-auto max-w-2xl px-6 py-10 text-center">
-			<blockquote use:scrollReveal={{ variant: 'blur-in', duration: 900 }} class="font-cormorant text-lg sm:text-2xl leading-relaxed text-[#283618] italic">
+			<blockquote use:scrollReveal={{ duration: 400 }} class="font-cormorant text-lg sm:text-2xl leading-relaxed text-[#283618] italic">
 				"{content.opening.quote}"
 			</blockquote>
 			{#if content.opening.quoteSource}
 				<cite
-					use:scrollReveal={{ delay: 150 }}
+					use:scrollReveal
 					class="mt-4 block font-sans text-xs font-semibold tracking-[0.25em] text-[#606c38] uppercase not-italic"
 				>
 					— {content.opening.quoteSource}
@@ -142,11 +142,12 @@
 							src={content.couple.partner1.photoUrl}
 							alt={content.couple.partner1.name}
 							class="h-full w-full rounded-t-[90px] object-cover"
-							loading="lazy"
+							loading="eager"
+							decoding="async"
 						/>
 					</div>
 				{/if}
-				<div use:scrollReveal={{ delay: 100 }}>
+				<div use:scrollReveal>
 					<span class="text-[10px] tracking-[0.3em] font-semibold uppercase text-[#606c38] block mb-1">
 						Mempelai Pria
 					</span>
@@ -172,11 +173,12 @@
 							src={content.couple.partner2.photoUrl}
 							alt={content.couple.partner2.name}
 							class="h-full w-full rounded-t-[90px] object-cover"
-							loading="lazy"
+							loading="eager"
+							decoding="async"
 						/>
 					</div>
 				{/if}
-				<div use:scrollReveal={{ delay: 100 }}>
+				<div use:scrollReveal>
 					<span class="text-[10px] tracking-[0.3em] font-semibold uppercase text-[#606c38] block mb-1">
 						Mempelai Wanita
 					</span>

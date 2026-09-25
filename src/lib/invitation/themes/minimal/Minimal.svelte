@@ -72,11 +72,11 @@
 			<span use:scrollReveal class="mb-4 block font-mono text-[10px] tracking-[0.3em] text-neutral-400 uppercase">
 				UNGKAPAN HATI
 			</span>
-			<blockquote use:scrollReveal={{ variant: 'blur-in', duration: 900 }} class="text-xl sm:text-3xl font-light leading-snug tracking-tight text-neutral-900 max-w-2xl mx-auto">
+			<blockquote use:scrollReveal={{ duration: 400 }} class="text-xl sm:text-3xl font-light leading-snug tracking-tight text-neutral-900 max-w-2xl mx-auto">
 				"{content.opening.quote}"
 			</blockquote>
 			{#if content.opening.quoteSource}
-				<cite use:scrollReveal={{ delay: 150 }} class="mt-4 block font-mono text-xs tracking-widest text-neutral-400 uppercase not-italic">
+				<cite use:scrollReveal class="mt-4 block font-mono text-xs tracking-widest text-neutral-400 uppercase not-italic">
 					— {content.opening.quoteSource}
 				</cite>
 			{/if}
@@ -103,11 +103,12 @@
 							src={content.couple.partner1.photoUrl}
 							alt={content.couple.partner1.name}
 							class="h-full w-full object-cover contrast-105"
-							loading="lazy"
+							loading="eager"
+							decoding="async"
 						/>
 					</div>
 				{/if}
-				<div use:scrollReveal={{ delay: 100 }}>
+				<div use:scrollReveal>
 					<span class="font-mono text-[10px] tracking-widest text-neutral-400 uppercase block mb-1">
 						MEMPELAI PRIA
 					</span>
@@ -131,11 +132,12 @@
 							src={content.couple.partner2.photoUrl}
 							alt={content.couple.partner2.name}
 							class="h-full w-full object-cover contrast-105"
-							loading="lazy"
+							loading="eager"
+							decoding="async"
 						/>
 					</div>
 				{/if}
-				<div use:scrollReveal={{ delay: 100 }}>
+				<div use:scrollReveal>
 					<span class="font-mono text-[10px] tracking-widest text-neutral-400 uppercase block mb-1">
 						MEMPELAI WANITA
 					</span>

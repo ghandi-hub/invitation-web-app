@@ -103,12 +103,12 @@
 	{#if content.opening?.quote}
 		<section class="relative z-10 mx-auto max-w-2xl px-6 py-10 text-center">
 			<Heart class="mx-auto mb-3 h-5 w-5 fill-current text-[#a87474]/70" />
-			<blockquote use:scrollReveal={{ variant: 'blur-in', duration: 900 }} class="font-cormorant text-xl sm:text-2xl leading-relaxed text-[#4a3638] italic">
+			<blockquote use:scrollReveal={{ duration: 400 }} class="font-cormorant text-xl sm:text-2xl leading-relaxed text-[#4a3638] italic">
 				"{content.opening.quote}"
 			</blockquote>
 			{#if content.opening.quoteSource}
 				<cite
-					use:scrollReveal={{ delay: 150 }}
+					use:scrollReveal
 					class="mt-4 block font-sans text-xs font-semibold tracking-widest text-[#a87474] uppercase not-italic"
 				>
 					— {content.opening.quoteSource}
@@ -141,11 +141,12 @@
 							src={content.couple.partner1.photoUrl}
 							alt={content.couple.partner1.name}
 							class="h-full w-full rounded-t-[90px] object-cover"
-							loading="lazy"
+							loading="eager"
+							decoding="async"
 						/>
 					</div>
 				{/if}
-				<div use:scrollReveal={{ delay: 100 }}>
+				<div use:scrollReveal>
 					<span class="font-script text-xl text-[#a87474] block mb-0.5">Mempelai Pria</span>
 					<h3 class="font-cormorant text-2xl sm:text-3xl font-medium text-[#2a1e20]">
 						{content.couple.partner1.fullName || content.couple.partner1.name}
@@ -169,11 +170,12 @@
 							src={content.couple.partner2.photoUrl}
 							alt={content.couple.partner2.name}
 							class="h-full w-full rounded-t-[90px] object-cover"
-							loading="lazy"
+							loading="eager"
+							decoding="async"
 						/>
 					</div>
 				{/if}
-				<div use:scrollReveal={{ delay: 100 }}>
+				<div use:scrollReveal>
 					<span class="font-script text-xl text-[#a87474] block mb-0.5">Mempelai Wanita</span>
 					<h3 class="font-cormorant text-2xl sm:text-3xl font-medium text-[#2a1e20]">
 						{content.couple.partner2.fullName || content.couple.partner2.name}

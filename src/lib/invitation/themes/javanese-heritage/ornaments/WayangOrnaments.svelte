@@ -25,7 +25,8 @@
 			alt="Wayang Kakung"
 			style:width="{size}px"
 			class="animate-wayang-left drop-shadow-2xl"
-			loading="lazy"
+			loading="eager"
+			decoding="async"
 		/>
 	</div>
 {:else if type === 'perempuan'}
@@ -39,7 +40,8 @@
 			alt="Wayang Putri"
 			style:width="{size}px"
 			class="animate-wayang-right drop-shadow-2xl"
-			loading="lazy"
+			loading="eager"
+			decoding="async"
 		/>
 	</div>
 {:else}
@@ -53,7 +55,8 @@
 				alt="Wayang Kakung"
 				style:width="{size}px"
 				class="animate-wayang-left drop-shadow-2xl"
-				loading="lazy"
+				loading="eager"
+				decoding="async"
 			/>
 		</div>
 
@@ -63,7 +66,8 @@
 				alt="Wayang Putri"
 				style:width="{size}px"
 				class="animate-wayang-right drop-shadow-2xl"
-				loading="lazy"
+				loading="eager"
+				decoding="async"
 			/>
 		</div>
 	</div>

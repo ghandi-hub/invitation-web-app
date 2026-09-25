@@ -83,14 +83,14 @@
 				<Sparkles class="h-4 w-4" />
 			</div>
 			<blockquote
-				use:scrollReveal={{ variant: 'blur-in', duration: 900 }}
+				use:scrollReveal={{ duration: 400 }}
 				class="font-syne text-lg sm:text-2xl leading-relaxed font-medium text-[#0d1b2a] italic max-w-2xl mx-auto"
 			>
 				"{content.opening.quote}"
 			</blockquote>
 			{#if content.opening.quoteSource}
 				<cite
-					use:scrollReveal={{ delay: 150 }}
+					use:scrollReveal
 					class="mt-4 block font-mono text-xs font-bold tracking-widest text-[#c85a32] uppercase not-italic"
 				>
 					— {content.opening.quoteSource}
@@ -121,11 +121,12 @@
 							src={content.couple.partner1.photoUrl}
 							alt={content.couple.partner1.name}
 							class="h-full w-full object-cover"
-							loading="lazy"
+							loading="eager"
+							decoding="async"
 						/>
 					</div>
 				{/if}
-				<div use:scrollReveal={{ delay: 100 }}>
+				<div use:scrollReveal>
 					<span class="text-[10px] font-bold tracking-widest text-[#c85a32] uppercase block mb-1">
 						MEMPELAI PRIA
 					</span>
@@ -151,11 +152,12 @@
 							src={content.couple.partner2.photoUrl}
 							alt={content.couple.partner2.name}
 							class="h-full w-full object-cover"
-							loading="lazy"
+							loading="eager"
+							decoding="async"
 						/>
 					</div>
 				{/if}
-				<div use:scrollReveal={{ delay: 100 }}>
+				<div use:scrollReveal>
 					<span class="text-[10px] font-bold tracking-widest text-[#c85a32] uppercase block mb-1">
 						MEMPELAI WANITA
 					</span>

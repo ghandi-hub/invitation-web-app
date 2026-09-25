@@ -19,7 +19,8 @@
 			src="/ornaments/javanese/ribbon.png"
 			alt=""
 			class="w-full opacity-90 drop-shadow-sm"
-			loading="lazy"
+			loading="eager"
+			decoding="async"
 		/>
 
 		<div class="absolute inset-0 flex items-center justify-center">
