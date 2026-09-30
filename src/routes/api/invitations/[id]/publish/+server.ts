@@ -7,8 +7,8 @@ export const POST: RequestHandler = async ({ params, locals, request }) => {
 	}
 
 	const id = params.id;
-	if (!id) {
-		throw error(400, 'ID_REQUIRED');
+	if (!id || !/^[a-f0-9]{24}$/i.test(id)) {
+		throw error(400, 'INVALID_ID');
 	}
 
 	const current = await getInvitationById(id);

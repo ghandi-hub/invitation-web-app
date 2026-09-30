@@ -7,8 +7,8 @@ export const PUT: RequestHandler = async ({ params, locals, request }) => {
 	}
 
 	const id = params.id;
-	if (!id) {
-		throw error(400, 'ID_REQUIRED');
+	if (!id || !/^[a-f0-9]{24}$/i.test(id)) {
+		throw error(400, 'INVALID_ID');
 	}
 
 	const current = await getInvitationById(id);
@@ -34,17 +34,18 @@ export const PUT: RequestHandler = async ({ params, locals, request }) => {
 	try {
 		const updated = await updateInvitation(id, locals.user.id, body, removedMediaIds);
 		return json({ success: true, invitation: updated });
-	} catch (err: any) {
-		if (err.message === 'MEDIA_CLEANUP_FAILED') {
+	} catch (err: unknown) {
+		const message = err instanceof Error ? err.message : '';
+		if (message === 'MEDIA_CLEANUP_FAILED') {
 			throw error(
 				502,
 				'Perubahan tersimpan, tetapi foto lama belum berhasil dihapus. Klik Simpan lagi untuk mencoba ulang.'
 			);
 		}
-		if (err.message === 'SLUG_ALREADY_EXISTS') {
+		if (message === 'SLUG_ALREADY_EXISTS') {
 			throw error(409, 'SLUG_ALREADY_EXISTS');
 		}
-		if (err.message === 'INVALID_SLUG') {
+		if (message === 'INVALID_SLUG') {
 			throw error(400, 'INVALID_SLUG');
 		}
 		console.error('Update invitation error:', err);
@@ -58,8 +59,8 @@ export const DELETE: RequestHandler = async ({ params, locals }) => {
 	}
 
 	const id = params.id;
-	if (!id) {
-		throw error(400, 'ID_REQUIRED');
+	if (!id || !/^[a-f0-9]{24}$/i.test(id)) {
+		throw error(400, 'INVALID_ID');
 	}
 
 	const current = await getInvitationById(id);

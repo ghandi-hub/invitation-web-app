@@ -12,7 +12,9 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"db:backup": "node --env-file-if-exists=.env scripts/backup-db.js",
+		"db:restore": "node --env-file-if-exists=.env scripts/restore-db.js"
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",

@@ -4,11 +4,13 @@ import { getInvitationById } from '$lib/server/invitations';
 import { checkRateLimit } from '$lib/server/rateLimiter';
 
 export const POST: RequestHandler = async ({ request, getClientAddress }) => {
-	let clientIp: string;
-	try {
-		clientIp = getClientAddress();
-	} catch {
-		clientIp = request.headers.get('x-forwarded-for')?.split(',')[0].trim() || '127.0.0.1';
+	let clientIp = request.headers.get('cf-connecting-ip');
+	if (!clientIp) {
+		try {
+			clientIp = getClientAddress();
+		} catch {
+			clientIp = request.headers.get('x-forwarded-for')?.split(',')[0].trim() || '127.0.0.1';
+		}
 	}
 
 	const rateLimit = checkRateLimit('rsvps', clientIp, {
@@ -23,6 +25,10 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 	const body = await request.json().catch(() => null);
 	if (!body || !body.invitationId || !body.name || !body.attendance) {
 		throw error(400, 'MISSING_REQUIRED_FIELDS');
+	}
+
+	if (typeof body.invitationId !== 'string' || !/^[a-f0-9]{24}$/i.test(body.invitationId)) {
+		throw error(400, 'INVALID_INVITATION_ID');
 	}
 
 	// Honeypot bot protection

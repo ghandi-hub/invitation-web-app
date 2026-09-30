@@ -4,8 +4,13 @@ import {
 	getRsvpsCollection,
 	getGuestbookCollection
 } from '$lib/server/db';
-import { ObjectId } from 'mongodb';
-import type { Invitation, InvitationContent, InvitationTheme, WeddingEvent } from '$lib/types/invitation';
+import { ObjectId, type Document, type UpdateFilter } from 'mongodb';
+import type {
+	Invitation,
+	InvitationContent,
+	InvitationTheme,
+	WeddingEvent
+} from '$lib/types/invitation';
 import { imageIds, deleteUnusedImage } from '$lib/server/media';
 import { deleteMediaByPublicId } from '$lib/server/cloudinary';
 
@@ -70,12 +75,8 @@ export async function isSlugAvailable(slug: string, excludeId?: string): Promise
 	if (!clean) return false;
 
 	const filter: Record<string, unknown> = { slug: clean };
-	if (excludeId) {
-		try {
-			filter._id = { $ne: new ObjectId(excludeId) };
-		} catch {
-			filter._id = { $ne: excludeId };
-		}
+	if (excludeId && typeof excludeId === 'string' && /^[a-f0-9]{24}$/i.test(excludeId)) {
+		filter._id = { $ne: new ObjectId(excludeId) };
 	}
 
 	const existing = await col.findOne(filter);
@@ -99,7 +100,7 @@ export async function generateUniqueSlug(
 	return slug;
 }
 
-function mapDocToInvitation(doc: any): Invitation {
+function mapDocToInvitation(doc: Document): Invitation {
 	return {
 		id: doc._id.toString(),
 		userId: doc.userId.toString(),
@@ -157,15 +158,12 @@ export async function createDefaultInvitation(userId: string): Promise<Invitatio
 }
 
 export async function getInvitationById(id: string): Promise<Invitation | null> {
+	if (typeof id !== 'string' || !/^[a-f0-9]{24}$/i.test(id)) {
+		return null;
+	}
 	try {
 		const col = await getInvitationsCollection();
-		let filter;
-		try {
-			filter = { _id: new ObjectId(id) };
-		} catch {
-			filter = { _id: id as unknown as ObjectId };
-		}
-		const doc = await col.findOne(filter);
+		const doc = await col.findOne({ _id: new ObjectId(id) });
 		if (!doc) return null;
 		return mapDocToInvitation(doc);
 	} catch {
@@ -253,12 +251,7 @@ export async function updateInvitation(
 		}
 	}
 
-	let filter;
-	try {
-		filter = { _id: new ObjectId(id) };
-	} catch {
-		filter = { _id: id as unknown as ObjectId };
-	}
+	const filter = { _id: new ObjectId(id) };
 
 	const nextIds = new Set(imageIds(updates.content || current.content));
 	const removed = [
@@ -272,7 +265,9 @@ export async function updateInvitation(
 	for (const mediaId of pending) {
 		try {
 			await deleteUnusedImage(mediaId, userId, id);
-			await col.updateOne(filter, { $pull: { pendingMediaDeletionIds: mediaId } } as any);
+			await col.updateOne(filter, {
+				$pull: { pendingMediaDeletionIds: mediaId }
+			} as UpdateFilter<Document>);
 		} catch {
 			cleanupFailed = true;
 		}
@@ -297,12 +292,7 @@ export async function deleteInvitation(id: string, userId: string): Promise<bool
 	}
 
 	const col = await getInvitationsCollection();
-	let filter;
-	try {
-		filter = { _id: new ObjectId(id) };
-	} catch {
-		filter = { _id: id as unknown as ObjectId };
-	}
+	const filter = { _id: new ObjectId(id) };
 
 	await col.deleteOne(filter);
 

@@ -4,6 +4,7 @@ import { uploadMediaBuffer, deleteMediaByPublicId } from '$lib/server/cloudinary
 import { getMediaCollection } from '$lib/server/db';
 import { ObjectId } from 'mongodb';
 import { detectImageMimeType } from '$lib/server/media';
+import { checkRateLimit } from '$lib/server/rateLimiter';
 import path from 'node:path';
 
 const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/avif', 'image/gif'];
@@ -14,11 +15,21 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 		throw error(401, 'AUTH_REQUIRED');
 	}
 
+	const rateLimit = checkRateLimit('media_upload', locals.user.id, {
+		windowMs: 5 * 60 * 1000, // 5 minutes
+		maxRequests: 15
+	});
+
+	if (!rateLimit.allowed) {
+		throw error(429, 'Terlalu banyak unggahan foto. Silakan tunggu beberapa saat.');
+	}
+
 	const formData = await request.formData();
 	const file = formData.get('file');
 	const invitationId = formData.get('invitationId')?.toString();
 
 	if (!invitationId) throw error(400, 'INVITATION_ID_REQUIRED');
+	if (!/^[a-f0-9]{24}$/i.test(invitationId)) throw error(400, 'INVALID_INVITATION_ID');
 	const invitation = await getInvitationById(invitationId);
 	if (!invitation || invitation.userId !== locals.user.id) throw error(403, 'FORBIDDEN');
 
@@ -43,7 +54,10 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 			throw error(400, 'INVALID_IMAGE_CONTENT');
 		}
 
-		const safeOriginalName = path.basename(file.name).replace(/[^a-zA-Z0-9._-]/g, '_').slice(0, 100);
+		const safeOriginalName = path
+			.basename(file.name)
+			.replace(/[^a-zA-Z0-9._-]/g, '_')
+			.slice(0, 100);
 
 		const result = await uploadMediaBuffer(buffer, {
 			folder: `invitation/${locals.user.id}`,
